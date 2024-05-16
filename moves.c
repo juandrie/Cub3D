@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/15 19:11:53 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:23:04 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,54 +22,43 @@ int get_key_press(t_data *data)
 void read_keys(t_data *data)
 {
     int key = get_key_press(data);
-
     double newX = data->player->pos.x + data->player->dir.x * data->window->moveSpeed;
     double newY = data->player->pos.y + data->player->dir.y * data->window->moveSpeed;
-    printf("Address of player in read_keys: %p, pos: (%f, %f)\n", (void *)data->player, data->player->pos.x, data->player->pos.y);
 
-    printf("Attempting to move from (%.2f, %.2f) to (%.2f, %.2f)\n", data->player->pos.x, data->player->pos.y, newX, newY);
     if (key == W)
     {
-        printf("Attempting to move forward from (%f, %f) to (%f, %f)\n", data->player->pos.x, data->player->pos.y, newX, newY);
-        if (worldMap[(int)newX][(int)data->player->pos.y] != 1)
+        if (data->map->map[(int)newX][(int)data->player->pos.y] == 0)
             data->player->pos.x = newX;
-        if (worldMap[(int)data->player->pos.x][(int)newY] != 1)
+        if (data->map->map[(int)data->player->pos.x][(int)newY] == 0)
             data->player->pos.y = newY;
-        printf("New position: (%f, %f)\n", data->player->pos.x, data->player->pos.y);
     }
-    
     if (key == S)
     {
         newX = data->player->pos.x - data->player->dir.x * data->window->moveSpeed;
         newY = data->player->pos.y - data->player->dir.y * data->window->moveSpeed;
-        printf("Attempting to move backward from (%f, %f) to (%f, %f)\n", data->player->pos.x, data->player->pos.y, newX, newY);
-        if (worldMap[(int)newX][(int)data->player->pos.y] != 1)
+        if (data->map->map[(int)newX][(int)data->player->pos.y] == 0)
             data->player->pos.x = newX;
-        if (worldMap[(int)data->player->pos.x][(int)newY] != 1)
+        if (data->map->map[(int)data->player->pos.x][(int)newY] == 0)
             data->player->pos.y = newY;
-        printf("New position: (%f, %f)\n", data->player->pos.x, data->player->pos.y);
     }
-    
     if (key == D)
     {
-        printf("Attempting to turn right from direction (%f, %f)\n", data->player->dir.x, data->player->dir.y);
         double oldDirX = data->player->dir.x;
         data->player->dir.x = data->player->dir.x * cos(- data->window->rotSpeed) - data->player->dir.y * sin(-data->window->rotSpeed);
         data->player->dir.y = oldDirX * sin(-data->window->rotSpeed) + data->player->dir.y * cos(-data->window->rotSpeed);
-        printf("New direction: (%f, %f)\n", data->player->dir.x, data->player->dir.y);
     }
-    
     if (key == A)
     {
-        printf("Attempting to turn left from direction (%f, %f)\n", data->player->dir.x, data->player->dir.y);
         double oldDirX = data->player->dir.x;
         data->player->dir.x = data->player->dir.x * cos(data->window->rotSpeed) - data->player->dir.y * sin(data->window->rotSpeed);
         data->player->dir.y = oldDirX * sin(data->window->rotSpeed) + data->player->dir.y * cos(data->window->rotSpeed);
-        printf("New direction: (%f, %f)\n", data->player->dir.x, data->player->dir.y);
     }
-    printf("New position: (%.2f, %.2f)\n", data->player->pos.x, data->player->pos.y);
     if (key == ESC)
+    {
         data->window->running = 0;
+    }
+    mlx_clear_window(data->window->mlx_ptr, data->window->win_ptr);
+    perform_ray_casting(data);
 }
 
 
@@ -85,7 +74,4 @@ void update_timing_and_movement(t_data *data)
 
     data->window->moveSpeed = frameTime * 5.0; // Vitesse de déplacement
     data->window->rotSpeed = frameTime * 3.0; // Vitesse de rotation
-
-    printf("FPS: %.2f, MoveSpeed: %.5f, RotSpeed: %.5f\n", 1.0 / frameTime, data->window->moveSpeed, data->window->rotSpeed);
-    printf("Direction: (%.5f, %.5f)\n", data->player->dir.x, data->player->dir.y);
 }
