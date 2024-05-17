@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:29:32 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/16 19:01:56 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:11:50 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ x : la position horizontale de la ligne sur l'écran.
 drawStart, drawEnd : déterminent où la ligne commence et se termine sur l'axe vertical.
 color : la couleur de la ligne, influencée par si le mur est sur le côté "nord-sud" ou "est-ouest".
 */
-void draw_vertical_line(t_data *data, int drawStart, int drawEnd, int color)
+void	draw_vertical_line(t_data *data, int drawStart, int drawEnd, int color)
 {
 	int	y;
 
@@ -29,6 +29,7 @@ void draw_vertical_line(t_data *data, int drawStart, int drawEnd, int color)
 		y++;
 	}
 }
+
 /*
 Fonction qui permet de creer un effet de lumiere, rendant les murs lateraux plus sombres pour donner une 
 impression de profondeur.
@@ -36,9 +37,10 @@ impression de profondeur.
 int	determine_color(char wallChar, t_data *data)
 {
 	int	color;
+	int	walltype;
 
-	int wallType = wallChar - '0'; 
-	if (wallType == 1)
+	walltype = wallChar - '0';
+	if (walltype == 1)
 		color = 0xFF0000;
 	else
 		color = 0xFFFFFF;
@@ -46,6 +48,7 @@ int	determine_color(char wallChar, t_data *data)
 		color /= 2;
 	return (color);
 }
+
 /*
 Fonction qui calcule la direction du rayon pour chaque colonne de pixels sur l'ecran.
 Elle permet de déterminer la direction dans laquelle le rayon doit progresser 
@@ -74,15 +77,17 @@ void	calculate_delta_distances(t_data *data)
 		data->ray->delta_dist.y = fabs(1 / data->ray->ray_dir.y);
 }
 
-void perform_dda(t_data *data)
+void	perform_dda(t_data *data)
 {
 	int	hit;
+	int	mapx;
+	int	mapy;
 
 	hit = 0;
 	while (!hit)
 	{
-		int mapx = (int)data->ray->map.x;
-   		int mapy = (int)data->ray->map.y;
+		mapx = (int)data->ray->map.x;
+		mapy = (int)data->ray->map.y;
 		if (data->ray->side_dist.x < data->ray->side_dist.y)
 		{
 			data->ray->side_dist.x += data->ray->delta_dist.x;
@@ -96,81 +101,82 @@ void perform_dda(t_data *data)
 			data->ray->side = 1;
 		}
 		mapx = (int)data->ray->map.x;
-        mapy = (int)data->ray->map.y;
+		mapy = (int)data->ray->map.y;
 		if (mapx >= 0 && mapx < data->map->width && mapy >= 0 && mapy < data->map->height)
-        {
+		{
 			if (data->map->map[mapx][mapy] == '1') 
 				hit = 1;
 		}
 		else
-			break;
+			break ;
 	}
 }
 
-void draw_wall_slice(t_data *data)
+void	draw_wall_slice(t_data *data)
 {
-    double	perpWallDist;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	double	perpwalldist;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
 	int		color;
-	int mapx = (int)data->ray->map.x;
-    int mapy = (int)data->ray->map.y;
+	int		mapx;
+	int		mapy;
 
+	mapx = (int)data->ray->map.x;
+	mapy = (int)data->ray->map.y;
 	if (mapx < 0 || mapx >= data->map->width || mapy < 0 || mapy >= data->map->height)
 	{
-		printf("Error: map index out of bounds (mapx=%d, mapy=%d).\n", mapx, mapy);
-        exit(0);
-    }
-	// if (data->ray->side == 0)
-    //     perpWallDist = (data->ray->map.x - data->player->pos.x + (1 - data->ray->step.x) / 2) / data->ray->ray_dir.x;
-    // else
-    //     perpWallDist = (data->ray->map.y - data->player->pos.y + (1 - data->ray->step.y) / 2) / data->ray->ray_dir.y;
-    // perpWallDist = fabs(perpWallDist); 
+		printf("Error: out of bounds (mapx=%d, mapy=%d).\n", mapx, mapy);
+		exit(0);
+	}
 	if (data->ray->side == 0)
-    	perpWallDist = fabs((data->ray->map.x - data->player->pos.x + (1 - data->ray->step.x) / 2) / data->ray->ray_dir.x);
+		perpwalldist = (data->ray->map.x - data->player->pos.x + (1 - data->ray->step.x) / 2) / data->ray->ray_dir.x;
 	else
-    	perpWallDist = fabs((data->ray->map.y - data->player->pos.y + (1 - data->ray->step.y) / 2) / data->ray->ray_dir.y);
-	lineHeight = (int)(data->window->height / perpWallDist);
-    drawStart = -lineHeight / 2 + data->window->height / 2;
-    drawEnd = lineHeight / 2 + data->window->height / 2;
-    color = determine_color(data->map->map[mapx][mapy] - '0', data);
-	draw_vertical_line(data, drawStart, drawEnd, color);
+		perpwalldist = (data->ray->map.y - data->player->pos.y + (1 - data->ray->step.y) / 2) / data->ray->ray_dir.y;
+	perpwalldist = fabs(perpwalldist); 
+	// if (data->ray->side == 0)
+	// 	perpWallDist = fabs((data->ray->map.x - data->player->pos.x + (1 - data->ray->step.x) / 2) / data->ray->ray_dir.x);
+	// else
+	// 	perpWallDist = fabs((data->ray->map.y - data->player->pos.y + (1 - data->ray->step.y) / 2) / data->ray->ray_dir.y);
+	lineheight = (int)(data->window->height / perpwalldist);
+	drawstart = -lineheight / 2 + data->window->height / 2;
+	drawend = lineheight / 2 + data->window->height / 2;
+	color = determine_color(data->map->map[mapx][mapy] - '0', data);
+	draw_vertical_line(data, drawstart, drawend, color);
 }
 
-void perform_ray_casting(t_data *data)
+void	perform_ray_casting(t_data *data)
 {
 	data->vector->x = 0;
 	while (data->vector->x < data->window->width)
-    {
+	{
 		data->ray->map.x = (int)data->player->pos.x;
 		data->ray->map.y = (int)data->player->pos.y;
-		
 		calculate_ray_direction(data);
 		calculate_delta_distances(data);
-        if (data->ray->ray_dir.x < 0)
+		if (data->ray->ray_dir.x < 0)
 		{
-           	data->ray->step.x = -1;
-            data->ray->side_dist.x = (data->player->pos.x - data->ray->map.x) * data->ray->delta_dist.x;
-        }
+			data->ray->step.x = -1;
+			data->ray->side_dist.x = (data->player->pos.x - data->ray->map.x) * data->ray->delta_dist.x;
+		}
 		else
 		{
-            data->ray->step.x = 1;
-            data->ray->side_dist.x = (data->ray->map.x + 1.0 - data->player->pos.x) * data->ray->delta_dist.x;
-        }
-        if (data->ray->ray_dir.y < 0)
+			data->ray->step.x = 1;
+			data->ray->side_dist.x = (data->ray->map.x + 1.0 - data->player->pos.x) * data->ray->delta_dist.x;
+		}
+		if (data->ray->ray_dir.y < 0)
 		{
-            data->ray->step.y = -1;
-            data->ray->side_dist.y = (data->player->pos.y - data->ray->map.y) * data->ray->delta_dist.y;
-        }
-		else 
+			data->ray->step.y = -1;
+			data->ray->side_dist.y = (data->player->pos.y - data->ray->map.y) * data->ray->delta_dist.y;
+		}
+		else
 		{
-            data->ray->step.y = 1;
-            data->ray->side_dist.y = (data->ray->map.y + 1.0 - data->player->pos.y) * data->ray->delta_dist.y;
-        }
-        perform_dda(data);
+			data->ray->step.y = 1;
+			data->ray->side_dist.y = (data->ray->map.y + 1.0 - data->player->pos.y) * data->ray->delta_dist.y;
+		}
+		perform_dda(data);
 		draw_wall_slice(data);
 		data->vector->x++;
-    }
+	}
 }
 
