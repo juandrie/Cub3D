@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:28:22 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/17 17:55:26 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:36:30 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	add_line_to_map(t_data *data, char *line)
 	free(data->map->map);
 	data->map->map = temp;
 	data->map->height++;
+	if (ft_strlen(line) > data->map->width)
+        data->map->width = ft_strlen(line);
 	return (1);
 }
 
@@ -77,7 +79,9 @@ int	process_line(t_data *data, char *line)
 		return (parse_color(line, data->map->floor_color));
 	if (ft_strncmp(line, "C ", 2) == 0)
 		return (parse_color(line, data->map->ceiling_color));
-	return (add_line_to_map(data, line));
+	if (line[0] >= '0' && line[0] <= '9')
+		return (add_line_to_map(data, line));
+	return (1);
 }
 
 int	read_map(t_data *data)
@@ -89,8 +93,8 @@ int	read_map(t_data *data)
 		return (0);
 	while ((line = get_next_line(data->map->fd)))
 	{
-		if (!data->map->width)
-			data->map->width = ft_strlen(line);
+		// if (!data->map->width)
+		// 	data->map->width = ft_strlen(line);
 		if (!process_line(data, line))
 		{
 			close(data->map->fd);

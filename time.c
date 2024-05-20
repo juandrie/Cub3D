@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:44:52 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/17 18:14:09 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:43:13 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ void	update_timing_and_movement(t_data *data)
 	frametime = (time - oldtime); //Temps écoulé depuis la dernière frame en secondes
 	oldtime = time; // Mettre à jour oldTime pour la prochaine frame
 	//print_fps(1.0 / frameTime); // Afficher le FPS
-	data->window->movespeed = frametime * 20.0; // Vitesse de déplacement
-	data->window->rotspeed = frametime * 5.0; // Vitesse de rotation
+	data->window->movespeed = frametime * MOVE_SPEED;//20.0; // Vitesse de déplacement
+	data->window->rotspeed = frametime * ROTATE_SPEED;//5.0; // Vitesse de rotation
 }

@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:29:32 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/17 18:11:50 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:03:32 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,73 @@ x : la position horizontale de la ligne sur l'écran.
 drawStart, drawEnd : déterminent où la ligne commence et se termine sur l'axe vertical.
 color : la couleur de la ligne, influencée par si le mur est sur le côté "nord-sud" ou "est-ouest".
 */
-void	draw_vertical_line(t_data *data, int drawStart, int drawEnd, int color)
-{
-	int	y;
+// void	draw_vertical_line(t_data *data, int drawStart, int drawEnd, int color)
+// {
+// 	int	y;
 
-	y = drawStart;
-	while (y < drawEnd)
-	{
-		mlx_pixel_put(data->window->mlx_ptr, data->window->win_ptr, data->vector->x, y, color);
+// 	y = drawStart;
+// 	while (y < drawEnd)
+// 	{
+// 		mlx_pixel_put(data->window->mlx_ptr, data->window->win_ptr, data->vector->x, y, color);
+// 		y++;
+// 	}
+// }
+void draw_textured_wall_slice(t_data *data)
+{
+    int y = data->map->drawstart;
+	while (y < data->map->drawend)
+    {
+        data->map->texture.y = (int)data->map->text_pos & (data->texture[data->texture->texture_num].height - 1);
+        data->map->text_pos += data->ray->delta_dist.y;
+        int color = get_texture_color(&data->texture[data->texture->texture_num], data->map->texture.x, data->map->texture.y);
+        if (data->ray->side == 1)
+			color = (color >> 1) & 8355711; // Make y sides darker
+        mlx_pixel_put(data->window->mlx_ptr, data->window->win_ptr, data->vector->x, y, color);
 		y++;
-	}
+    }
 }
 
+void draw(t_data *data)
+{
+    int TestNum = calculate_texture_num(data);
+    data->map->wall_x = calculate_wall_x(data);
+    data->map->texture.x = calculate_texture_x(data);
+
+    // Comment augmenter la coordonnée de texture par pixel d'écran
+    double step = 1.0 * data->texture[TestNum].height / data->map->lineheight;
+    data->map->text_pos = (data->map->drawstart - data->window->height / 2 + data->map->lineheight / 2) * step;
+
+    draw_textured_wall_slice(data);
+}
+
+void	draw_wall_slice(t_data *data)
+{
+	// int		color;
+	int		mapx;
+	int		mapy;
+
+	mapx = (int)data->ray->map.x;
+	mapy = (int)data->ray->map.y;
+	if (mapx < 0 || mapx >= data->map->width || mapy < 0 || mapy >= data->map->height)
+	{
+		printf("Error: out of bounds (mapx=%d, mapy=%d).\n", mapx, mapy);
+		exit(0);
+	}
+	if (data->ray->side == 0)
+		data->ray->perpwalldist = (data->ray->map.x - data->player->pos.x + (1 - data->ray->step.x) / 2) / data->ray->ray_dir.x;
+	else
+		data->ray->perpwalldist = (data->ray->map.y - data->player->pos.y + (1 - data->ray->step.y) / 2) / data->ray->ray_dir.y;
+	data->ray->perpwalldist = fabs(data->ray->perpwalldist); 
+	data->map->lineheight = (int)(data->window->height / data->ray->perpwalldist);
+	data->map->drawstart = -data->map->lineheight / 2 + data->window->height / 2;
+	data->map->drawend = data->map->lineheight / 2 + data->window->height / 2;
+
+	if (data->map->drawend >= data->window->height)
+		data->map->drawend = data->window->height - 1;
+	
+	// color = determine_color(data->map->map[mapx][mapy] - '0', data);
+	// draw_vertical_line(data, drawstart, drawend, color);
+}
 /*
 Fonction qui permet de creer un effet de lumiere, rendant les murs lateraux plus sombres pour donner une 
 impression de profondeur.
@@ -88,6 +143,11 @@ void	perform_dda(t_data *data)
 	{
 		mapx = (int)data->ray->map.x;
 		mapy = (int)data->ray->map.y;
+		if (mapx < 0 || mapx >= data->map->width || mapy < 0 || mapy >= data->map->height)
+		{
+			printf("Error: ray went out of bounds (mapx=%d, mapy=%d).\n", mapx, mapy);
+			return;
+		}
 		if (data->ray->side_dist.x < data->ray->side_dist.y)
 		{
 			data->ray->side_dist.x += data->ray->delta_dist.x;
@@ -108,42 +168,13 @@ void	perform_dda(t_data *data)
 				hit = 1;
 		}
 		else
-			break ;
+		{
+			printf("Error: ray went out of bounds (mapx=%d, mapy=%d).\n", mapx, mapy);
+			return ;
+		}
 	}
 }
 
-void	draw_wall_slice(t_data *data)
-{
-	double	perpwalldist;
-	int		lineheight;
-	int		drawstart;
-	int		drawend;
-	int		color;
-	int		mapx;
-	int		mapy;
-
-	mapx = (int)data->ray->map.x;
-	mapy = (int)data->ray->map.y;
-	if (mapx < 0 || mapx >= data->map->width || mapy < 0 || mapy >= data->map->height)
-	{
-		printf("Error: out of bounds (mapx=%d, mapy=%d).\n", mapx, mapy);
-		exit(0);
-	}
-	if (data->ray->side == 0)
-		perpwalldist = (data->ray->map.x - data->player->pos.x + (1 - data->ray->step.x) / 2) / data->ray->ray_dir.x;
-	else
-		perpwalldist = (data->ray->map.y - data->player->pos.y + (1 - data->ray->step.y) / 2) / data->ray->ray_dir.y;
-	perpwalldist = fabs(perpwalldist); 
-	// if (data->ray->side == 0)
-	// 	perpWallDist = fabs((data->ray->map.x - data->player->pos.x + (1 - data->ray->step.x) / 2) / data->ray->ray_dir.x);
-	// else
-	// 	perpWallDist = fabs((data->ray->map.y - data->player->pos.y + (1 - data->ray->step.y) / 2) / data->ray->ray_dir.y);
-	lineheight = (int)(data->window->height / perpwalldist);
-	drawstart = -lineheight / 2 + data->window->height / 2;
-	drawend = lineheight / 2 + data->window->height / 2;
-	color = determine_color(data->map->map[mapx][mapy] - '0', data);
-	draw_vertical_line(data, drawstart, drawend, color);
-}
 
 void	perform_ray_casting(t_data *data)
 {
@@ -176,6 +207,7 @@ void	perform_ray_casting(t_data *data)
 		}
 		perform_dda(data);
 		draw_wall_slice(data);
+		draw(data);
 		data->vector->x++;
 	}
 }

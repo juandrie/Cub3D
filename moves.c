@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/17 18:11:33 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:03:57 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,16 @@ void	move_forward(t_data *data)
 
 	newx = data->player->pos.x + data->player->dir.x * data->window->movespeed;
 	newy = data->player->pos.y + data->player->dir.y * data->window->movespeed;
-	if (data->map->map[(int)newx][(int)data->player->pos.y] == '0')
+	if (data->map->map[(int)newx][(int)data->player->pos.y] != '1')
 		data->player->pos.x = newx;
-	if (data->map->map[(int)data->player->pos.x][(int)newy] == '0')
+	if (data->map->map[(int)data->player->pos.x][(int)newy] != '1')
 		data->player->pos.y = newy;
+	// if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height &&
+	// 	data->map->map[(int)newx][(int)newy] != '1')
+	// {
+	// 	data->player->pos.x = newx;
+	// 	data->player->pos.y = newy;
+	// }
 }
 
 void	move_back(t_data *data)
@@ -67,6 +73,12 @@ void	move_back(t_data *data)
 		data->player->pos.x = newx;
 	if (data->map->map[(int)data->player->pos.x][(int)newy] == '0')
 		data->player->pos.y = newy;
+	// if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height &&
+    //     data->map->map[(int)newx][(int)newy] != '1')
+    // {
+    //     data->player->pos.x = newx;
+    //     data->player->pos.y = newy;
+    // }
 }
 
 void	read_keys(t_data *data)

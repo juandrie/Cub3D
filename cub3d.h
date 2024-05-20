@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/17 18:07:44 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/20 18:05:18 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 # define RIGHT 0xff51
 # define LEFT 0xff53
 
+#define MOVE_SPEED 0.035
+#define ROTATE_SPEED 0.035
+
 typedef struct s_vector
 {
 	double	x;
@@ -48,14 +51,14 @@ typedef struct s_player
 
 typedef struct s_window
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		width;
-	int		height;
-	int		key_pressed;
-	int		running;
-	double	movespeed;
-	double	rotspeed;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			width;
+	int			height;
+	int			key_pressed;
+	int			running;
+	double		movespeed;
+	double		rotspeed;
 }	t_window;
 
 typedef struct s_ray
@@ -67,7 +70,20 @@ typedef struct s_ray
 	t_vector	step;
 	int			hit;
 	int			side;
+	double		perpwalldist;
 }	t_ray;
+
+typedef struct s_texture
+{
+    void	*img_ptr;    // Pointeur vers l'image texture
+    char	*addr;       // Les données de l'image
+    int		width;       // Largeur de la texture
+    int		height;      // Hauteur de la texture
+    int		bpp;         // Bits par pixel
+    int		size_line;   // Taille de ligne en mémoire
+    int		endian;      // Endian, qui indique l'ordre des couleurs
+	int		texture_num;
+}	t_texture;
 
 typedef struct s_map
 {
@@ -82,6 +98,12 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		fd;
+	double	wall_x;
+	double	text_pos;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
+	t_vector	texture;
 }	t_map;
 
 typedef struct s_data
@@ -91,6 +113,7 @@ typedef struct s_data
 	t_ray		*ray;
 	t_vector	*vector;
 	t_map		*map;
+	t_texture	*texture;
 	int			keycode;
 }	t_data;
 
@@ -110,5 +133,9 @@ void	init_player(t_player *player);
 void	init_window(t_window *window);
 void	init_map(t_map *map);
 t_data	*init_data(void);
+int get_texture_color(t_texture *texture, int x, int y);
+int calculate_texture_num(t_data *data);
+double calculate_wall_x(t_data *data);
+int calculate_texture_x(t_data *data);
 
 #endif 
