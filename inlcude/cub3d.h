@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:34:16 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/14 15:55:17 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 13:20:42 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ t_data	*init_data(char *filename);
 
 /* init_map_list.c */
 t_map	*init_map_list(char *filename);
+
+/* init_map_list_utils.c */
+int		open_fd(int *fd, char *filename);
+void	replace_nl(char *line);
+void	free_map_list(t_map *list, char *str);
 
 /* parse_map.c */
 int		parse_map(void);
