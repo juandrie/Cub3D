@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:33:06 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/14 15:23:49 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 13:00:04 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,6 @@ int	main(int ac, char **av, char **envp)
 	start_the_game(data);
 	return (0);
 }
+
+//create the free_data function
+// modifier GNL (enlever la partie parsing de so_long)

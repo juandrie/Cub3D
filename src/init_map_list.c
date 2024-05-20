@@ -6,11 +6,51 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:47:41 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/14 15:54:20 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 13:02:46 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	open_fd(int *fd, char *filename)
+{
+	*fd = open(filename, O_RDONLY);
+	if (*fd == -1)
+		return (perror(""), 1);
+	return (0);
+}
+
+static t_map	*new_node(char *str)
+{
+	t_map	*new;
+
+	new = ft_calloc(1, sizeof(t_map));
+	if (!new)
+		return (NULL);
+	new->line = str;
+	return (new);
+}
+
+static int	add_node_bottom(t_map **map, char *str)
+{
+	static t_map	*tmp;
+
+	if (!(*map))
+	{
+		(*map) = new_node(str);
+		if (!(*map))
+			return (0);
+		tmp = *map;
+	}
+	else
+	{
+		tmp->next = new_node(str);
+		if (!(tmp->next))
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
 
 static t_map	*init_map_list(char *filename)
 {
@@ -20,14 +60,11 @@ static t_map	*init_map_list(char *filename)
 	static char	*line;
 
 	map = NULL;
-	fd = open(filename, O_RDONLY);
-	if (fd == -1)
-		return (perror(""), NULL);
+	if (open_fd(&fd, filename))
+		return (NULL);
 	line = get_next_line(fd);
 	while (line)
 	{
-		// if (!ft_strncmp(line, "wrong_char", 10))
-		// 	return (free_map_in_list(map, NULL), close(fd), *m = 1, NULL);
 		len = (int)ft_strlen(line);
 		if (line[len - 1] == '\n')
 			line[len - 1] = '\0';

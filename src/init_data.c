@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:03:51 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/14 15:54:17 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 12:53:17 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,6 @@ t_data	*init_data(char *filename)
 		return (free(data), NULL);
 	data->map_tab = init_map_tab(data->map_list);
 	if (!data->map_tab)
-		return (free(data), NULL);
+		return (free_data(data), NULL);
 	return (data);
 }
