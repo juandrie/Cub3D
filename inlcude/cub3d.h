@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:34:16 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/20 13:20:42 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 13:42:29 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_data
 }t_data;
 
 /* init_data.c */
+void	free_data(t_data **data);
 t_data	*init_data(char *filename);
 
 /* init_map_list.c */
@@ -37,7 +38,8 @@ t_map	*init_map_list(char *filename);
 /* init_map_list_utils.c */
 int		open_fd(int *fd, char *filename);
 void	replace_nl(char *line);
-void	free_map_list(t_map *list, char *str);
+void	free_map_list(t_map **list, char *str);
+int		list_size(t_map *list);
 
 /* parse_map.c */
 int		parse_map(void);

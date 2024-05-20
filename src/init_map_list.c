@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:47:41 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/20 13:17:18 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 13:37:43 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static t_map	*new_node(char *str)
 
 	new = ft_calloc(1, sizeof(t_map));
 	if (!new)
-		return (NULL);
+		return (perror(""), NULL);
 	new->line = str;
 	return (new);
 }
@@ -59,7 +59,7 @@ t_map	*init_map_list(char *filename)
 	{
 		replace_nl(line);
 		if (!add_node_bottom(&map, line))
-			return (free_map_list(map, line), close(fd), NULL);
+			return (free_map_list(&map, line), close(fd), NULL);
 		line = get_next_line(fd);
 	}
 	if (close(fd) == -1)

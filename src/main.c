@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 14:33:06 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/20 13:00:04 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 13:43:44 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int ac, char **av, char **envp)
 		return (1);
 	data = init_data(av[1]);
 	if (!data)
-		return (perror(""), 1);
+		return (1);
 	if (parse_map())
 		return (1);
 	start_the_game(data);
@@ -53,3 +53,5 @@ int	main(int ac, char **av, char **envp)
 
 //create the free_data function
 // modifier GNL (enlever la partie parsing de so_long)
+// test for an empty map
+// check the correct error message
