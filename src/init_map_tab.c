@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:34:33 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/20 13:46:11 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 13:50:18 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**init_map_tab(t_data *data)
 	tmp = NULL;
 	tab = ft_calloc((list_size(list)) + 1, sizeof(char *));
 	if (!tab)
-		return (free_data(&data), NULL);
+		return (NULL);
 	while (list)
 	{
 		tab[i++] = list->line;

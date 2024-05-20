@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:12:24 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/20 13:40:11 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/20 13:48:51 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	open_fd(int *fd, char *filename)
 	return (0);
 }
 
-void	replace_nl(char *line)
+void	ft_replace_nl(char *line)
 {
 	int	len;
 
