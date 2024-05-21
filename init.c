@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:34:28 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/20 17:33:01 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:58:08 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ void	init_window(t_window *window)
 	window->running = 1;
 	window->movespeed = 0;
 	window->rotspeed = 0;
+	window->bpp = 0;
+	window->endian = 0;
+	window->size_line = 0;
+	window->img_ptr = mlx_new_image(window->mlx_ptr, window->width, window->height);
+    window->img_data = mlx_get_data_addr(window->img_ptr, &window->bpp, &window->size_line, &window->endian);
 }
 
 void	init_map(t_map *map)
@@ -53,6 +58,7 @@ void	init_map(t_map *map)
 	map->west_texture = NULL;
 	map->text_pos = 0;
 }
+
 void init_texture(t_texture *texture, void *mlx_ptr, char *filepath)
 {
 	texture->img_ptr = NULL;
@@ -70,6 +76,7 @@ void init_texture(t_texture *texture, void *mlx_ptr, char *filepath)
         exit(1);
     }
     texture->addr = mlx_get_data_addr(texture->img_ptr, &texture->bpp, &texture->size_line, &texture->endian);
+	//printf("Loaded texture %s: width=%d, height=%d\n", filepath, texture->width, texture->height);
 }
 t_data	*init_data(void)
 {

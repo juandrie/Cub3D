@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:43:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/20 16:46:48 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:15:57 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	key_press(int keycode, t_data *data)
 {
 	data->window->key_pressed = keycode;
-	read_keys(data);
 	return (0);
 }
 

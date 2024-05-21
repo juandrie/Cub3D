@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:28:22 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/20 17:36:30 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:44:08 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ int	read_map(t_data *data)
 		return (0);
 	while ((line = get_next_line(data->map->fd)))
 	{
-		// if (!data->map->width)
-		// 	data->map->width = ft_strlen(line);
 		if (!process_line(data, line))
 		{
 			close(data->map->fd);

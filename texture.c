@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:45:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/20 18:06:43 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:27:01 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,22 @@ int get_texture_color(t_texture *texture, int x, int y)
 
 int calculate_texture_num(t_data *data)
 {
-    char    map_value;
-    int     x;
-    int     y;
-    int     texture_num;
-
-    x = (int)data->ray->map.x;
-    y = (int)data->ray->map.y;
-    if (x >= 0 && x < data->map->width && y >= 0 && y < data->map->height)
+    if (data->ray->side == 0)
     {
-        map_value = data->map->map[y][x];
-        if (map_value == '1')
-            texture_num = 0;
-        else if (map_value == 'N' || map_value == 'S' || map_value == 'E' || map_value == 'W')
-            texture_num = 1;
+        if (data->ray->ray_dir.x > 0)
+            return (2); // Sud (rayon venant de l'ouest)
         else
-            texture_num = -1;
-        return (texture_num);
+            return 0; // Nord (rayon venant de l'est)
     }
-    return (-1);
+    else
+    {
+        if (data->ray->ray_dir.y > 0)
+            return (3); // Est (rayon venant du nord)
+        else
+            return (1); // Ouest (rayon venant du sud)
+    }
 }
+
 
 double calculate_wall_x(t_data *data)
 {
@@ -52,7 +48,8 @@ double calculate_wall_x(t_data *data)
         data->map->wall_x = data->player->pos.y + data->ray->perpwalldist * data->ray->ray_dir.y;
     else
         data->map->wall_x = data->player->pos.x + data->ray->perpwalldist * data->ray->ray_dir.x;
-    return (data->map->wall_x - floor(data->map->wall_x));
+    data->map->wall_x -= floor(data->map->wall_x);
+    return (data->map->wall_x);
 }
 int calculate_texture_x(t_data *data)
 {

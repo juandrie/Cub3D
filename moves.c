@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/20 18:03:57 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:01:34 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,19 @@ void	rotate_camera(t_data *data, double angle)
 	data->player->plane.y = old_planex * sin(angle) + data->player->plane.y * cos(angle);
 }
 
-void	move_side(t_data *data, double angle)
+void move_side(t_data *data, double angle)
 {
-	double	old_dirx;
+    double newx = data->player->pos.x + data->player->plane.x * angle;
+    double newy = data->player->pos.y + data->player->plane.y * angle;
 
-	old_dirx = data->player->dir.x;
-	data->player->dir.x = data->player->dir.x * cos(angle) - data->player->dir.y * sin(angle);
-	data->player->dir.y = old_dirx * sin(angle) + data->player->dir.y * cos(angle);
+    if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
+    {
+        if (data->map->map[(int)newy][(int)newx] == '0')
+        {
+            data->player->pos.x = newx;
+            data->player->pos.y = newy;
+        }
+    }
 }
 
 void	move_forward(t_data *data)
@@ -50,16 +56,14 @@ void	move_forward(t_data *data)
 
 	newx = data->player->pos.x + data->player->dir.x * data->window->movespeed;
 	newy = data->player->pos.y + data->player->dir.y * data->window->movespeed;
-	if (data->map->map[(int)newx][(int)data->player->pos.y] != '1')
-		data->player->pos.x = newx;
-	if (data->map->map[(int)data->player->pos.x][(int)newy] != '1')
-		data->player->pos.y = newy;
-	// if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height &&
-	// 	data->map->map[(int)newx][(int)newy] != '1')
-	// {
-	// 	data->player->pos.x = newx;
-	// 	data->player->pos.y = newy;
-	// }
+	// printf("move_forward: newx=%f, newy=%f, width=%d, height=%d\n", newx, newy, data->map->width, data->map->height);
+	if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
+	{
+		if (data->map->map[(int)data->player->pos.y][(int)newx] == '0')
+            data->player->pos.x = newx;
+        if (data->map->map[(int)newy][(int)data->player->pos.x] == '0')
+            data->player->pos.y = newy;
+	}
 }
 
 void	move_back(t_data *data)
@@ -69,16 +73,14 @@ void	move_back(t_data *data)
 
 	newx = data->player->pos.x - data->player->dir.x * data->window->movespeed;
 	newy = data->player->pos.y - data->player->dir.y * data->window->movespeed;
-	if (data->map->map[(int)newx][(int)data->player->pos.y] == '0')
-		data->player->pos.x = newx;
-	if (data->map->map[(int)data->player->pos.x][(int)newy] == '0')
-		data->player->pos.y = newy;
-	// if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height &&
-    //     data->map->map[(int)newx][(int)newy] != '1')
-    // {
-    //     data->player->pos.x = newx;
-    //     data->player->pos.y = newy;
-    // }
+	// printf("move_back: newx=%f, newy=%f, width=%d, height=%d\n", newx, newy, data->map->width, data->map->height);
+	if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
+	{
+		if (data->map->map[(int)data->player->pos.y][(int)newx] == '0')
+            data->player->pos.x = newx;
+        if (data->map->map[(int)newy][(int)data->player->pos.x] == '0')
+            data->player->pos.y = newy;
+	}
 }
 
 void	read_keys(t_data *data)
@@ -91,15 +93,13 @@ void	read_keys(t_data *data)
 	if (key == S)
 		move_back(data);
 	if (key == D)
-		move_side(data, -data->window->rotspeed);
-	if (key == A)
 		move_side(data, data->window->rotspeed);
+	if (key == A)
+		move_side(data, -data->window->rotspeed);
 	if (key == RIGHT)
 		rotate_camera(data, data->window->rotspeed);
 	if (key == LEFT)
 		rotate_camera(data, -data->window->rotspeed);
 	if (key == ESC)
 		data->window->running = 0;
-	mlx_clear_window(data->window->mlx_ptr, data->window->win_ptr);
-	perform_ray_casting(data);
 }

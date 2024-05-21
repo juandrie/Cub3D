@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/20 18:05:18 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:58:50 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,13 @@ typedef struct s_window
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img_ptr;
+	void		*img_data;
 	int			width;
 	int			height;
+	int     	bpp;
+    int     	size_line;
+    int     	endian;
 	int			key_pressed;
 	int			running;
 	double		movespeed;
