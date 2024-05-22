@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:06 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 13:15:29 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:07:23 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	init_player_position(t_data *data)
 		x = 0;
 		while (x < data->map->width)
 		{
-			c = data->map->map[y][x];
+			c = data->map->map_tab[y][x];
 			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 			{
 				data->player->pos.x = x + 0.5;
@@ -67,7 +67,7 @@ int	init_player_position(t_data *data)
 					pos_e(data);
 				else if (c == 'W')
 					pos_w(data);
-				data->map->map[y][x] = '0';
+				data->map->map_tab[y][x] = '0';
 				data->player_initialized = 1;
 				return (1);
 			}

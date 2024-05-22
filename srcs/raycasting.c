@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:29:32 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/21 18:57:54 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:09:02 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void	perform_dda(t_data *data)
 		mapy = (int)data->ray->map.y;
 		if (mapx >= 0 && mapx < data->map->width && mapy >= 0 && mapy < data->map->height)
 		{
-			if (data->map->map[mapy][mapx] == '1') 
+			if (data->map->map_tab[mapy][mapx] == '1') 
 				hit = 1;
 		}
 	}

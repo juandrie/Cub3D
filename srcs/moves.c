@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/21 18:01:34 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:08:52 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void move_side(t_data *data, double angle)
 
     if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
     {
-        if (data->map->map[(int)newy][(int)newx] == '0')
+        if (data->map->map_tab[(int)newy][(int)newx] == '0')
         {
             data->player->pos.x = newx;
             data->player->pos.y = newy;
@@ -59,9 +59,9 @@ void	move_forward(t_data *data)
 	// printf("move_forward: newx=%f, newy=%f, width=%d, height=%d\n", newx, newy, data->map->width, data->map->height);
 	if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
 	{
-		if (data->map->map[(int)data->player->pos.y][(int)newx] == '0')
+		if (data->map->map_tab[(int)data->player->pos.y][(int)newx] == '0')
             data->player->pos.x = newx;
-        if (data->map->map[(int)newy][(int)data->player->pos.x] == '0')
+        if (data->map->map_tab[(int)newy][(int)data->player->pos.x] == '0')
             data->player->pos.y = newy;
 	}
 }
@@ -76,9 +76,9 @@ void	move_back(t_data *data)
 	// printf("move_back: newx=%f, newy=%f, width=%d, height=%d\n", newx, newy, data->map->width, data->map->height);
 	if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
 	{
-		if (data->map->map[(int)data->player->pos.y][(int)newx] == '0')
+		if (data->map->map_tab[(int)data->player->pos.y][(int)newx] == '0')
             data->player->pos.x = newx;
-        if (data->map->map[(int)newy][(int)data->player->pos.x] == '0')
+        if (data->map->map_tab[(int)newy][(int)data->player->pos.x] == '0')
             data->player->pos.y = newy;
 	}
 }

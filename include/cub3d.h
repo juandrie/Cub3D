@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 12:38:27 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:27:36 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,20 @@ typedef struct s_texture
 	int		texture_num;
 }	t_texture;
 
+typedef struct s_list
+{
+	char			*line;
+	struct s_map	*next;
+}t_list;
+
 typedef struct s_map
 {
-	char	**map;
-	char	*filepath;
+	t_list	*map_list;
+	t_list	*text_list;
+	t_list	*color_list;
+	char		**map_tab;
+	char		**text_tab;
+	char		**color_tab;
 	char	*north_texture;
 	char	*south_texture;
 	char	*west_texture;
@@ -102,22 +112,23 @@ typedef struct s_map
 	int		ceiling_color[3];
 	int		width;
 	int		height;
-	int		fd;
 	double	wall_x;
 	double	text_pos;
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
 	t_vector	texture;
+	char	*filename;
+	int		fd;
 }	t_map;
 
 typedef struct s_data
 {
+	t_map		*map;
 	t_player	*player;
 	t_window	*window;
 	t_ray		*ray;
 	t_vector	*vector;
-	t_map		*map;
 	t_texture	*texture;
 	int			keycode;
 	int			player_initialized;
@@ -135,14 +146,36 @@ int		loop_hook(t_data *data);
 int		read_map(t_data *data);
 void	update_timing_and_movement(t_data *data);
 void	init_player(t_player *player);
-void	init_window(t_window *window);
-void	init_map(t_map *map);
-t_data	*init_data(void);
+// t_data	*init_data(void);
 int		get_texture_color(t_texture *texture, int x, int y);
 int		calculate_texture_num(t_data *data);
 double	calculate_wall_x(t_data *data);
 int		calculate_texture_x(t_data *data);
 int		init_player_position(t_data *data);
 
+
+int init_lists(t_map *map, char *filename);
+
+/* init_data.c */
+void	free_data(t_data **data);
+t_data	*init_data(char *filename);
+
+/* init_window.c */
+t_window	*init_window(t_window *window);
+
+/* init_map.c */
+t_map	*init_map(t_map *map);
+
+/* init_map_list.c */
+t_map	*init_map_list(char *filename);
+
+/* init_map_list_utils.c */
+int		open_fd(int *fd, char *filename);
+void	ft_replace_nl(char *line);
+void	free_list(t_map **list, char *str);
+int		list_size(t_map *list);
+
+/* parse_map.c */
+int		parse_map(void);
 
 #endif 
