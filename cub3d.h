@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/21 17:58:50 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:38:27 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,11 @@ typedef struct s_data
 	t_map		*map;
 	t_texture	*texture;
 	int			keycode;
+	int			player_initialized;
 }	t_data;
 
-void	draw_vertical_line(t_data *data, int drawStart, int drawEnd, int color);
+
 void	perform_ray_casting(t_data *data);
-int		determine_color(char wallChar, t_data *data);
 void	update_timing_and_movement(t_data *data);
 double	get_ticks(void);
 void	print_fps(double frameTime);
@@ -138,9 +138,11 @@ void	init_player(t_player *player);
 void	init_window(t_window *window);
 void	init_map(t_map *map);
 t_data	*init_data(void);
-int get_texture_color(t_texture *texture, int x, int y);
-int calculate_texture_num(t_data *data);
-double calculate_wall_x(t_data *data);
-int calculate_texture_x(t_data *data);
+int		get_texture_color(t_texture *texture, int x, int y);
+int		calculate_texture_num(t_data *data);
+double	calculate_wall_x(t_data *data);
+int		calculate_texture_x(t_data *data);
+int		init_player_position(t_data *data);
+
 
 #endif 

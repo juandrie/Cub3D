@@ -6,21 +6,12 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 18:34:28 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/21 15:58:08 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:06:00 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_player(t_player *player)
-{
-	player->pos.x = 22;
-	player->pos.y = 12;
-	player->dir.x = -1;
-	player->dir.y = 0;
-	player->plane.x = 0;
-	player->plane.y = 0.66;
-}
 
 void	init_window(t_window *window)
 {
@@ -76,7 +67,6 @@ void init_texture(t_texture *texture, void *mlx_ptr, char *filepath)
         exit(1);
     }
     texture->addr = mlx_get_data_addr(texture->img_ptr, &texture->bpp, &texture->size_line, &texture->endian);
-	//printf("Loaded texture %s: width=%d, height=%d\n", filepath, texture->width, texture->height);
 }
 t_data	*init_data(void)
 {
@@ -88,7 +78,6 @@ t_data	*init_data(void)
 	data->player = malloc(sizeof(t_player));
 	if (!data->player)
 		return (free(data), NULL);
-	init_player(data->player);
 	data->window = malloc(sizeof(t_window));
 	if (!data->window)
 		return (free(data->player), free(data), NULL);

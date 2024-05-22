@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:28:22 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/21 17:44:08 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 13:23:01 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,12 @@ int	process_line(t_data *data, char *line)
 		return (parse_color(line, data->map->floor_color));
 	if (ft_strncmp(line, "C ", 2) == 0)
 		return (parse_color(line, data->map->ceiling_color));
-	if (line[0] >= '0' && line[0] <= '9')
+	if (line[0] == '0' || line[0] == '1' || line[0] == 'N' || line[0] == 'S' || line[0] == 'E' || line[0] == 'W')
+	{
+		// if (!data->player_initialized)
+        //     init_player_position(data);
 		return (add_line_to_map(data, line));
+	}
 	return (1);
 }
 
@@ -91,6 +95,7 @@ int	read_map(t_data *data)
 	data->map->fd = open(data->map->filepath, O_RDONLY);
 	if (data->map->fd < 0)
 		return (0);
+	data->player_initialized = 0;
 	while ((line = get_next_line(data->map->fd)))
 	{
 		if (!process_line(data, line))
@@ -102,5 +107,10 @@ int	read_map(t_data *data)
 		free(line);
 	}
 	close(data->map->fd);
+	if (!init_player_position(data))//(!data->player_initialized)
+	{
+        printf("Error: No player start position found.\n");
+        return (0);
+    }
 	return (1);
 }

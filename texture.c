@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:45:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/21 18:27:01 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:00:02 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int get_texture_color(t_texture *texture, int x, int y)
 {
-    char *pixel;
-    int color;
+    char    *pixel;
+    int     color;
 
     pixel = texture->addr + (y * texture->size_line + x * (texture->bpp / 8));
     color = *(int *)pixel;
