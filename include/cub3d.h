@@ -6,15 +6,15 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 18:27:36 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:05:57 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "minilibx-linux/mlx.h"
-# include "Libft/libft.h"
+# include "./../minilibx-linux/mlx.h"
+# include "./../Libft/libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -143,9 +143,8 @@ void	hooks(t_data *data);
 int		get_key_press(t_data *data);
 void	read_keys(t_data *data);
 int		loop_hook(t_data *data);
-int		read_map(t_data *data);
 void	update_timing_and_movement(t_data *data);
-void	init_player(t_player *player);
+
 // t_data	*init_data(void);
 int		get_texture_color(t_texture *texture, int x, int y);
 int		calculate_texture_num(t_data *data);
@@ -154,7 +153,6 @@ int		calculate_texture_x(t_data *data);
 int		init_player_position(t_data *data);
 
 
-int init_lists(t_map *map, char *filename);
 
 /* init_data.c */
 void	free_data(t_data **data);
@@ -164,18 +162,20 @@ t_data	*init_data(char *filename);
 t_window	*init_window(t_window *window);
 
 /* init_map.c */
-t_map	*init_map(t_map *map);
-
-/* init_map_list.c */
-t_map	*init_map_list(char *filename);
+t_map	*init_map(char *filename);
 
 /* init_map_list_utils.c */
 int		open_fd(int *fd, char *filename);
 void	ft_replace_nl(char *line);
-void	free_list(t_map **list, char *str);
-int		list_size(t_map *list);
+void	free_list(t_list **list, char *str);
+int		list_size(t_list *list);
 
-/* parse_map.c */
-int		parse_map(void);
+/* init_tabs.c */
+int init_tabs(t_map *map);
+
+/* init_lists.c */
+int init_lists(t_map *map, char *filename);
+
+
 
 #endif 

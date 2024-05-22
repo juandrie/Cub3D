@@ -6,11 +6,11 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:43:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/21 15:15:57 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:01:14 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 int	key_press(int keycode, t_data *data)
 {

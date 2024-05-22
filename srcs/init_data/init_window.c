@@ -6,11 +6,11 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:50:34 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 16:50:53 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:00:52 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../include/cub3d.h"
 
 t_window	*init_window(t_window *window)
 {

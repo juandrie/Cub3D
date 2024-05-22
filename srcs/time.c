@@ -6,11 +6,12 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:44:52 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/20 17:43:13 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:05:07 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
+
 
 double	get_ticks(void)
 {

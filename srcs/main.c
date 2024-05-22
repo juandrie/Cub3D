@@ -6,11 +6,12 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 18:41:59 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:06:17 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
+
 
 int	loop_hook(t_data *data)
 {
@@ -53,24 +54,24 @@ static int	check_args(int argc, char **argv, char **envp)
 	return (0);
 }
 
-int	main(int argc, char **argv)
-{
-	t_data		*data;
+// int	main(int argc, char **argv)
+// {
+// 	t_data		*data;
 
-	if (argc != 2)
-	{
-		printf("Error: %s <map_file.cub>\n", argv[0]);
-		return (0);
-	}
-	data = init_data();
-	if (!data)
-		return (0);
-	data->map->filename = ft_strdup(argv[1]);
-	read_map(data);
-	hooks(data);
-	mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
-	return (0);
-}
+// 	if (argc != 2)
+// 	{
+// 		printf("Error: %s <map_file.cub>\n", argv[0]);
+// 		return (0);
+// 	}
+// 	data = init_data();
+// 	if (!data)
+// 		return (0);
+// 	data->map->filename = ft_strdup(argv[1]);
+// 	read_map(data);
+// 	hooks(data);
+// 	mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
+// 	return (0);
+// }
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -82,9 +83,9 @@ int	main(int argc, char **argv, char **envp)
 	data = init_data(argv[1]);
 	if (!data)
 		return (1);
-	if (parse_map())
-		return (1);
-	start_the_game(data);
+	// if (parse_map())
+	// 	return (1);
+	// start_the_game(data);
 	return (0);
 }
 

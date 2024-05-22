@@ -6,11 +6,12 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 12:14:06 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 16:07:23 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:04:37 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
+
 
 void	pos_n(t_data *data)
 {

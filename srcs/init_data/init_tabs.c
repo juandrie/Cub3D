@@ -6,11 +6,11 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:28:27 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 18:34:47 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:00:49 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../include/cub3d.h"
 
 char	**init_tab(t_list *list)
 {

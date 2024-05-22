@@ -6,11 +6,12 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:29:32 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 16:09:02 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:04:59 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
+
 
 
 void draw_textured_wall_slice(t_data *data)

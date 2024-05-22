@@ -6,11 +6,11 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 18:35:48 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:00:34 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../include/cub3d.h"
 
 void	free_data(t_data **data)
 {
