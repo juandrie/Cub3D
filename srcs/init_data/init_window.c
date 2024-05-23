@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:50:34 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 12:03:03 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 16:37:21 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,18 @@ t_window	*init_window(void)
 	if (!window)
 		return (NULL);
 	window->mlx_ptr = mlx_init();
-	window->width = 640;
-	window->height = 480;
-	window->win_ptr = mlx_new_window(window->mlx_ptr, 640, 480, "Cub3D");
+	if (!window->mlx_ptr)
+		return (NULL);
+	window->win_ptr = mlx_new_window(window->mlx_ptr, WIDTH, HEIGHT, "Cub3D");
 	if (!window->win_ptr)
-	{
-		free(window);
 		return (NULL);
-	}
-	window->img_ptr = mlx_new_image(window->mlx_ptr, window->width, window->height);
+	window->img_ptr = mlx_new_image(window->mlx_ptr, WIDTH, HEIGHT);
 	if (!window->img_ptr)
-	{
-		mlx_destroy_window(window->mlx_ptr, window->win_ptr);
-		free(window);
 		return (NULL);
-	}
-    window->img_data = mlx_get_data_addr(window->img_ptr, &window->bpp, &window->size_line, &window->endian);
+	window->img_data = mlx_get_data_addr(window->img_ptr, &window->bpp, \
+	&window->size_line, &window->endian);
+	if (!window->img_data)
+		return (NULL);
 	window->running = 1;
 	return (window);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
+#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/23 12:53:31 by juandrie         ###   ########.fr        #
+#    Updated: 2024/05/23 17:07:56 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,10 @@ SRCS = 	srcs/main.c \
 		srcs/raycasting/texture.c \
 		srcs/parsing/parse_player.c \
 		srcs/parsing/parse_args.c \
+		srcs/free_data/free_data.c \
+		srcs/free_data/free_map.c \
+		srcs/free_data/free_window.c \
+		srcs/print_data/print_data.c \
 		
 
 OBJS = $(SRCS:.c=.o)

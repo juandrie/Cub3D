@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 12:50:38 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:18:15 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,6 @@ int	loop_hook(t_data *data)
 	return (0);
 }
 
-
-
-// int	main(int argc, char **argv)
-// {
-// 	t_data		*data;
-
-// 	if (argc != 2)
-// 	{
-// 		printf("Error: %s <map_file.cub>\n", argv[0]);
-// 		return (0);
-// 	}
-// 	data = init_data();
-// 	if (!data)
-// 		return (0);
-// 	data->map->filename = ft_strdup(argv[1]);
-// 	read_map(data);
-// 	hooks(data);
-// 	mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
-// 	return (0);
-// }
-
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	*data;
@@ -58,11 +37,13 @@ int	main(int argc, char **argv, char **envp)
 	data = init_data(argv[1]);
 	if (!data)
 		return (1);
+	print_data(data);
 	// if (parse_map())
 	// 	return (1);
 	// start_the_game(data);
 	hooks(data);
-	mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
+	// mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
+	free_data(&data);
 	return (0);
 }
 
@@ -79,7 +60,7 @@ int	main(int argc, char **argv, char **envp)
 prot2ger ces fonctions ? :
 window->mlx_ptr = mlx_init();
 	window->win_ptr = mlx_new_window(window->mlx_ptr, 640, 480, "Cub3D");
-	window->img_ptr = mlx_new_image(window->mlx_ptr, window->width, window->height);
+	window->img_ptr = mlx_new_image(window->mlx_ptr, WIDTH, window->height);
     window->img_data = mlx_get_data_addr(window->img_ptr, &window->bpp, &window->size_line, &window->endian);
 
 A NE PAS OUBLIER DANS LE PARSING :
@@ -116,6 +97,7 @@ A NE PAS OUBLIER DANS LE PARSING :
 //         return (0);
 //     }
 
+- Perror retours malloc
 
 - Ajouter free_lists dans lequel on fera appel
 a free_list (3 fois, pr chq list), et on passe le ptr de
@@ -150,4 +132,25 @@ t_data	*init_data(void)
 	// data->keycode = 0;
 	return (data);
 }
+
+- Distinguer les tmp de add node bottom dans une autre fonction
 */
+
+// int	main(int argc, char **argv)
+// {
+// 	t_data		*data;
+
+// 	if (argc != 2)
+// 	{
+// 		printf("Error: %s <map_file.cub>\n", argv[0]);
+// 		return (0);
+// 	}
+// 	data = init_data();
+// 	if (!data)
+// 		return (0);
+// 	data->map->filename = ft_strdup(argv[1]);
+// 	read_map(data);
+// 	hooks(data);
+// 	mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
+// 	return (0);
+// }

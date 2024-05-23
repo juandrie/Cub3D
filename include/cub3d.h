@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 12:51:29 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:07:30 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,47 @@
 # define RIGHT 0xff51
 # define LEFT 0xff53
 
-#define MOVE_SPEED 0.035
-#define ROTATE_SPEED 0.035
+# define MOVE_SPEED 0.035
+# define ROTATE_SPEED 0.035
+
+# define WIDTH 640
+# define HEIGHT 480
 
 typedef struct s_vector
 {
 	double	x;
 	double	y;
-}	t_vector;
+}t_vector;
 
-typedef struct s_player
+typedef struct s_list
 {
-	t_vector	pos;
-	t_vector	dir;
-	t_vector	plane;
-}	t_player;
+	char			*line;
+	struct s_list	*next;
+}t_list;
+
+typedef struct s_map
+{
+	t_list		*map_list;
+	t_list		*text_list;
+	t_list		*color_list;
+	char		**map_tab;
+	char		**text_tab;
+	char		**color_tab;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	int			floor_color[3];
+	int			ceiling_color[3];
+	int			width;
+	int			height;
+	double		wall_x;
+	double		text_pos;
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
+	t_vector	texture;
+}t_map;
 
 typedef struct s_window
 {
@@ -55,16 +81,21 @@ typedef struct s_window
 	void		*win_ptr;
 	void		*img_ptr;
 	void		*img_data;
-	int			width;
-	int			height;
-	int     	bpp;
-    int     	size_line;
-    int     	endian;
+	int			bpp;
+	int			size_line;
+	int			endian;
 	int			key_pressed;
 	int			running;
 	double		movespeed;
 	double		rotspeed;
-}	t_window;
+}t_window;
+
+typedef struct s_player
+{
+	t_vector	pos;
+	t_vector	dir;
+	t_vector	plane;
+}t_player;
 
 typedef struct s_ray
 {
@@ -76,110 +107,100 @@ typedef struct s_ray
 	int			hit;
 	int			side;
 	double		perpwalldist;
-}	t_ray;
+}t_ray;
+
+/*
+typedef struct s_texture
+{
+	void	*img_ptr;	= Pointeur vers l'image texture
+	char	*addr;		= Les données de l'image
+	int		width;		= Largeur de la texture
+	int		height;		= Hauteur de la texture
+	int		bpp;		= Bits par pixel
+	int		size_line;	= Taille de ligne en mémoire
+	int		endian;		= Endian, qui indique l'ordre des couleurs
+	int		texture_num;
+}	t_texture;
+*/
 
 typedef struct s_texture
 {
-    void	*img_ptr;    // Pointeur vers l'image texture
-    char	*addr;       // Les données de l'image
-    int		width;       // Largeur de la texture
-    int		height;      // Hauteur de la texture
-    int		bpp;         // Bits par pixel
-    int		size_line;   // Taille de ligne en mémoire
-    int		endian;      // Endian, qui indique l'ordre des couleurs
-	int		texture_num;
-}	t_texture;
-
-typedef struct s_list
-{
-	char			*line;
-	struct s_list	*next;
-}t_list;
-
-typedef struct s_map
-{
-	t_list	*map_list;
-	t_list	*text_list;
-	t_list	*color_list;
-	char		**map_tab;
-	char		**text_tab;
-	char		**color_tab;
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
-	int		floor_color[3];
-	int		ceiling_color[3];
+	void	*img_ptr;
+	char	*addr;
 	int		width;
 	int		height;
-	double	wall_x;
-	double	text_pos;
-	int		lineheight;
-	int		drawstart;
-	int		drawend;
-	t_vector	texture;
-	char	*filename;
-	int		fd;
-}	t_map;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		texture_num;
+}	t_texture;
 
 typedef struct s_data
 {
 	t_map		*map;
-	t_player	*player;
 	t_window	*window;
+	t_player	*player;
 	t_ray		*ray;
 	t_vector	*vector;
 	t_texture	*texture;
 	int			keycode;
 	int			player_initialized;
-}	t_data;
+}t_data;
 
-
-void	perform_ray_casting(t_data *data);
-void	update_timing_and_movement(t_data *data);
-double	get_ticks(void);
-void	print_fps(double frameTime);
-void	hooks(t_data *data);
-int		get_key_press(t_data *data);
-void	read_keys(t_data *data);
-int		loop_hook(t_data *data);
-void	update_timing_and_movement(t_data *data);
-
-// t_data	*init_data(void);
-int		get_texture_color(t_texture *texture, int x, int y);
-int		calculate_texture_num(t_data *data);
-double	calculate_wall_x(t_data *data);
-int		calculate_texture_x(t_data *data);
-int		init_player_position(t_data *data);
-
-
+/* parse_args.c */
+int			is_cub(char *filename);
+int			check_args(int argc, char **argv, char **envp);
 
 /* init_data.c */
-void	free_data(t_data **data);
-t_data	*init_data(char *filename);
+void		free_data(t_data **data);
+t_data		*init_data(char *filename);
+
+/* init_map.c */
+t_map		*init_map(char *filename);
+
+/* init_lists.c */
+int			init_lists(t_map *map, char *filename);
+
+/* init_tabs.c */
+int			init_tabs(t_map *map);
 
 /* init_window.c */
 t_window	*init_window(void);
 
-/* init_map.c */
-t_map	*init_map(char *filename);
-
 /* init_map_list_utils.c */
-int		open_fd(int *fd, char *filename);
-void	ft_replace_nl(char *line);
-void	free_list(t_list **list, char *str);
-int		list_size(t_list *list);
-void	free_map_lists(t_map *map);
-void	free_tabs(t_map *map);
+int			open_fd(int *fd, char *filename);
+void		ft_replace_nl(char *line);
+int			list_size(t_list *list);
 
-/* init_tabs.c */
-int init_tabs(t_map *map);
+/* free_window.c */
+void		free_window(t_window **window);
 
-/* init_lists.c */
-int init_lists(t_map *map, char *filename);
+/* free_map.c */
+void		free_list(t_list **list);
+void		free_lists(t_map *map);
+void		free_tabs(t_map *map);
+void		free_map(t_map **map);
 
-/* parse_args.c*/
-int is_cub(char *filename);
-int check_args(int argc, char **argv, char **envp);
+/* free_data.c */
+void		free_data(t_data **data);
+
+/* print_data.c */
+void		print_data(t_data *data);
+
+int			get_texture_color(t_texture *texture, int x, int y);
+int			calculate_texture_num(t_data *data);
+double		calculate_wall_x(t_data *data);
+int			calculate_texture_x(t_data *data);
+int			init_player_position(t_data *data);
+
+void		perform_ray_casting(t_data *data);
+void		update_timing_and_movement(t_data *data);
+double		get_ticks(void);
+void		print_fps(double frameTime);
+void		hooks(t_data *data);
+int			get_key_press(t_data *data);
+void		read_keys(t_data *data);
+int			loop_hook(t_data *data);
+void		update_timing_and_movement(t_data *data);
 
 #endif 

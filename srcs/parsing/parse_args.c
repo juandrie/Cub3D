@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 12:50:22 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 12:56:48 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 14:29:23 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int is_cub(char *filename)
+int	is_cub(char *filename)
 {
 	int	len;
 
@@ -26,7 +26,7 @@ int is_cub(char *filename)
 	return (0);
 }
 
-int check_args(int argc, char **argv, char **envp)
+int	check_args(int argc, char **argv, char **envp)
 {
 	if (!envp[0])
 		return (ft_putstr_fd("Error: no env\n", STDERR_FILENO), 1);
