@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 19:06:17 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:50:38 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,32 +27,7 @@ int	loop_hook(t_data *data)
 	return (0);
 }
 
-static int	is_cub(char *filename)
-{
-	int	len;
 
-	// if (!filename)
-	// 	return (1);
-	len = ft_strlen(filename);
-	if (len < 4)
-		return (1);
-	if (ft_strncmp(&filename[len - 4], ".cub", 4))
-		return (1);
-	return (0);
-}
-
-static int	check_args(int argc, char **argv, char **envp)
-{
-	if (!envp[0])
-		return (ft_putstr_fd("Error: no env\n", STDERR_FILENO), 1);
-	if (argc != 2)
-		return (ft_putstr_fd("Error: enter ./cub3d NAME.cub\n", \
-		STDERR_FILENO), 1);
-	if (!is_cub(argv[1]))
-		return (ft_putstr_fd("Error: the file is not a .cub file\n", \
-		STDERR_FILENO), 1);
-	return (0);
-}
 
 // int	main(int argc, char **argv)
 // {
@@ -86,6 +61,8 @@ int	main(int argc, char **argv, char **envp)
 	// if (parse_map())
 	// 	return (1);
 	// start_the_game(data);
+	hooks(data);
+	mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
 	return (0);
 }
 

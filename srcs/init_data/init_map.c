@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:52:40 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 19:00:46 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:28:31 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ t_map   *init_map(char *filename)
     if (!init_lists(map, filename))
         return (NULL);
      if (!init_tabs(map))
-        return (free_lists(map), NULL);
+        return (free_tabs(map), NULL);
     return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 19:00:40 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 13:04:27 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,16 @@ int init_lists(t_map *map, char *filename)
 	if (open_fd(&fd, filename))
 		return (0);
 	line = get_next_line(fd);
+	printf("%s\n", line);
 	while (line)
 	{
 		ft_replace_nl(line);
         if (!process_line(map, line))
-			return (free_lists(&map, line), close(fd), 0);
+			return (free_map_lists(map), close(fd), 0);
 		line = get_next_line(fd);
+		printf("%s\n", line);
 	}
 	if (close(fd) == -1)
-		return (perror(""), NULL);
+		return (perror(""), 0);
 	return (1);
 }

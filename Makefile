@@ -6,7 +6,7 @@
 #    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/22 18:59:11 by juandrie         ###   ########.fr        #
+#    Updated: 2024/05/23 12:53:31 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,18 +20,19 @@ NAME = Cub3D
 # Source and object files
 SRCS = 	srcs/main.c \
 		srcs/hooks.c \
-		srcs/moves.c \
+		srcs/raycasting/moves.c \
 		srcs/map.c \
-		srcs/raycasting.c \
-		init_data/init_data.c \
-		init_data/init_list_utils.c \
-		init_data/init_lists.c \
-		init_data/init_map.c \
-		init_data/init_tabs.c \
-		init_data/init_window.c\
-		srcs/time.c \
-		srcs/texture.c \
-		srcs/map_parsing.c \
+		srcs/raycasting/raycasting.c \
+		srcs/init_data/init_data.c \
+		srcs/init_data/init_lists_utils.c \
+		srcs/init_data/init_lists.c \
+		srcs/init_data/init_map.c \
+		srcs/init_data/init_tabs.c \
+		srcs/init_data/init_window.c\
+		srcs/raycasting/time.c \
+		srcs/raycasting/texture.c \
+		srcs/parsing/parse_player.c \
+		srcs/parsing/parse_args.c \
 		
 
 OBJS = $(SRCS:.c=.o)

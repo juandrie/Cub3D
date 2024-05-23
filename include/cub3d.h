@@ -6,15 +6,15 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 19:05:57 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 12:51:29 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "./../minilibx-linux/mlx.h"
-# include "./../Libft/libft.h"
+# include "../minilibx-linux/mlx.h"
+# include "../Libft/libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -93,7 +93,7 @@ typedef struct s_texture
 typedef struct s_list
 {
 	char			*line;
-	struct s_map	*next;
+	struct s_list	*next;
 }t_list;
 
 typedef struct s_map
@@ -159,7 +159,7 @@ void	free_data(t_data **data);
 t_data	*init_data(char *filename);
 
 /* init_window.c */
-t_window	*init_window(t_window *window);
+t_window	*init_window(void);
 
 /* init_map.c */
 t_map	*init_map(char *filename);
@@ -169,6 +169,8 @@ int		open_fd(int *fd, char *filename);
 void	ft_replace_nl(char *line);
 void	free_list(t_list **list, char *str);
 int		list_size(t_list *list);
+void	free_map_lists(t_map *map);
+void	free_tabs(t_map *map);
 
 /* init_tabs.c */
 int init_tabs(t_map *map);
@@ -176,6 +178,8 @@ int init_tabs(t_map *map);
 /* init_lists.c */
 int init_lists(t_map *map, char *filename);
 
-
+/* parse_args.c*/
+int is_cub(char *filename);
+int check_args(int argc, char **argv, char **envp);
 
 #endif 

@@ -6,11 +6,11 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:45:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 19:05:03 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:24:25 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../include/cub3d.h"
 
 
 int get_texture_color(t_texture *texture, int x, int y)
