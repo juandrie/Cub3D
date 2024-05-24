@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 15:41:14 by cabdli            #+#    #+#             */
-/*   Updated: 2023/05/15 14:56:17 by cabdli           ###   ########.fr       */
+/*   Created: 2024/05/07 10:48:22 by cabdli            #+#    #+#             */
+/*   Updated: 2024/05/07 11:50:17 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int nb, int fd)
+char	*ft_strndup(const char *s1, size_t n)
 {
-	if (nb == -2147483648)
-		write(fd, "-2147483648", 11);
-	else if (nb < 0)
-	{
-		ft_putchar_fd('-', fd);
-		nb = nb * (-1);
-		ft_putnbr_fd(nb, fd);
-	}
-	else if (nb > 9)
-	{
-		ft_putnbr_fd(nb / 10, fd);
-		ft_putnbr_fd(nb % 10, fd);
-	}
-	else
-		ft_putchar_fd(nb + 48, fd);
+	char	*new_str;
+	size_t	len;
+	int		i;
+
+	len = 0;
+	i = -1;
+	while (s1[len] && len < n)
+		len++;
+	new_str = (char *)ft_calloc(len + 1, sizeof(char));
+	if (new_str == NULL)
+		return (NULL);
+	while (++i < (int)len)
+		new_str[i] = s1[i];
+	return (new_str);
 }

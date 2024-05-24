@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 11:44:01 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/16 16:33:41 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 15:34:59 by cabdli            #+#    #+#             */
+/*   Updated: 2023/05/09 16:20:32 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,31 @@
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
-	size_t			i;
+	size_t	i;
 
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
 	i = 0;
 	if (n == 0)
 		return (0);
-	while (i < n && n > 0)
+	while (((unsigned char *)s1)[i] == ((unsigned char *)s2)[i] && i < n - 1)
 	{
-		if (str1[i] != str2[i])
-			return (str1[i] - str2[i]);
 		i++;
 	}
-	return (0);
+	return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 }
-/*
-int main () 
-{
-	char s1[15] = "Hello";
-	char s2[15] = "He llO";
-	size_t		 n;
 
-	n = 5;
-	printf("%d\n", ft_memcmp(s1, s2, n));
-	printf("%d\n", memcmp(s1, s2, n));
-	
-   	return(0);
-}
-*/
+//#include <stdio.h>
+
+/*int	main()
+{	
+	char str1[] = "Hel~o world";
+	char str2[] = "Hell world";
+	char str3[] = "hello world";
+	char str4[] = "hel world";
+	char str5[] = "HellO";
+
+	printf("%d : %d", ft_memcmp(str1, str2, 5), memcmp(str1, str2, 5));
+	printf("\n%d : %d", ft_memcmp(str3, str4, 10), memcmp(str3, str4, 10));
+	printf("\n%d : %d", ft_memcmp(str4, str3, 10), memcmp(str4, str3, 10));
+	printf("\n%d : %d", ft_memcmp(str5, str5, 4), memcmp(str5, str5, 4));
+	return 0;
+}*/

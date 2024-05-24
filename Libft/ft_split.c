@@ -3,90 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/15 10:47:43 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/17 12:18:29 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/11 21:00:59 by cabdli            #+#    #+#             */
+/*   Updated: 2023/09/14 16:44:28 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_word(char const *s, char c)
+static int	countwords(char const *str, char c)
 {
-	int		i;
-	int		word;
+	int	i;
+	int	word;
 
 	i = 0;
 	word = 0;
-	while (s[i] != '\0')
+	while (str[i])
 	{
-		if (s[i] != c)
+		if (str[i] == c)
+			i++;
+		else
 		{
 			word++;
-			while (s[i] != c && s[i] != '\0')
+			while (str[i] && str[i] != c)
 				i++;
 		}
-		else
-				i++;
 	}
 	return (word);
 }
 
-static char	*size(char const *s, char c)
+static char	*string(char const *str, char c)
 {
-	char	*s2;
+	char	*arr;
 	int		i;
-	int		longueur;
+	int		len;
 
 	i = 0;
-	longueur = 0;
-	while (s[longueur] != c && s[longueur] != '\0')
-		longueur++;
-	s2 = ft_calloc(longueur + 1, sizeof (char));
-	if (!s2)
+	len = 0;
+	while (str[len] != c && str[len])
+		len++;
+	arr = ft_calloc(len + 1, sizeof (char));
+	if (!arr)
 		return (NULL);
-	while (i < longueur)
+	while (i < len)
 	{
-		s2[i] = s[i];
+		arr[i] = str[i];
 		i++;
 	}
-	return (s2);
+	return (arr);
 }
 
-static char	**ft_free(char **tab)
+static void	split_free(char **tab)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
 	{
-		free (tab);
+		free (tab[i]);
 		i++;
 	}
-	return (NULL);
+	free (tab);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *str, char c)
 {
+	char	**tab;
 	int		i;
 	int		j;
-	char	**tab;
 
 	i = 0;
 	j = 0;
-	tab = ft_calloc((count_word(s, c)) + 1, sizeof (char *));
+	if (str == NULL)
+		return (NULL);
+	tab = ft_calloc((countwords(str, c)) + 1, sizeof (char *));
 	if (!tab)
 		return (NULL);
-	while (s[i] != '\0')
+	while (str[i])
 	{
-		if (s[i] != c)
+		if (str[i] != c)
 		{
-			tab[j] = size(&s[i], c);
-			if (!tab[j])
-				return (ft_free(tab));
-			j++;
-			while (s[i] != c && s[i] != '\0')
+			tab[j] = string(&str[i], c);
+			if (!tab[j++])
+				split_free(tab);
+			while (str[i] != c && str[i])
 				i++;
 		}
 		else
@@ -94,18 +95,19 @@ char	**ft_split(char const *s, char c)
 	}
 	return (tab);
 }
-/*
-int	main(void)
+
+/*#include <stdio.h>
+int	main()
 {
 	char	**tab;
 	int		i;
-
+	char const	str[] = "Hello**World**!**ca***fonctionne   ****!!!**";
+	
+	tab = ft_split(str, '*');
+	if (!tab)
+		return (1); //return (NULL);
 	i = 0;
-	tab = ft_split("Hello***World***!!*ca marche*", '*');
-	while (i < 5)
-	{
-		printf("%s\n", tab[i]);
-		i++;
-	}
-}
-*/
+	while (tab[i])
+		printf("%s\n", tab[i++]);
+	return (0);
+}*/

@@ -3,37 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 15:20:33 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/17 14:36:51 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 15:32:44 by cabdli            #+#    #+#             */
+/*   Updated: 2023/11/21 12:07:09 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *str, size_t size)
 {
-	size_t			compteur;
 	unsigned char	*ptr;
 
-	compteur = 0;
-	ptr = s;
-	while (compteur < n)
+	ptr = str;
+	while (size > 0)
 	{
-		*(ptr + compteur) = '\0';
-		compteur++;
+		*ptr = '\0';
+		ptr++;
+		size--;
 	}
 }
-/*
-#include <stdio.h>
-int	main(void)
+
+/*#include <stdio.h>
+#include <strings.h>
+
+int	main()
 {
-	char str[] = "coucou, tu peux mettre des backslash zero";
-	printf("la valeur originale est ; %s\n", str);
-	ft_bzero(str, 5);
-	printf("la valeur modifiee de ma fonction est : %s\n", str);
-	bzero(str, 5);
-	printf("la valeur modifiee de la vraie fonction est : %s\n", str);
-}
-*/
+    char	str1[] = "Hello World !";
+    char	str2[] = "Hello World !";
+
+	printf("str = %s\n", str1);
+	bzero((void *)str1, 4);
+	printf("bzero : %s\n", str1);
+	ft_bzero((void *)str2, 4);
+	printf("ft_bzero : %s", str2);
+	return (0);
+}*/

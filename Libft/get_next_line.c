@@ -3,121 +3,133 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 16:31:51 by juandrie          #+#    #+#             */
-/*   Updated: 2023/10/19 18:13:09 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/24 23:47:51 by cabdli            #+#    #+#             */
+/*   Updated: 2023/11/30 17:55:23 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_get_line(char *stash)
+/* if (!save), faut-il free(buff) avant de return null ?*/
+
+static char	*ft_read_save(int fd, char *save)
 {
-	int		i;
-	char	*new_line;
-
-	i = 0;
-	if (!stash[i])
-		return (NULL);
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	new_line = (char *)malloc(sizeof(char) * (i + 2));
-	if (!new_line)
-		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-	{
-		new_line[i] = stash[i];
-		i++;
-	}
-	if (stash[i] == '\n')
-	{
-		new_line[i] = stash[i];
-		i++;
-	}
-	new_line[i] = '\0';
-	return (new_line);
-}
-
-char	*ft_clean(char *stash)
-{
-	int		i;
-	int		c;
-	char	*new_stash;
-
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (!stash[i])
-	{
-		free (stash);
-		return (NULL);
-	}
-	new_stash = (char *)malloc(sizeof(char) * (ft_strlen_gnl(stash) - i));
-	if (!new_stash)
-	{
-		free(stash);
-		return (NULL);
-	}
-	i++;
-	c = 0;
-	while (stash[i])
-		new_stash[c++] = stash[i++];
-	new_stash[c] = '\0';
-	free (stash);
-	return (new_stash);
-}
-
-char	*ft_read_and_save(int fd, char *stash)
-{
-	char	*buf;
+	char	*buff;
+	char	*tmp;
 	int		read_bytes;
 
-	buf = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buf)
-		return (NULL);
 	read_bytes = 1;
-	while (!ft_strchr_gnl(stash, '\n') && read_bytes != 0)
+	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
+		return (NULL);
+	while ((!ft_strchr(save, '\n')) && (read_bytes != 0))
 	{
-		read_bytes = read(fd, buf, BUFFER_SIZE);
+		read_bytes = read(fd, buff, BUFFER_SIZE);
 		if (read_bytes == -1)
 		{
-			free (buf);
-			free (stash);
-			return (NULL);
+			free(buff);
+			return (free(save), NULL);
 		}
-		buf[read_bytes] = '\0';
-		stash = ft_strjoin_gnl(stash, buf);
+		buff[read_bytes] = '\0';
+		tmp = save;
+		save = ft_strjoin(save, buff);
+		free(tmp);
+		if (!save)
+			return (free(buff), NULL);
 	}
-	free (buf);
-	return (stash);
+	free(buff);
+	return (save);
+}
+
+static char	*ft_get_line(char *save)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	if (!save[i])
+		return (NULL);
+	while (save[i] && save[i] != '\n')
+		i++;
+	str = malloc((i + 2) * sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (save[i] && save[i] != '\n')
+	{
+		str[i] = save[i];
+		i++;
+	}
+	if (save[i] == '\n')
+		str[i++] = '\n';
+	str[i] = '\0';
+	return (str);
+}
+
+static char	*ft_save(char *save)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	while (save[i] && save[i] != '\n')
+		i++;
+	if (!save[i] || !save[i + 1])
+	{
+		free(save);
+		return (NULL);
+	}
+	str = malloc((ft_strlen(save) - i) * sizeof(char));
+	if (!str)
+		return (free(save), NULL);
+	while (save[++i])
+		str[j++] = save[i];
+	str[j] = '\0';
+	free(save);
+	return (str);
+}
+
+static int	check_lines(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != '0' && line[i] != '1' && line[i] != 'C' \
+			&& line[i] != 'E' && line[i] != 'P' && line[i] != '\n' \
+			&& line[i] != '2')
+			return (ft_printf("Error, the map contains a wrong char !\n"), 0);
+		i++;
+	}
+	return (1);
 }
 
 char	*get_next_line(int fd)
 {
-	char			*line;
-	static char		*stash;
+	char		*line;
+	static char	*save;
+	char		*wrong;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (free(stash), NULL);
-	if (!stash)
-	{
-		stash = malloc (sizeof(char));
-		if (!stash)
-			return (NULL);
-		stash[0] = '\0';
-	}
-	stash = ft_read_and_save(fd, stash);
-	if (!stash)
+	wrong = "wrong_char";
+	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE > INT_MAX - 1)
 		return (NULL);
-	line = ft_get_line(stash);
+	save = ft_read_save(fd, save);
+	if (!save)
+		return (NULL);
+	line = ft_get_line(save);
 	if (!line)
+		return (free(save), NULL);
+	save = ft_save(save);
+	if (!check_lines(line))
 	{
-		free (stash);
-		stash = NULL;
-		return (NULL);
+		free(save);
+		free(line);
+		return (wrong);
 	}
-	stash = ft_clean(stash);
 	return (line);
 }

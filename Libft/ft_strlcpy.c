@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 15:16:08 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/15 16:24:10 by juandrie         ###   ########.fr       */
+/*   Created: 2023/04/13 23:37:32 by cabdli            #+#    #+#             */
+/*   Updated: 2023/10/09 22:07:55 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t destsize)
 {
-	int	compteur;
-	int	longueur;
+	size_t	x;
+	size_t	i;
 
-	compteur = 0;
-	longueur = ft_strlen(src);
-	if (size != 0)
+	i = 0;
+	x = ft_strlen((char *)src);
+	if (destsize != 0)
 	{
-		while (src[compteur] != '\0' && (unsigned long) compteur < size - 1)
+		while (src[i] != '\0' && i < destsize - 1)
 		{
-			dst[compteur] = src[compteur];
-			compteur++;
+			dest[i] = src[i];
+			i++;
 		}
-	dst[compteur] = '\0';
+		dest[i] = '\0';
 	}
-	return (longueur);
+	return (x);
 }
-/*
-int main()
+/*#include <stdio.h>
+int	main()
 {
-	const char	src[] = "coucou";
-	char		dst[] = "bonjour, comment ca va ?";
+	char	src[] = "coucou";
+	char	dest[50] = "bonjour comment tu vas ?";
 
-	printf("longueur: %ld\n copie: %s\n", ft_strlcpy(dst, src, 50), dst);
-	//printf("longueur: %d\n copie: %s\n", strlcpy(dst, src, 50), dst);
+	//printf("ft_strlcpy = %d ; dest = %s", ft_strlcpy(dest, src, 50), dest);
+	printf("strlcpy = %d ; dest = %s", strlcpy(dest, src, 50), dest);
 	return (0);
-}
-*/
+
+}*/

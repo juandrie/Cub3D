@@ -3,44 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/05 14:57:15 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/16 11:16:28 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 16:23:05 by cabdli            #+#    #+#             */
+/*   Updated: 2023/10/09 22:09:35 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *str, int c)
 {
 	int				i;
 	unsigned char	ch;
 
-	i = 0;
+	i = (int)ft_strlen((char *)str) - 1;
 	ch = c;
-	while (s[i] != '\0')
-		i++;
 	if (ch == '\0')
-		return ((char *) s + i);
-	i--;
+		return ((char *)(str + i + 1));
 	while (i >= 0)
 	{
-		if (s[i] == ch)
-			return ((char *)(s + i));
+		if (str[i] == ch)
+			return ((char *)(str + i));
 		i--;
 	}
 	return (NULL);
 }
-/*
-int	main()
-{
-	const char s[] = "coucougguu";
-	int	c;
 
-	c = 'u';
-	printf("Ma derniere occurence est : %s\n", ft_strrchr(s, c));
-	printf("Ma derniere occurence est : %s\n", strrchr(s, c));
+//#include <stdio.h>
+
+/*int	main()
+{
+	char	str[] = "Hello world !";
+
+	//printf("Vérifi. : %p\n", str + 13);
+	printf("strrchr : %s\n", strrchr(str, 'a'));
+	printf("ft_strr : %s", ft_strrchr(str, 'a'));
 	return (0);
-}
-*/
+}*/

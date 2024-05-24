@@ -3,51 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 17:21:40 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/15 16:17:26 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/08 15:02:31 by cabdli            #+#    #+#             */
+/*   Updated: 2023/05/16 12:18:33 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	char		*destination;
-	const char	*source;
-	int			i;
+	int					i;
 
-	destination = dest;
-	source = src;
-	if (destination > source)
+	i = len - 1;
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	if (src > dest)
+		ft_memcpy(dest, src, len);
+	else
 	{
-		i = (int) n - 1;
 		while (i >= 0)
 		{
-			destination[i] = source[i];
+			*((unsigned char *)dest + i) = *((const unsigned char *)src + i);
 			i--;
-		}
-	}
-	else if (source > destination)
-	{
-		i = 0;
-		while (i < (int) n)
-		{
-			destination[i] = source[i];
-			i++;
 		}
 	}
 	return (dest);
 }
-/*
-int	main(void)
-{
-	//char 			dest[] = "hello";
-	char		src[] = "hello, comment ca va ";
 
-	printf("ma fonction; %s\n", (char *)ft_memmove(src + 3, src, 5));
-	printf("la vraie fonction ; %s\n", (char *)memmove(src + 3, src, 5));
+//#include <stdio.h>
+/*int	main()
+{
+	char	src[] = "hello, comment ca va ?";
+	char	src2[] = "hello, comment ca va ?";
+	//char	dest[] = "Hello";
+
+	printf("memmove :%s\n", (char *)memmove((void *)src + 3, 
+		(const void *)src, 5));
+	printf("ft_memmove :%s", (char *)ft_memmove((void *)src2 + 3, 
+		(const void *)src2, 5));
 	return (0);
-}
-*/
+}*/

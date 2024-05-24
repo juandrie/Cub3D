@@ -1,32 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 15:41:14 by cabdli            #+#    #+#             */
-/*   Updated: 2023/05/15 14:56:17 by cabdli           ###   ########.fr       */
+/*   Created: 2023/05/18 17:35:42 by cabdli            #+#    #+#             */
+/*   Updated: 2023/07/20 11:53:25 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_fd(int nb, int fd)
+int	ft_printstr(char *str)
 {
-	if (nb == -2147483648)
-		write(fd, "-2147483648", 11);
-	else if (nb < 0)
+	if (str == NULL)
 	{
-		ft_putchar_fd('-', fd);
-		nb = nb * (-1);
-		ft_putnbr_fd(nb, fd);
+		write(1, "(null)", 6);
+		return (6);
 	}
-	else if (nb > 9)
-	{
-		ft_putnbr_fd(nb / 10, fd);
-		ft_putnbr_fd(nb % 10, fd);
-	}
-	else
-		ft_putchar_fd(nb + 48, fd);
+	ft_putstr_fd(str, 1);
+	return ((int)ft_strlen(str));
+}
+
+int	ft_print_itoa(int nb)
+{
+	char	*str;
+	int		len;
+
+	len = 0;
+	str = ft_itoa(nb);
+	if (!str)
+		return (0);
+	len = ft_printstr(str);
+	free(str);
+	return (len);
 }

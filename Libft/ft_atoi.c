@@ -3,46 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 15:29:17 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/17 14:23:33 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 15:32:20 by cabdli            #+#    #+#             */
+/*   Updated: 2023/09/13 17:22:32 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long int	ft_atoi(const char *str)
 {
-	int	result;
-	int	sign;
-	int	i;
+	int			i;
+	int			m;
+	long int	nb;
 
-	result = 0;
-	sign = 1;
 	i = 0;
-	while (nptr[i] == 32 || (nptr[i] >= 9 && nptr[i] <= 13))
+	m = 1;
+	nb = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if (nptr[i] == '-' || nptr[i] == '+')
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (nptr[i] == '-')
-			sign = sign * (-1);
+		if (str[i] == '-')
+			m *= (-1);
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		result = result * 10;
-		result = result + (nptr[i] - 48);
+		nb *= 10;
+		nb += str[i] - 48;
 		i++;
 	}
-	return (result * sign);
+	return (m * nb);
 }
-/*
-int	main()
-{
-	char	nptr[] = "          -1234ab567";
 
-	printf("mon atoi: %d\n", ft_atoi(nptr));
-	printf("le vrai atoi: %d\n", atoi(nptr));
-}
-*/
+//#include <stdio.h>
+/*int	main(int ac, char *av[])
+{
+	if (ac == 2)
+	{
+		printf("ft_atoi = %d : atoi = %d", ft_atoi(av[1]), atoi(av[1]));
+		return (0);
+	}
+}*/

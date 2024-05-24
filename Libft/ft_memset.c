@@ -3,37 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/03 10:30:12 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/15 15:23:52 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 15:36:38 by cabdli            #+#    #+#             */
+/*   Updated: 2023/05/14 22:13:19 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t n)
+void	*ft_memset(void *str, int c, size_t len)
 {
-	size_t	compteur;
 	char	*ptr;
 
-	compteur = 0;
-	ptr = s;
-	while (compteur < n)
+	ptr = str;
+	while (len > 0)
 	{
-		*(ptr + compteur) = c;
-		compteur++;
+		*ptr = c;
+		ptr++;
+		len--;
 	}
-	return (s);
+	return (str);
 }
-/*	
-int	main(void)
+
+//#include <stdio.h>
+/*int	main()
 {
-	char str[] = "salut toi, tu piges quelque chose?";
-	printf("la valeur originale est: %s\n", str);
-	ft_memset(str, 40, 15);
-	printf("la valeur modifiee de ma fonction est: %s\n", str);
-	memset(str, 40, 15);
-	printf("la valeur modifiee de la vraie fonction est: %s\n", str);
-}
-*/
+	char	str[] = "Salut,ca va ?"; 
+	memset((void *)str, '1', 5);
+	printf("memset : %s\n", str);
+	ft_memset((void *)str, '2', 5);
+	printf("ft_memset : %s", str);
+	return (0);
+}*/

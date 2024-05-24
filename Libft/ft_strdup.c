@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 17:48:58 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/16 14:54:42 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 14:22:41 by cabdli            #+#    #+#             */
+/*   Updated: 2024/05/07 11:18:17 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_strdup(const char *str)
 {
-	size_t		longueur;
-	char		*ptr;
-	int			i;
+	size_t	str_len;
+	char	*ptr;
+	int		i;
 
-	i = 0;
-	longueur = ft_strlen(str);
-	ptr = (char *)malloc((longueur + 1) * sizeof(char));
+	str_len = ft_strlen((char *)str);
+	ptr = (char *)ft_calloc((str_len + 1), sizeof(char));
 	if (!ptr)
 		return (NULL);
-	while (str[i] != '\0')
+	i = 0;
+	while (str[i])
 	{
 		ptr[i] = str[i];
 		i++;
@@ -31,16 +31,14 @@ char	*ft_strdup(const char *str)
 	ptr[i] = '\0';
 	return (ptr);
 }
-/*
-int		main()
+
+//#include <stdio.h>
+/*int	main()
 {
-	const char	str[] = "hello";
+	const char	str1[] = " ";
 
-	printf("%s\n", ft_strdup(str));
-	printf("%s\n", strdup(str));
-	free(ft_strdup(str));
-	free(strdup(str));
-
+	printf("%s : %s\n", ft_strdup(str1), strdup(str1));
+	free (ft_strdup(str1));
+	free (strdup(str1));
 	return (0);
-}
-*/
+}*/

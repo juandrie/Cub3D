@@ -1,70 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 10:11:25 by cabdli            #+#    #+#             */
-/*   Updated: 2023/05/11 10:11:33 by cabdli           ###   ########.fr       */
+/*   Created: 2023/05/19 18:07:16 by cabdli            #+#    #+#             */
+/*   Updated: 2023/07/20 11:52:54 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_intlen(long nb)
+static int	ft_ptrlen(uintptr_t nb)
 {
 	int	len;
 
 	len = 0;
 	if (nb == 0)
 		len = 1;
-	if (nb < 0)
-	{
-		nb *= (-1);
-		len = 1;
-	}
 	while (nb > 0)
 	{
-		nb /= 10;
+		nb /= 16;
 		len++;
 	}
 	return (len);
 }
 
-char	*ft_itoa(int nb)
+static void	ft_putptr(uintptr_t nb)
 {
-	char	*ptr;
-	long	l_nb;
-	int		i;
-
-	l_nb = nb;
-	i = ft_intlen(l_nb);
-	ptr = ft_calloc(i + 1, sizeof (char));
-	if (!ptr)
-		return (NULL);
-	if (l_nb == 0)
-		ptr[--i] = '0';
-	if (l_nb < 0)
+	if (nb > 15)
 	{
-		ptr[0] = '-';
-		l_nb *= (-1);
+		ft_putptr(nb / 16);
+		ft_putptr(nb % 16);
 	}
-	i--;
-	while (l_nb > 0)
+	else
 	{
-		ptr[i] = ((l_nb % 10) + 48);
-		l_nb /= 10;
-		i--;
+		if (nb < 10)
+			ft_putchar_fd(nb + 48, 1);
+		else
+			ft_putchar_fd((nb - 10 + 'a'), 1);
 	}
-	return (ptr);
+	return ;
 }
 
-/*#include <stdio.h>
-
-int	main()
+int	ft_print_ptr(uintptr_t ptr)
 {
-	printf("%s", ft_itoa(2147483647));
-	free(ft_itoa(2147483647));
-	return (0);
-}*/
+	int	len;
+
+	len = 0;
+	if (ptr == 0)
+	{
+		len += write(1, "(nil)", 5);
+		return (len);
+	}
+	else
+	{
+		len = write(1, "0x", 2);
+		ft_putptr(ptr);
+		len += ft_ptrlen(ptr);
+	}
+	return (len);
+}

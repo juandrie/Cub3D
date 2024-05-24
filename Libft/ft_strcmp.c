@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printpercent.c                                  :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/22 10:42:50 by juandrie          #+#    #+#             */
-/*   Updated: 2023/10/17 14:32:23 by juandrie         ###   ########.fr       */
+/*   Created: 2024/05/07 10:44:04 by cabdli            #+#    #+#             */
+/*   Updated: 2024/05/07 10:45:55 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_printpercent(void)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	write(1, "%", 1);
-	return (1);
+	if (!*s1 || *s1 != *s2)
+		return ((t_u8)(*s1) - (t_u8)(*s2));
+	return (ft_strcmp(s1 + 1, s2 + 1));
 }

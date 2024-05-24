@@ -3,45 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/04 17:24:53 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/16 17:55:29 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/03 17:08:37 by cabdli            #+#    #+#             */
+/*   Updated: 2023/10/09 22:07:27 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 
-	if (!dst && size == 0)
-		return (ft_strlen(src));
-	i = ft_strlen(dst);
-	j = ft_strlen(src);
-	if ((size == 0) || ((unsigned long) i > size))
-		return (size + j);
-	if (!*src)
-		return (i);
+	i = 0;
 	j = 0;
-	while (src[j] != '\0' && ((unsigned long) i + j < size -1))
-	{
-		dst[i + j] = src[j];
+	if (dest == NULL && destsize == 0)
+		return (ft_strlen((char *)src));
+	while (dest[j] && j < destsize)
 		j++;
+	while (src[i] && (j + i + 1) < destsize)
+	{
+		dest[j + i] = src[i];
+		i++;
 	}
-	dst[i + j] = '\0';
-	return (i + ft_strlen(src));
+	if (j < destsize)
+		dest[j + i] = '\0';
+	return (j + ft_strlen((char *)src));
 }
-/*
-int main ()
-{
-	const char	src[] = "coucou";
-	char		dst[] = "bonjour, comment ca va ?";
 
-	printf("longueur: %ld\n copie: %s\n", ft_strlcat(dst, src, 50), dst);
-    //printf("longueur: %ld\n copie: %s\n", strlcat(dst, src, 50), dst);
+/*#include <stdio.h>
+int	main()
+{
+	char	src[] = "";
+	char	dest1[20] = "";
+	char	dest2[20] = "";
+	printf("ft_strlcat = %u : strlcat = %zu\n", 
+		ft_strlcat(dest1, src, 20), strlcat(dest2, src, 20));
+	printf("ft = %s\nlcat = %s", dest1, dest2);
 	return (0);
-}
-*/
+}*/

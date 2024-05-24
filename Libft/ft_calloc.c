@@ -3,37 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 16:48:31 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/15 16:17:01 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 15:14:43 by cabdli            #+#    #+#             */
+/*   Updated: 2023/05/10 22:51:28 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t nb_el, size_t size)
 {
-	void	*tableau;
-	size_t	taillemax;
+	void	*arr;
+	size_t	total_size;
 
-	taillemax = nmemb * size;
-	if (size != 0 && (taillemax / size != nmemb))
+	total_size = nb_el * size;
+	if ((size != 0) && (total_size / size) != nb_el)
 		return (NULL);
-	tableau = malloc (taillemax);
-	if (!tableau)
+	arr = (void *)malloc(total_size);
+	if (!arr)
 		return (NULL);
-	ft_bzero(tableau, taillemax);
-	return (tableau);
+	ft_bzero(arr, total_size);
+	return (arr);
 }
-/*
-int main(void)
-{
-	int	*tab;
-	//tab = ft_calloc(0,4);
-	tab = calloc(0, 4);
-	printf("%p\n", tab);
-	free(tab);
-	return (0);
-}
-*/

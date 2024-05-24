@@ -3,45 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/09 14:16:01 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/16 17:57:38 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 10:19:06 by cabdli            #+#    #+#             */
+/*   Updated: 2023/10/09 22:08:47 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	size_t		i;
-	size_t		j;
+	size_t	i;
+	size_t	len_tofind;
+	int		cmp;
 
 	i = 0;
-	j = 0;
-	if (!big && len == 0)
+	cmp = 0;
+	if (str == NULL && len == 0)
 		return (NULL);
-	if (little[j] == '\0')
-		return ((char *)big);
-	while ((big[i] != '\0') && (i < len))
+	len_tofind = ft_strlen((char *)to_find);
+	if (len_tofind == 0)
+		return ((char *)str);
+	while ((str[i] != '\0') && (i + len_tofind <= len))
 	{
-		if (big[i] == little[0])
-		{
-			j = 0;
-			while (little[j] != '\0' && big[i + j] == little[j] && i + j < len)
-				j++;
-			if (little[j] == '\0')
-				return ((char *)big + i);
-		}
-		i++;
+		cmp = ft_strncmp(&str[i], to_find, len_tofind);
+		if (cmp != 0)
+			i++;
+		else
+			return ((char *)str + i);
 	}
+	if (cmp != 0)
+		return (NULL);
 	return (NULL);
 }
 
-// int	main() 
-// {
-// 	printf("%s\n", ft_strnstr("foo bar baz", "bar", 12));
-// 	//printf("%s\n", strnstr("hello", "", 5));
+/*#include <stdio.h>
+#include <bsd/string.h>
 
-// 	return (0);
-// }
+int	main()
+{
+	const char	str1[] = "Salut comment tu vas ?";
+	const char	find[] = "comment";
+
+	printf("%s : %s\n", ft_strnstr(str1, find, 12), strnstr(str1, find, 12));
+	return 0;
+}*/

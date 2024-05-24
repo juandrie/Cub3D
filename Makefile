@@ -3,19 +3,39 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
+#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/23 19:17:57 by juandrie         ###   ########.fr        #
+#    Updated: 2024/05/24 15:48:19 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# COLORS
+# Regular
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[0;33m
+BLUE = \033[0;34m
+PURPLE = \033[0;35m
+CYAN = \033[0;36m
+WHITE = \033[0;37m
+RESET = \033[0m
+
+#Bold
+BRED = \033[1;31m	
+BGREEN = \033[1;32m	
+BYELLOW = \033[1;33m	
+BBLUE = \033[1;34m
+BPURPLE = \033[1;35m
+BCYAN = \033[1;36m
+BWHITE = \033[1;37m
 
 # Compiler and compiling flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
 # Name of the executable
-NAME = Cub3D
+NAME = cub3D
 
 # Source and object files
 SRCS = 	srcs/main.c \
@@ -60,24 +80,32 @@ INC = -I ./includes
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(LIBFT_DIR)
-	make -C $(MLX_DIR)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
+	@echo "$(PURPLE)Making cub3D...$(RESET)"
+	@make --no-print-directory -C $(LIBFT_DIR)
+	@echo "$(CYAN)Making minilibx...$(RESET)"
+	@make --no-print-directory -C $(MLX_DIR)
+	@echo "$(CYAN)Minilibx done !$(RESET)"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
+	@echo "$(PURPLE)Cub3D done !$(RESET)"
 
 # Creating object files
 %.o: %.c
-	$(CC) $(CFLAGS) $(INC) $(MLX_INC) $(LIBFT_INC) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INC) $(MLX_INC) $(LIBFT_INC) -c $< -o $@
 
 # Clean objects
 clean:
-	rm -f $(OBJS)
-	make -C $(LIBFT_DIR) clean
-	make -C $(MLX_DIR) clean
+	@echo "Cleaning in progress..."
+	@make --no-print-directory -C $(LIBFT_DIR) clean
+	@rm -f $(OBJS)
+	@make --no-print-directory -C $(MLX_DIR) clean
+	@echo "$(YELLOW)Cleaning done !$(RESET)"
 
 # Full clean
 fclean: clean
-	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
+	@echo "Full cleaning in progress..."
+	@make --no-print-directory -C $(LIBFT_DIR) fclean
+	@rm -f $(NAME)
+	@echo "$(YELLOW)Full cleaning done !$(RESET)"
 
 # Re-compile
 re: fclean all

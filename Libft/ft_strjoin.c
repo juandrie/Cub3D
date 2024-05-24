@@ -3,51 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 16:24:59 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/10 18:29:39 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 17:20:21 by cabdli            #+#    #+#             */
+/*   Updated: 2024/05/07 11:19:58 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*s3;
+	size_t	len;
 	int		i;
-	int		longueur;
+	int		j;
+	char	*str;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	longueur = (ft_strlen(s1) + ft_strlen(s2));
-	s3 = malloc(sizeof(char) * (longueur + 1));
-	if (s3 == NULL)
-		return (NULL);
 	i = 0;
-	while (*s1)
+	j = 0;
+	if (s1 == NULL && s2 == NULL)
+		return (NULL);
+	len = (ft_strlen(s1) + ft_strlen(s2));
+	str = (char *)ft_calloc((len + 1), sizeof(char));
+	if (!str)
+		return (NULL);
+	while (s1 && s1[i])
 	{
-		s3[i] = *s1;
+		str[i] = s1[i];
 		i++;
-		s1++;
 	}
-	while (*s2)
+	while (s2 && s2[j])
 	{
-		s3[i] = *s2;
-		i++;
-		s2++;
+		str[i + j] = s2[j];
+		j++;
 	}
-	s3 [i] = '\0';
-	return (s3);
+	str[len] = '\0';
+	return (str);
 }
-/*
+
+/*#include <stdio.h>
 int	main()
 {
-	char const	s1[] = "coucou";
-	char const	s2[] = "bonjour, comment ca va ?";
-
-
-	printf("%s\n", ft_strjoin(s1, s2));
+	char const	str1[] = "Hello";
+	char const	str2[] = " World !";
+	//char const	*str3 = NULL;
+	
+	//if ((ft_strjoin(str1, str3)) == NULL)
+		//printf("ptr = NULL");
+	printf("%s\n", ft_strjoin(str1, str2));
+	free (ft_strjoin(str1, str2));
 	return (0);
-}
-*/
+}*/

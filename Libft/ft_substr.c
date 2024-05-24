@@ -3,54 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 10:43:10 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/17 15:12:52 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/09 16:30:40 by cabdli            #+#    #+#             */
+/*   Updated: 2023/10/09 22:11:39 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
-	char	*str;
+	char	*ptr;
 	size_t	i;
 	size_t	strlen;
 
-	i = 0;
-	if (!s)
+	if (str == NULL)
 		return (NULL);
-	strlen = ft_strlen(s);
-	if (len > strlen)
-		len = strlen;
-	if (start + len > strlen)
-		len = len - start;
+	strlen = ft_strlen((char *)str);
 	if (start > strlen)
-		len = 0;
-	str = ft_calloc((len + 1), sizeof(char));
-	if (!str)
+		start = strlen;
+	if (len > ft_strlen((char *)str + start))
+		len = ft_strlen((char *)str + start);
+	ptr = ft_calloc((len + 1), sizeof(char));
+	if (!ptr)
 		return (NULL);
-	while (i < len && s[start])
+	i = 0;
+	while (str[start] && i < len)
 	{
-		str[i] = s[start];
+		ptr[i] = str[start];
 		i++;
 		start++;
 	}
-	return (str);
+	ptr[i] = '\0';
+	return (ptr);
 }
-/*
-int	main(void)
+
+/*#include <stdio.h>
+int	main()
 {
-	char const	s[] = "coucou toi";
-	unsigned int	start;
-	size_t		len;
+	//char const	str1[] = "coucou";
+	char const	*str2 = NULL;
 
-	start = 5;
-	len = 12;
 
-	printf("%s\n", ft_substr(s, start, len));
-	free(ft_substr(s, start, len));
+	//printf("%s\n", ft_substr(str1, 8, 20));
+	if ((ft_substr(str2, 8, 20)) == NULL)
+		printf("le ptr = NULL");
+	//free (ft_substr(str2, 2, 6));
 	return (0);
-}
-*/
+}*/

@@ -3,52 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 11:07:03 by juandrie          #+#    #+#             */
-/*   Updated: 2023/05/16 10:59:42 by juandrie         ###   ########.fr       */
+/*   Created: 2023/05/11 10:23:35 by cabdli            #+#    #+#             */
+/*   Updated: 2023/10/09 22:08:20 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
+char	*ft_strmapi(char const *str, char (*f)(unsigned int, char))
 {
-	char		*ptr;
-	int			i;
-	int			l;
+	int		i;
+	char	*ptr;
+	size_t	l;
 
 	i = 0;
-	if (!s || !f)
-		return (0);
-	l = ft_strlen(s);
-	ptr = malloc(sizeof(char) * l + 1);
-	if (ptr == NULL)
+	if (str == NULL)
 		return (NULL);
-	while (s[i] != '\0')
+	l = ft_strlen((char *)str);
+	ptr = ft_calloc((l + 1), sizeof (char));
+	if (!ptr)
+		return (NULL);
+	while (str[i])
 	{
-		ptr[i] = f(i, s[i]);
+		ptr[i] = (*f)(i, str[i]);
 		i++;
 	}
-	ptr[i] = '\0';
 	return (ptr);
 }
 
-char	f(unsigned int i, char c)
-{
-	char	ptr;
+/*#include <stdio.h>
 
-	ptr = c + i;
-	return (ptr);
-}
-/*
-int		main()
+char	test(unsigned int nb, char c)
 {
-	char	*ptr1;
-	char 	*ptr2;
-
-	ptr1 = "efg";
-	ptr2 = ft_strmapi(ptr1, *f);
-	printf("%s\n", ptr2);
+	c += (nb + 48);
+	return (c);
 }
-*/
+
+int	main(void)
+{
+	char	(*p_test)(unsigned int, char);
+	char	str[] = "1234";
+
+	p_test = &test;
+	printf("mapi = %s\n", ft_strmapi(str, p_test));
+	free(ft_strmapi(str, p_test));
+	return (0);
+}*/
