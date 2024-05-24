@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 13:17:14 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:23:06 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,17 @@ static int	process_line(t_map *map, char *line)
 }
 void calculate_map_dimensions(t_map *map)
 {
-    t_list *current = map->map_list;
-    int max_width = 0;
-    int height = 0;
+    t_list	*current;
+    int		max_width;
+    int		height;
+	int		line_length;
 
+	current = map->map_list;
+	max_width = 0;
+	height = 0;
     while (current)
 	{
-        int line_length = strlen(current->line);
+        line_length = ft_strlen(current->line);
         if (line_length > max_width)
 		{
             max_width = line_length;
