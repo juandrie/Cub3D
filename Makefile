@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
+#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/23 17:07:56 by cabdli           ###   ########.fr        #
+#    Updated: 2024/05/23 19:17:57 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS = 	srcs/main.c \
 		srcs/init_data/init_map.c \
 		srcs/init_data/init_tabs.c \
 		srcs/init_data/init_window.c\
+		srcs/init_data/init_texture.c\
 		srcs/raycasting/time.c \
 		srcs/raycasting/texture.c \
 		srcs/parsing/parse_player.c \

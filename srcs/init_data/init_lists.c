@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 17:13:24 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/24 13:17:14 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,25 @@ static int	process_line(t_map *map, char *line)
 		return (fill_list(&(map->map_list), line, 2));
 	return (0);
 }
+void calculate_map_dimensions(t_map *map)
+{
+    t_list *current = map->map_list;
+    int max_width = 0;
+    int height = 0;
+
+    while (current)
+	{
+        int line_length = strlen(current->line);
+        if (line_length > max_width)
+		{
+            max_width = line_length;
+        }
+        height++;
+        current = current->next;
+    }
+    map->height = height;
+    map->width = max_width;
+}
 
 int	init_lists(t_map *map, char *filename)
 {
@@ -89,5 +108,7 @@ int	init_lists(t_map *map, char *filename)
 	}
 	if (close(fd) == -1)
 		return (perror(""), 1);
+	calculate_map_dimensions(map); 
+	extract_texture_paths(map);
 	return (0);
 }

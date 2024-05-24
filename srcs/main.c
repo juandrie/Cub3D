@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 17:18:15 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/24 13:18:34 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ int	main(int argc, char **argv, char **envp)
 	data = init_data(argv[1]);
 	if (!data)
 		return (1);
-	print_data(data);
+	//print_data(data);
 	// if (parse_map())
 	// 	return (1);
 	// start_the_game(data);
+	init_player_position(data);
 	hooks(data);
 	// mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
 	free_data(&data);
@@ -60,7 +61,7 @@ int	main(int argc, char **argv, char **envp)
 prot2ger ces fonctions ? :
 window->mlx_ptr = mlx_init();
 	window->win_ptr = mlx_new_window(window->mlx_ptr, 640, 480, "Cub3D");
-	window->img_ptr = mlx_new_image(window->mlx_ptr, WIDTH, window->height);
+	window->img_ptr = mlx_new_image(window->mlx_ptr, window->width, window->height);
     window->img_data = mlx_get_data_addr(window->img_ptr, &window->bpp, &window->size_line, &window->endian);
 
 A NE PAS OUBLIER DANS LE PARSING :

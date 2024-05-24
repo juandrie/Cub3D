@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 15:29:01 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/24 12:46:32 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_data	*init_data(char *filename)
 	data->texture = ft_calloc(4, sizeof(t_texture));
 	if (!data->texture)
 		return (free_data(&data), NULL);
+	init_textures(data);
 	return (data);
 }

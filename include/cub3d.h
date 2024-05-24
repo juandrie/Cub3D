@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 17:07:30 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/24 12:45:39 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 # define MOVE_SPEED 0.035
 # define ROTATE_SPEED 0.035
 
-# define WIDTH 640
-# define HEIGHT 480
+// # define WIDTH 640
+// # define HEIGHT 480
 
 typedef struct s_vector
 {
@@ -81,6 +81,8 @@ typedef struct s_window
 	void		*win_ptr;
 	void		*img_ptr;
 	void		*img_data;
+	int			width;
+	int			height;
 	int			bpp;
 	int			size_line;
 	int			endian;
@@ -202,5 +204,7 @@ int			get_key_press(t_data *data);
 void		read_keys(t_data *data);
 int			loop_hook(t_data *data);
 void		update_timing_and_movement(t_data *data);
+void		extract_texture_paths(t_map *map);
+void    	init_textures(t_data *data);
 
 #endif 
