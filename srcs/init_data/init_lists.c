@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 14:29:28 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:48:16 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,41 +57,26 @@ static int	fill_list(t_list **list, char *line, int elemt)
 	return (1);
 }
 
+/*
+if (line[0] == ' ' || line[0] == '	' || line[0] == '0' || \
+	line[0] == '1' || line[0] == 'N' || line[0] == 'S' || \
+	line[0] == 'E' || line[0] == 'W')
+*/
+
 static int	process_line(t_map *map, char *line)
 {
 	if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2) || \
 	!ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
 		return (fill_list(&(map->text_list), line, 0));
-	if (!ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
+	else if (!ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
 		return (fill_list(&(map->color_list), line, 1));
-	if (line[0] == ' ' || line[0] == '	' || line[0] == '0' || \
-	line[0] == '1' || line[0] == 'N' || line[0] == 'S' || \
-	line[0] == 'E' || line[0] == 'W')
+	else if (!ft_strncmp(line, "\n", 2)|| !ft_strncmp(line, " ", 2) || \
+	!ft_strncmp(line, "\t", 2) || !ft_strncmp(line, "\r", 2) || \
+	!ft_strncmp(line, "\v", 2))
+		return (free(line), 0);
+	else
 		return (fill_list(&(map->map_list), line, 2));
 	return (0);
-}
-void calculate_map_dimensions(t_map *map)
-{
-    t_list	*current;
-    int		max_width;
-    int		height;
-	int		line_length;
-
-	current = map->map_list;
-	max_width = 0;
-	height = 0;
-    while (current)
-	{
-        line_length = ft_strlen(current->line);
-        if (line_length > max_width)
-		{
-            max_width = line_length;
-        }
-        height++;
-        current = current->next;
-    }
-    map->height = height;
-    map->width = max_width;
 }
 
 int	init_lists(t_map *map, char *filename)
@@ -112,7 +97,7 @@ int	init_lists(t_map *map, char *filename)
 	}
 	if (close(fd) == -1)
 		return (perror(""), 1);
-	calculate_map_dimensions(map); 
-	extract_texture_paths(map);
+	// calculate_map_dimensions(map); 
+	// extract_texture_paths(map);
 	return (0);
 }

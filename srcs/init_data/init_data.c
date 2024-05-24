@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 12:46:32 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:11:36 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_data	*init_data(char *filename)
 	data->map = init_map(filename);
 	if (!data->map)
 		return (free_data(&data), NULL);
-	data->window = init_window();
-	if (!data->window)
-		return (free_data(&data), NULL);
+	// data->window = init_window();
+	// if (!data->window)
+	// 	return (free_data(&data), NULL);
 	data->player = ft_calloc(1, sizeof(t_player));
 	if (!data->player)
 		return (free_data(&data), NULL);
@@ -37,6 +37,6 @@ t_data	*init_data(char *filename)
 	data->texture = ft_calloc(4, sizeof(t_texture));
 	if (!data->texture)
 		return (free_data(&data), NULL);
-	init_textures(data);
+	// init_textures(data);
 	return (data);
 }

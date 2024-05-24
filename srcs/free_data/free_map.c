@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:14:53 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/23 16:44:58 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/24 16:12:49 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	free_tab(char ***tab)
 	i = 0;
 	if (!(*tab))
 		return ;
-	free(tab);
+	free(*tab);
 	*tab = NULL;
 }
 

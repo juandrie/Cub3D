@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_lists_utils.c                                 :+:      :+:    :+:   */
+/*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 17:57:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 16:44:11 by cabdli           ###   ########.fr       */
+/*   Created: 2024/05/24 16:31:20 by cabdli            #+#    #+#             */
+/*   Updated: 2024/05/24 16:33:57 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	open_fd(int *fd, char *filename)
+void	calculate_map_dimensions(t_map *map)
 {
-	*fd = open(filename, O_RDONLY);
-	if (*fd == -1)
-		return (perror(""), 1);
-	return (0);
-}
+	t_list	*current;
+	int		max_width;
+	int		height;
+	int		line_length;
 
-void	ft_replace_nl(char *line)
-{
-	int	len;
-
-	len = (int)ft_strlen(line);
-	if (len > 1 && line[len - 1] == '\n')
-		line[len - 1] = '\0';
-}
-
-int	list_size(t_list *list)
-{
-	int	size;
-
-	size = 0;
-	while (list)
+	current = map->map_list;
+	max_width = 0;
+	height = 0;
+	while (current)
 	{
-		size++;
-		list = list->next;
+		line_length = ft_strlen(current->line);
+		if (line_length > max_width)
+		{
+			max_width = line_length;
+		}
+		height++;
+		current = current->next;
 	}
-	return (size);
+	map->height = height;
+	map->width = max_width;
 }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 12:53:17 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 13:17:35 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:32:35 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 void	pos_n(t_data *data)
 {
@@ -48,7 +47,7 @@ int	init_player_position(t_data *data)
 	int		y;
 	int		x;
 	char	c;
-	
+
 	y = 0;
 	while (y < data->map->height)
 	{

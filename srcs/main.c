@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 15:00:21 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/24 16:35:14 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(int argc, char **argv, char **envp)
 	// if (parse_map())
 	// 	return (1);
 	// start_the_game(data);
-	init_player_position(data);
-	hooks(data);
+	// init_player_position(data);
+	// hooks(data);
 	// mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
 	free_data(&data);
 	return (0);

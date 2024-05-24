@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 12:45:39 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/24 16:32:10 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,6 @@ int			loop_hook(t_data *data);
 void		update_timing_and_movement(t_data *data);
 void		extract_texture_paths(t_map *map);
 void    	init_textures(t_data *data);
+void		calculate_map_dimensions(t_map *map);
 
 #endif 
