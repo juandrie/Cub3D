@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:52:40 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 12:45:31 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:46:16 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_map	*init_map(char *filename)
 	if (!map)
 		return (NULL);
 	if (init_lists(map, filename))
-		return (free_lists(map), NULL);
+		return (free_map(&map), NULL);
 	if (init_tabs(map))
-		return (free_tabs(map), NULL);
+		return (free_map(&map), NULL);
 	return (map);
 }

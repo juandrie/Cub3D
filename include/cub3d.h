@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 16:32:10 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/24 18:17:24 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ t_window	*init_window(void);
 
 /* init_map_list_utils.c */
 int			open_fd(int *fd, char *filename);
-void		ft_replace_nl(char *line);
+int		ft_replace_nl(t_map *map, char *line);
 int			list_size(t_list *list);
 
 /* free_window.c */

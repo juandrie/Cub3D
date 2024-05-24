@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:54:57 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/23 17:10:10 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/24 18:28:13 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	print_list(t_list *list)
 {
 	while (list)
 	{
-		printf("%s\n", list->line);
+		if (!ft_strncmp(list->line, "\n", 2))
+			printf("%s", list->line);
+		else
+			printf("%s\n", list->line);
 		list = list->next;
 	}
 }
@@ -27,7 +30,12 @@ void	print_tab(char **tab)
 
 	i = -1;
 	while (tab[++i])
-		printf("%s\n", tab[i]);
+	{
+		if (!ft_strncmp(tab[i], "\n", 2))
+			printf("%s", tab[i]);
+		else
+			printf("%s\n", tab[i]);
+	}
 }
 
 void	print_map(t_map *map)
