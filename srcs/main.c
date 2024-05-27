@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 13:54:11 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:22:17 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,5 @@ int	main(int argc, char **argv, char **envp)
 	free_data(&data);
 	return (0);
 }
+
+//remove height and width from structure window and replace by macros
