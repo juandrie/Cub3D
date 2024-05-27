@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:54:57 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/24 18:28:13 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/27 14:57:35 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	print_list(t_list *list)
 	while (list)
 	{
 		if (!ft_strncmp(list->line, "\n", 2))
-			printf("%s", list->line);
+			printf("%s$", list->line);
 		else
-			printf("%s\n", list->line);
+			printf("%s$\n", list->line);
 		list = list->next;
 	}
 }

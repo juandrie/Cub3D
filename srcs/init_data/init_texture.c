@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:46:12 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 12:00:52 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:31:48 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void    init_textures(t_data *data)
 	init_texture(&data->texture[3], data->window->mlx_ptr, data->map->east_texture);
 }
 
-static char	*skip_whitespace(char *str)
+char	*skip_whitespace(char *str)
 {
-    while (*str == ' ' || *str == '\t' || *str == '\r' || *str == '\v' || *str == '\n')
+    while (*str == ' ' || *str == '\t' || *str == '\r' || *str == '\v')
         str++;
     return (str);
 }
@@ -48,6 +48,7 @@ void extract_texture_paths(t_map *map)
     while (current)
     {
         line = current->line;
+        printf("texture: %s\n", line);
         if (!ft_strncmp(line, "NO", 2))
         {
             path = skip_whitespace(line + 2);

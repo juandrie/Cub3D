@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_lists_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:57:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 18:19:50 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/27 14:27:31 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_replace_nl(t_map *map, char *line)
 
 	len = (int)ft_strlen(line);
 	if (len == 1 && !map->map_list)
-		return (free(line), 1);
+		return (1);
 	if (len > 1 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
 	return (0);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
+#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/24 15:48:19 by cabdli           ###   ########.fr        #
+#    Updated: 2024/05/27 12:45:53 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS = 	srcs/main.c \
 		srcs/free_data/free_map.c \
 		srcs/free_data/free_window.c \
 		srcs/print_data/print_data.c \
+		srcs/start_game/start_game.c \
 		
 
 OBJS = $(SRCS:.c=.o)
