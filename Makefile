@@ -6,7 +6,7 @@
 #    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/27 12:45:53 by juandrie         ###   ########.fr        #
+#    Updated: 2024/05/27 15:58:40 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ NAME = cub3D
 
 # Source and object files
 SRCS = 	srcs/main.c \
+		srcs/error.c \
 		srcs/hooks.c \
 		srcs/raycasting/moves.c \
 		srcs/map.c \
@@ -52,6 +53,7 @@ SRCS = 	srcs/main.c \
 		srcs/init_data/init_texture.c\
 		srcs/raycasting/time.c \
 		srcs/raycasting/texture.c \
+		srcs/parsing/parsing.c \
 		srcs/parsing/parse_player.c \
 		srcs/parsing/parse_args.c \
 		srcs/free_data/free_data.c \

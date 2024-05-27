@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 14:19:50 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:58:15 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,13 @@ typedef struct s_texture
 	int		texture_num;
 }	t_texture;
 
+typedef enum s_error
+{
+	EMPTY,
+	UNCLOSED,
+	
+}t_error;
+
 typedef struct s_data
 {
 	t_map		*map;
@@ -147,7 +154,9 @@ typedef struct s_data
 	t_texture	*texture;
 	int			keycode;
 	int			player_initialized;
+	t_error		error;
 }t_data;
+
 
 /* parse_args.c */
 int			is_cub(char *filename);
@@ -158,10 +167,10 @@ void		free_data(t_data **data);
 t_data		*init_data(char *filename);
 
 /* init_map.c */
-t_map		*init_map(char *filename);
+t_map		*init_map(char *filename, t_data *data);
 
 /* init_lists.c */
-int			init_lists(t_map *map, char *filename);
+int			init_lists(t_map *map, char *filename, t_data *data);
 
 /* init_tabs.c */
 int			init_tabs(t_map *map);
@@ -210,6 +219,8 @@ void		calculate_map_dimensions(t_map *map);
 void		calculate_map_dimensions(t_map *map);
 void	print_list(t_list *list);
 char	*skip_whitespace(char *str);
+void    print_err(t_error error);
+int	parsing(t_map *map);
 
 
 #endif 

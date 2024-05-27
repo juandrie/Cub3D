@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 16:52:40 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:31:05 by juandrie         ###   ########.fr       */
+/*   Created: 2024/05/27 15:27:11 by juandrie          #+#    #+#             */
+/*   Updated: 2024/05/27 15:38:29 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../include/cub3d.h"
 
-t_map	*init_map(char *filename, t_data *data)
+void    print_err(t_error error)
 {
-	t_map	*map;
-
-	map = ft_calloc(1, sizeof(t_map));
-	if (!map)
-		return (NULL);
-	if (init_lists(map, filename, data))
-		return (free_map(&map), NULL);
-	if (init_tabs(map))
-		return (free_map(&map), NULL);
-	return (map);
+    if (error == EMPTY)
+        ft_putstr_fd("Error\nEmpty map\n", STDERR_FILENO);
 }

@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_map.c                                         :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 16:52:40 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:31:05 by juandrie         ###   ########.fr       */
+/*   Created: 2024/05/27 15:54:24 by juandrie          #+#    #+#             */
+/*   Updated: 2024/05/27 15:57:22 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-t_map	*init_map(char *filename, t_data *data)
+int	parsing(t_map *map)
 {
-	t_map	*map;
-
-	map = ft_calloc(1, sizeof(t_map));
-	if (!map)
-		return (NULL);
-	if (init_lists(map, filename, data))
-		return (free_map(&map), NULL);
-	if (init_tabs(map))
-		return (free_map(&map), NULL);
-	return (map);
+	if (parse_colors())
+		return (1);
+	if (parse_textures())
+		return (1);
+	if (parse_map())
+		return (1);
+	return (0);
 }
