@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:26:47 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:11:13 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static int	add_node_bottom(t_list **list, char *line)
 
 	if (!(*list))
 	{
-		printf("IN HERE\n");
 		(*list) = new_node(line);
 		if (!(*list))
 			return (1);
@@ -50,15 +49,14 @@ static int	add_node_bottom(t_list **list, char *line)
 static int	process_line(t_map *map, char *line)
 {
 	char	*tmp;
-	static int		i;
+	// static int		i;
 
-	printf("LINE %d = %s$\n", ++i, line);
+	// printf("LINE %d = %s$\n", ++i, line);
 	tmp = skip_whitespace(line);
-	printf("TMP %d = %s$\n", i, tmp);
+	// printf("TMP %d = %s$\n", i, tmp);
 	if (ft_replace_nl(map, tmp))
 		return (0);
-	printf("TMP %d = %s$\n", i, tmp);
-	printf("\n\n");
+	// printf("TMP %d = %s$\n", i, tmp);
 	if (!ft_strncmp(tmp, "NO", 2) || !ft_strncmp(tmp, "SO", 2) || \
 	!ft_strncmp(tmp, "WE", 2) || !ft_strncmp(tmp, "EA", 2))
 		return (add_node_bottom(&(map->text_list), tmp));

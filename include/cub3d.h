@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:58:15 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:14:22 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef enum s_error
 {
 	EMPTY,
 	UNCLOSED,
-	
+	COLOR_S,
 }t_error;
 
 typedef struct s_data
@@ -217,10 +217,11 @@ void		extract_texture_paths(t_map *map);
 void    	init_textures(t_data *data);
 void		calculate_map_dimensions(t_map *map);
 void		calculate_map_dimensions(t_map *map);
-void	print_list(t_list *list);
-char	*skip_whitespace(char *str);
-void    print_err(t_error error);
-int	parsing(t_map *map);
+void		print_list(t_list *list);
+char		*skip_whitespace(char *str);
+void    	print_err(t_error error);
+int			parsing(t_map *map);
+int			parse_colors(char **tab);
 
 
 #endif 
