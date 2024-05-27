@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:22:17 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:55:16 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	main(int argc, char **argv, char **envp)
 	if (!data)
 		return (1);
 	print_data(data);
-	// if (parse_map())
-	// 	return (1);
+	if (parsing(data->map))
+		return (free_data(data), 1);
 	// start_the_game(data);
 	// init_player_position(data);
 	// hooks(data);
@@ -49,3 +49,4 @@ int	main(int argc, char **argv, char **envp)
 }
 
 //remove height and width from structure window and replace by macros
+//ajouter in int a init_data pour le lancer en deux parties

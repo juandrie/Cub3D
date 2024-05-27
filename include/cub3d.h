@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:30:45 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:58:15 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,7 @@ void		calculate_map_dimensions(t_map *map);
 void	print_list(t_list *list);
 char	*skip_whitespace(char *str);
 void    print_err(t_error error);
+int	parsing(t_map *map);
 
 
 #endif 
