@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:54:24 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:57:22 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:47:37 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	parsing(t_map *map)
 {
-	if (parse_colors())
+	// if (parse_colors())
+	// 	return (1);
+	if (parse_textures(map->text_tab))
 		return (1);
-	if (parse_textures())
-		return (1);
-	if (parse_map())
-		return (1);
+	// if (parse_map())
+	// 	return (1);
 	return (0);
 }

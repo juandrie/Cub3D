@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:58:15 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:07:20 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ typedef enum s_error
 {
 	EMPTY,
 	UNCLOSED,
+	TEXTURE_S,
+	TEXTURE_D,
 	
 }t_error;
 
@@ -180,7 +182,7 @@ t_window	*init_window(void);
 
 /* init_map_list_utils.c */
 int			open_fd(int *fd, char *filename);
-int		ft_replace_nl(t_map *map, char *line);
+int			ft_replace_nl(t_map *map, char *line);
 int			list_size(t_list *list);
 
 /* free_window.c */
@@ -217,10 +219,10 @@ void		extract_texture_paths(t_map *map);
 void    	init_textures(t_data *data);
 void		calculate_map_dimensions(t_map *map);
 void		calculate_map_dimensions(t_map *map);
-void	print_list(t_list *list);
-char	*skip_whitespace(char *str);
-void    print_err(t_error error);
-int	parsing(t_map *map);
-
+void		print_list(t_list *list);
+char		*skip_whitespace(char *str);
+void		print_err(t_error error);
+int			parsing(t_map *map);
+int			parse_textures(char **tab);
 
 #endif 
