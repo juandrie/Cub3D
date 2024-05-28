@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 19:07:20 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:58:30 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include <fcntl.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
@@ -141,8 +142,11 @@ typedef enum s_error
 {
 	EMPTY,
 	UNCLOSED,
-	TEXTURE_S,
-	TEXTURE_D,
+	TEXTURE_SIZE,
+	TEXTURE_FORMAT,
+	TEXTURE_PATH,
+	TEXTURE_DUPLICATE,
+	TEXTURE_MISSING,
 	
 }t_error;
 
