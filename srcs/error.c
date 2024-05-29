@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:27:11 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/28 18:58:16 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:23:10 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void    print_err(t_error error)
         ft_putstr_fd("Error\nInvalid format of textures\n", STDERR_FILENO);
     if (error == TEXTURE_PATH)
         ft_putstr_fd("Error\nInvalid path of textures\n", STDERR_FILENO);
-    if (error == TEXTURE_DUPLICATE)
-        ft_putstr_fd("Error\nDuplicated texture\n", STDERR_FILENO);
-    if (error == TEXTURE_MISSING)
-        ft_putstr_fd("Error\nMissing texture\n", STDERR_FILENO);
+    if (error == TEXTURE_MIS_DUP)
+        ft_putstr_fd("Error\nMissing or duplicated texture definition\n", STDERR_FILENO);
 }

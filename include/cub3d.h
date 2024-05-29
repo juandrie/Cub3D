@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/28 18:58:30 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:23:20 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,7 @@ typedef enum s_error
 	TEXTURE_SIZE,
 	TEXTURE_FORMAT,
 	TEXTURE_PATH,
-	TEXTURE_DUPLICATE,
-	TEXTURE_MISSING,
+	TEXTURE_MIS_DUP,
 	
 }t_error;
 
@@ -220,7 +219,7 @@ void		read_keys(t_data *data);
 int			loop_hook(t_data *data);
 void		update_timing_and_movement(t_data *data);
 void		extract_texture_paths(t_map *map);
-void    	init_textures(t_data *data);
+void		init_textures(t_data *data);
 void		calculate_map_dimensions(t_map *map);
 void		calculate_map_dimensions(t_map *map);
 void		print_list(t_list *list);
@@ -228,5 +227,5 @@ char		*skip_whitespace(char *str);
 void		print_err(t_error error);
 int			parsing(t_map *map);
 int			parse_textures(char **tab);
-
+int			tab_size(char **tab);
 #endif 

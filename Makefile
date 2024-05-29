@@ -6,7 +6,7 @@
 #    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/27 17:23:48 by juandrie         ###   ########.fr        #
+#    Updated: 2024/05/29 12:15:35 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/parse_player.c \
 		srcs/parsing/parse_args.c \
 		srcs/parsing/parse_textures.c \
+		srcs/parsing/parse_utils.c \
 		srcs/free_data/free_data.c \
 		srcs/free_data/free_map.c \
 		srcs/free_data/free_window.c \
