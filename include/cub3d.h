@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 18:14:22 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/28 15:54:44 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typedef enum s_error
 {
 	EMPTY,
 	UNCLOSED,
-	COLOR_S,
+	MISS_DUP,
 }t_error;
 
 typedef struct s_data
