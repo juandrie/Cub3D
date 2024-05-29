@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   parse_colors_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 15:27:11 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/29 15:08:28 by cabdli           ###   ########.fr       */
+/*   Created: 2024/05/29 17:38:06 by cabdli            #+#    #+#             */
+/*   Updated: 2024/05/29 17:38:36 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
-void	print_err(t_error error)
+int	tab_size(char **tab)
 {
-	if (error == EMPTY)
-		ft_putstr_fd("Error\nEmpty map\n", STDERR_FILENO);
-	if (error == MISS_DUP_C)
-		ft_putstr_fd("Error\nMissing or duplicated color definitions\n", \
-		STDERR_FILENO);
-	if (error == INVAL_RGB)
-		ft_putstr_fd("Error\nIvalid RGB values for at least one color\n", STDERR_FILENO);
+	int	size;
+
+	size = 0;
+	while (tab[size])
+		size++;
+	return (size);
+}
+
+int	is_comma(char c)
+{
+	return (c == ',');
+}
+
+int	is_nb(char c)
+{
+	return (c >= '0' && c <= '9');
 }

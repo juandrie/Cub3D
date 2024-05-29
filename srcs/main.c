@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 18:11:50 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/29 16:48:38 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	main(int argc, char **argv, char **envp)
 	data = init_data(argv[1]);
 	if (!data)
 		return (1);
-	print_data(data);
 	if (parsing(data->map))
 		return (free_data(&data), 1);
+	print_data(data);
 	// start_the_game(data);
 	// init_player_position(data);
 	// hooks(data);

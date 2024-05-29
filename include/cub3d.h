@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/28 15:54:44 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/29 17:46:03 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,8 @@ typedef enum s_error
 {
 	EMPTY,
 	UNCLOSED,
-	MISS_DUP,
+	MISS_DUP_C,
+	INVAL_RGB,
 }t_error;
 
 typedef struct s_data
@@ -196,7 +197,20 @@ void		free_map(t_map **map);
 void		free_data(t_data **data);
 
 /* print_data.c */
+void		print_list(t_list *list);
+void		print_tab(char **tab);
+void		print_map(t_map *map);
 void		print_data(t_data *data);
+
+/* parse_colors.c */
+int			parse_colors(char **tab);
+
+/* parse_rgb_values.c */
+int			check_comma_nbs(char *tab);
+int			check_nb_of_nbs(char *tab);
+int			check_nb_of_commas(char *tab);
+int			check_nbs_range(char *tab);
+
 
 int			get_texture_color(t_texture *texture, int x, int y);
 int			calculate_texture_num(t_data *data);
@@ -217,11 +231,12 @@ void		extract_texture_paths(t_map *map);
 void    	init_textures(t_data *data);
 void		calculate_map_dimensions(t_map *map);
 void		calculate_map_dimensions(t_map *map);
-void		print_list(t_list *list);
-char		*skip_whitespace(char *str);
 void    	print_err(t_error error);
 int			parsing(t_map *map);
-int			parse_colors(char **tab);
+void		free_full_tab(char **tab);
+void		free_tab(char ***tab);
 
+/* utils.c */
+char		*skip_whitespace(char *str);
 
 #endif 

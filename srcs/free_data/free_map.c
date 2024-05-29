@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:14:53 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/24 16:12:49 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/29 17:29:34 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,20 @@ void	free_lists(t_map *map)
 
 void	free_tab(char ***tab)
 {
-	int	i;
-
-	i = 0;
 	if (!(*tab))
 		return ;
 	free(*tab);
 	*tab = NULL;
+}
+
+void	free_full_tab(char **tab)
+{
+	int	i;
+
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
 }
 
 void	free_tabs(t_map *map)

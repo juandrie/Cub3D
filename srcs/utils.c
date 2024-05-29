@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/27 15:27:11 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/29 15:08:28 by cabdli           ###   ########.fr       */
+/*   Created: 2024/05/29 17:46:21 by cabdli            #+#    #+#             */
+/*   Updated: 2024/05/29 18:00:23 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	print_err(t_error error)
+char	*skip_whitespace(char *str)
 {
-	if (error == EMPTY)
-		ft_putstr_fd("Error\nEmpty map\n", STDERR_FILENO);
-	if (error == MISS_DUP_C)
-		ft_putstr_fd("Error\nMissing or duplicated color definitions\n", \
-		STDERR_FILENO);
-	if (error == INVAL_RGB)
-		ft_putstr_fd("Error\nIvalid RGB values for at least one color\n", STDERR_FILENO);
+	while (*str == ' ' || *str == '\t' || *str == '\r' \
+	|| *str == '\v' || *str == '\f')
+		str++;
+	return (str);
 }

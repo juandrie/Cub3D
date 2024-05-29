@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:46:12 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 14:31:48 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:46:48 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@ void    init_textures(t_data *data)
 	init_texture(&data->texture[1], data->window->mlx_ptr, data->map->south_texture);
 	init_texture(&data->texture[2], data->window->mlx_ptr, data->map->west_texture);
 	init_texture(&data->texture[3], data->window->mlx_ptr, data->map->east_texture);
-}
-
-char	*skip_whitespace(char *str)
-{
-    while (*str == ' ' || *str == '\t' || *str == '\r' || *str == '\v')
-        str++;
-    return (str);
 }
 
 void extract_texture_paths(t_map *map)

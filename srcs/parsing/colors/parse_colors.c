@@ -6,34 +6,23 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:00:07 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/28 16:02:40 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/29 17:42:02 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	tab_size(char **tab)
-{
-	int	size;
-
-	size = 0;
-	while (tab[size])
-		size++;
-	return (size);
-}
-
-int	check_nb_colors(char **tab)
+static int	check_nb_colors(char **tab)
 {
 	int	size;
 
 	size = tab_size(tab);
 	if (size != 2)
 		return (1);
-	printf("size = %d\n", size);
 	return (0);
 }
 
-int	check_ceiling_floor(char **tab)
+static int	check_ceiling_floor(char **tab)
 {
 	int	c;
 	int	f;
@@ -53,38 +42,42 @@ int	check_ceiling_floor(char **tab)
 	return (0);
 }
 
-int	is_comma(char c)
-{
-	return (c == ',');
-}
-
-int	rgb_values(char *tab)
+static int	rgb_values(char *tab)
 {
 	tab = skip_whitespace(tab);
-	
+	if (check_comma_nbs(tab))
+		return (1);
+	if (check_nb_of_commas(tab))
+		return (1);
+	if (check_nb_of_nbs(tab))
+		return (1);
+	if (check_nbs_range(tab))
+		return (1);
+	return (0);
 }
 
-int	check_rgb_values(char **tab)
+static int	check_rgb_values(char **tab)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
-	i = 1;
-	if (rgb_values(tab[0]))
-		return (1);
-	if (rgb_values(tab[1]))
-		return (1);
+	i = -1;
+	while (tab[++i])
+	{
+		tmp = tab[i] + 1;
+		if (rgb_values(tmp))
+			return (1);
+	}
 	return (0);
 }
 
 int	parse_colors(char **tab)
 {
 	if (check_nb_colors(tab))
-		return (print_err(MISS_DUP), 1);
+		return (print_err(MISS_DUP_C), 1);
 	if (check_ceiling_floor(tab))
-		return (print_err(MISS_DUP), 1);
+		return (print_err(MISS_DUP_C), 1);
 	if (check_rgb_values(tab))
-		return (print_err(MISS_DUP), 1);
+		return (print_err(INVAL_RGB), 1);
 	return (0);
 }
-// there're 3 numbers spearated by ',' -> Invalid RGB values for one or more colors
-// the range is in between 0 and 255 - > Invalid RGB values for one or more colors
