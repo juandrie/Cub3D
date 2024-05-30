@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/29 17:23:20 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:31:08 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define MOVE_SPEED 0.035
 # define ROTATE_SPEED 0.035
 
-// # define WIDTH 640
-// # define HEIGHT 480
+# define WIDTH 640
+# define HEIGHT 480
 
 typedef struct s_vector
 {
@@ -82,8 +82,6 @@ typedef struct s_window
 	void		*win_ptr;
 	void		*img_ptr;
 	void		*img_data;
-	int			width;
-	int			height;
 	int			bpp;
 	int			size_line;
 	int			endian;
@@ -145,8 +143,8 @@ typedef enum s_error
 	TEXTURE_SIZE,
 	TEXTURE_FORMAT,
 	TEXTURE_PATH,
-	TEXTURE_MIS_DUP,
-	
+	TEXTURE_MISSING,
+	TEXTURE_DUPLICATED,
 }t_error;
 
 typedef struct s_data
@@ -162,9 +160,8 @@ typedef struct s_data
 	t_error		error;
 }t_data;
 
-
 /* parse_args.c */
-int			is_cub(char *filename);
+int			is_correct_extension(char *filename, char *str);
 int			check_args(int argc, char **argv, char **envp);
 
 /* init_data.c */
@@ -203,6 +200,16 @@ void		free_data(t_data **data);
 /* print_data.c */
 void		print_data(t_data *data);
 
+/* parse_textures.c */
+int			parse_textures(char **tab);
+
+/* parse_textures_utils.c */
+int			check_correct_directions(char **tab);
+int			check_every_directions(char **tab);
+int			is_valid_texture_format(char **tab);
+int			nb_textures(char **tab);
+
+/* A trier */
 int			get_texture_color(t_texture *texture, int x, int y);
 int			calculate_texture_num(t_data *data);
 double		calculate_wall_x(t_data *data);
@@ -212,7 +219,6 @@ int			init_player_position(t_data *data);
 void		perform_ray_casting(t_data *data);
 void		update_timing_and_movement(t_data *data);
 double		get_ticks(void);
-void		print_fps(double frameTime);
 void		hooks(t_data *data);
 int			get_key_press(t_data *data);
 void		read_keys(t_data *data);
@@ -226,6 +232,6 @@ void		print_list(t_list *list);
 char		*skip_whitespace(char *str);
 void		print_err(t_error error);
 int			parsing(t_map *map);
-int			parse_textures(char **tab);
 int			tab_size(char **tab);
+
 #endif 

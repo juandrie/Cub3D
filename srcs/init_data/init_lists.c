@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 18:50:38 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:52:28 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	init_lists(t_map *map, char *filename, t_data *data)
 	}
 	if (close(fd) == -1)
 		return (perror("Error"), 1);
-	// calculate_map_dimensions(map); 
-	//extract_texture_paths(map);
+	calculate_map_dimensions(map);
+	extract_texture_paths(map);
 	return (0);
 }
