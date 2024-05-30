@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/29 17:46:03 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:53:48 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,11 @@ void		print_data(t_data *data);
 
 /* parse_colors.c */
 int			parse_colors(char **tab);
+
+
+int			tab_size(char **tab);
+int			is_comma(char c);
+int			is_nb(char c);
 
 /* parse_rgb_values.c */
 int			check_comma_nbs(char *tab);

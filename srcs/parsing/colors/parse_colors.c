@@ -6,11 +6,11 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:00:07 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/29 17:42:02 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:52:00 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "../../../include/cub3d.h"
 
 static int	check_nb_colors(char **tab)
 {
