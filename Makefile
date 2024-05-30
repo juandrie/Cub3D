@@ -6,7 +6,7 @@
 #    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/30 13:55:28 by cabdli           ###   ########.fr        #
+#    Updated: 2024/05/30 14:14:41 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/colors/parse_colors.c \
 		srcs/parsing/colors/parse_colors_utils.c \
 		srcs/parsing/colors/parse_rgb_values.c \
+		srcs/parsing/map/parse_map.c \
 		srcs/parsing/parse_player.c \
 		srcs/parsing/parse_args.c \
 		srcs/free_data/free_data.c \

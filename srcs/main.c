@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/29 16:48:38 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/30 14:19:53 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,10 @@ int	main(int argc, char **argv, char **envp)
 
 //remove height and width from structure window and replace by macros
 //ajouter in int a init_data pour le lancer en deux parties
+// creer un dossier .build avec sous dossiers pour les .o
+// parser l'ordre de la map ?
+/* if (!data->map)
+		// return (print_err(data->error), free_data(&data), NULL);
+==> enlever le print_err le mettre plus bas pour eviter
+les dbles msg d'err de perror et print_err si map empty
+*/

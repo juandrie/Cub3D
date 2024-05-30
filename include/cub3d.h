@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 13:53:48 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/30 14:48:09 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,10 @@ typedef enum s_error
 	UNCLOSED,
 	MISS_DUP_C,
 	INVAL_RGB,
+	EMPTY_L,
+	WRONG_C,
+	NO_PLAYER,
+	MUCH_PLAYERS,
 }t_error;
 
 typedef struct s_data
@@ -216,6 +220,8 @@ int			check_nb_of_nbs(char *tab);
 int			check_nb_of_commas(char *tab);
 int			check_nbs_range(char *tab);
 
+/* parse_map.c */
+int			parse_map(char **tab);
 
 int			get_texture_color(t_texture *texture, int x, int y);
 int			calculate_texture_num(t_data *data);

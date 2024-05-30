@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 15:33:39 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:16:51 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_data	*init_data(char *filename)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		return (NULL);
-	data->map = init_map(filename,data);
+	data->map = init_map(filename, data);
 	if (!data->map)
 		return (print_err(data->error), free_data(&data), NULL);
 	// data->window = init_window();
