@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:50:34 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 12:34:14 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/30 18:05:44 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,13 @@ t_window	*init_window(void)
 	window = ft_calloc(1, sizeof(t_window));
 	if (!window)
 		return (NULL);
-	window->width = 640;
-	window->height = 480;
 	window->mlx_ptr = mlx_init();
 	if (!window->mlx_ptr)
 		return (NULL);
-	window->win_ptr = mlx_new_window(window->mlx_ptr, window->width, window->height, "Cub3D");
+	window->win_ptr = mlx_new_window(window->mlx_ptr, WIDTH, HEIGHT, "Cub3D");
 	if (!window->win_ptr)
 		return (NULL);
-	window->img_ptr = mlx_new_image(window->mlx_ptr, window->width, window->height);
+	window->img_ptr = mlx_new_image(window->mlx_ptr, WIDTH, HEIGHT);
 	if (!window->img_ptr)
 		return (NULL);
 	window->img_data = mlx_get_data_addr(window->img_ptr, &window->bpp, \

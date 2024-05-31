@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_player.c                                     :+:      :+:    :+:   */
+/*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 12:53:17 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/24 16:32:35 by cabdli           ###   ########.fr       */
+/*   Created: 2024/05/30 18:35:10 by juandrie          #+#    #+#             */
+/*   Updated: 2024/05/30 18:50:20 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	pos_s(t_data *data)
 	data->player->plane.x = 0.0;
 	data->player->plane.y = -0.66;
 }
+
 void	pos_e(t_data *data)
 {
 	data->player->dir.x = 0.0;
@@ -34,6 +35,7 @@ void	pos_e(t_data *data)
 	data->player->plane.x = 0.66;
 	data->player->plane.y = 0.0;
 }
+
 void	pos_w(t_data *data)
 {
 	data->player->dir.x = 0.0;

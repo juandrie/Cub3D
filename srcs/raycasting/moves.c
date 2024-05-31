@@ -6,12 +6,11 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/23 11:24:16 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:58:43 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 int	get_key_press(t_data *data)
 {
@@ -28,26 +27,33 @@ void	rotate_camera(t_data *data, double angle)
 	double	old_planex;
 
 	old_dirx = data->player->dir.x;
-	data->player->dir.x = data->player->dir.x * cos(angle) - data->player->dir.y * sin(angle);
-	data->player->dir.y = old_dirx * sin(angle) + data->player->dir.y * cos(angle);
+	data->player->dir.x = data->player->dir.x * cos(angle) \
+	- data->player->dir.y * sin(angle);
+	data->player->dir.y = old_dirx * sin(angle) \
+	+ data->player->dir.y * cos(angle);
 	old_planex = data->player->plane.x;
-	data->player->plane.x = data->player->plane.x * cos(angle) - data->player->plane.y * sin(angle);
-	data->player->plane.y = old_planex * sin(angle) + data->player->plane.y * cos(angle);
+	data->player->plane.x = data->player->plane.x * cos(angle) \
+	- data->player->plane.y * sin(angle);
+	data->player->plane.y = old_planex * sin(angle) \
+	+ data->player->plane.y * cos(angle);
 }
 
-void move_side(t_data *data, double angle)
+void	move_side(t_data *data, double angle)
 {
-    double newx = data->player->pos.x + data->player->plane.x * angle;
-    double newy = data->player->pos.y + data->player->plane.y * angle;
+	double	newx;
+	double	newy;
 
-    if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
-    {
-        if (data->map->map_tab[(int)newy][(int)newx] == '0')
-        {
-            data->player->pos.x = newx;
-            data->player->pos.y = newy;
-        }
-    }
+	newx = data->player->pos.x + data->player->plane.x * angle;
+	newy = data->player->pos.y + data->player->plane.y * angle;
+	if (newx >= 0 && newx < data->map->width && newy >= 0 \
+	&& newy < data->map->height)
+	{
+		if (data->map->map_tab[(int)newy][(int)newx] == '0')
+		{
+			data->player->pos.x = newx;
+			data->player->pos.y = newy;
+		}
+	}
 }
 
 void	move_forward(t_data *data)
@@ -57,13 +63,13 @@ void	move_forward(t_data *data)
 
 	newx = data->player->pos.x + data->player->dir.x * data->window->movespeed;
 	newy = data->player->pos.y + data->player->dir.y * data->window->movespeed;
-	// printf("move_forward: newx=%f, newy=%f, width=%d, height=%d\n", newx, newy, data->map->width, data->map->height);
-	if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
+	if (newx >= 0 && newx < data->map->width && \
+	newy >= 0 && newy < data->map->height)
 	{
 		if (data->map->map_tab[(int)data->player->pos.y][(int)newx] == '0')
-            data->player->pos.x = newx;
-        if (data->map->map_tab[(int)newy][(int)data->player->pos.x] == '0')
-            data->player->pos.y = newy;
+			data->player->pos.x = newx;
+		if (data->map->map_tab[(int)newy][(int)data->player->pos.x] == '0')
+			data->player->pos.y = newy;
 	}
 }
 
@@ -74,13 +80,13 @@ void	move_back(t_data *data)
 
 	newx = data->player->pos.x - data->player->dir.x * data->window->movespeed;
 	newy = data->player->pos.y - data->player->dir.y * data->window->movespeed;
-	// printf("move_back: newx=%f, newy=%f, width=%d, height=%d\n", newx, newy, data->map->width, data->map->height);
-	if (newx >= 0 && newx < data->map->width && newy >= 0 && newy < data->map->height)
+	if (newx >= 0 && newx < data->map->width && \
+	newy >= 0 && newy < data->map->height)
 	{
 		if (data->map->map_tab[(int)data->player->pos.y][(int)newx] == '0')
-            data->player->pos.x = newx;
-        if (data->map->map_tab[(int)newy][(int)data->player->pos.x] == '0')
-            data->player->pos.y = newy;
+			data->player->pos.x = newx;
+		if (data->map->map_tab[(int)newy][(int)data->player->pos.x] == '0')
+			data->player->pos.y = newy;
 	}
 }
 

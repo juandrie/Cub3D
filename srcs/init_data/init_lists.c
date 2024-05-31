@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/27 18:11:13 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/31 15:25:01 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,10 @@ static int	add_node_bottom(t_list **list, char *line)
 static int	process_line(t_map *map, char *line)
 {
 	char	*tmp;
-	// static int		i;
 
-	// printf("LINE %d = %s$\n", ++i, line);
 	tmp = skip_whitespace(line);
-	// printf("TMP %d = %s$\n", i, tmp);
 	if (ft_replace_nl(map, tmp))
 		return (0);
-	// printf("TMP %d = %s$\n", i, tmp);
 	if (!ft_strncmp(tmp, "NO", 2) || !ft_strncmp(tmp, "SO", 2) || \
 	!ft_strncmp(tmp, "WE", 2) || !ft_strncmp(tmp, "EA", 2))
 		return (add_node_bottom(&(map->text_list), tmp));
@@ -87,7 +83,7 @@ int	init_lists(t_map *map, char *filename, t_data *data)
 	}
 	if (close(fd) == -1)
 		return (perror("Error"), 1);
-	// calculate_map_dimensions(map); 
-	// extract_texture_paths(map);
+	calculate_map_dimensions(map);
+	extract_texture_paths(map);
 	return (0);
 }

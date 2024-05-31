@@ -6,7 +6,7 @@
 #    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/30 14:14:41 by cabdli           ###   ########.fr        #
+#    Updated: 2024/05/31 15:19:11 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,10 +41,12 @@ NAME = cub3D
 SRCS = 	srcs/main.c \
 		srcs/error.c \
 		srcs/hooks.c \
-		srcs/raycasting/moves.c \
 		srcs/map.c \
 		srcs/utils.c \
 		srcs/raycasting/raycasting.c \
+		srcs/raycasting/moves.c \
+		srcs/raycasting/time.c \
+		srcs/raycasting/texture.c \
 		srcs/init_data/init_data.c \
 		srcs/init_data/init_lists_utils.c \
 		srcs/init_data/init_lists.c \
@@ -52,15 +54,16 @@ SRCS = 	srcs/main.c \
 		srcs/init_data/init_tabs.c \
 		srcs/init_data/init_window.c\
 		srcs/init_data/init_texture.c\
-		srcs/raycasting/time.c \
-		srcs/raycasting/texture.c \
+		srcs/init_data/init_player.c \
 		srcs/parsing/parsing.c \
 		srcs/parsing/colors/parse_colors.c \
 		srcs/parsing/colors/parse_colors_utils.c \
 		srcs/parsing/colors/parse_rgb_values.c \
 		srcs/parsing/map/parse_map.c \
-		srcs/parsing/parse_player.c \
 		srcs/parsing/parse_args.c \
+		srcs/parsing/parse_utils.c \
+		srcs/parsing/textures/parse_textures.c \
+		srcs/parsing/textures/parse_textures_utils.c \
 		srcs/free_data/free_data.c \
 		srcs/free_data/free_map.c \
 		srcs/free_data/free_window.c \

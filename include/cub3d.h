@@ -6,9 +6,17 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 14:48:09 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/31 15:30:24 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+
+
+
+
+
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -20,6 +28,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <stdbool.h>
 # include <fcntl.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
@@ -36,8 +45,8 @@
 # define MOVE_SPEED 0.035
 # define ROTATE_SPEED 0.035
 
-// # define WIDTH 640
-// # define HEIGHT 480
+# define WIDTH 640
+# define HEIGHT 480
 
 typedef struct s_vector
 {
@@ -81,8 +90,6 @@ typedef struct s_window
 	void		*win_ptr;
 	void		*img_ptr;
 	void		*img_data;
-	int			width;
-	int			height;
 	int			bpp;
 	int			size_line;
 	int			endian;
@@ -146,7 +153,12 @@ typedef enum s_error
 	EMPTY_L,
 	WRONG_C,
 	NO_PLAYER,
-	MUCH_PLAYERS,
+	MUCH_PLAYERS,TEXTURE_SIZE,
+	TEXTURE_FORMAT,
+	TEXTURE_PATH,
+	TEXTURE_INVAL,
+	TEXTURE_DUPLICATED,
+	MAP_BORDERS,
 }t_error;
 
 typedef struct s_data
@@ -162,9 +174,8 @@ typedef struct s_data
 	t_error		error;
 }t_data;
 
-
 /* parse_args.c */
-int			is_cub(char *filename);
+int			is_correct_extension(char *filename, char *str);
 int			check_args(int argc, char **argv, char **envp);
 
 /* init_data.c */
@@ -185,7 +196,7 @@ t_window	*init_window(void);
 
 /* init_map_list_utils.c */
 int			open_fd(int *fd, char *filename);
-int		ft_replace_nl(t_map *map, char *line);
+int			ft_replace_nl(t_map *map, char *line);
 int			list_size(t_list *list);
 
 /* free_window.c */
@@ -223,6 +234,23 @@ int			check_nbs_range(char *tab);
 /* parse_map.c */
 int			parse_map(char **tab);
 
+/* parse_textures.c */
+// int			check_correct_directions(char **tab);
+// int			check_every_directions(char **tab);
+// int			check_texture_format(char **tab);
+int			parse_textures(char **tab);
+
+/* parse_textures_utils.c */
+int			check_nb_textures(char **tab);
+int			is_valid_path_start(const char *path);
+
+/* parse_utils.c */
+int			tab_size(char **tab);
+int			is_space(int c);
+char		*skip_whitespace(char *str);
+int			is_space_or_one(char c);
+
+/* A trier */
 int			get_texture_color(t_texture *texture, int x, int y);
 int			calculate_texture_num(t_data *data);
 double		calculate_wall_x(t_data *data);
@@ -232,14 +260,13 @@ int			init_player_position(t_data *data);
 void		perform_ray_casting(t_data *data);
 void		update_timing_and_movement(t_data *data);
 double		get_ticks(void);
-void		print_fps(double frameTime);
 void		hooks(t_data *data);
 int			get_key_press(t_data *data);
 void		read_keys(t_data *data);
 int			loop_hook(t_data *data);
 void		update_timing_and_movement(t_data *data);
 void		extract_texture_paths(t_map *map);
-void    	init_textures(t_data *data);
+void		init_textures(t_data *data);
 void		calculate_map_dimensions(t_map *map);
 void		calculate_map_dimensions(t_map *map);
 void    	print_err(t_error error);
@@ -249,5 +276,9 @@ void		free_tab(char ***tab);
 
 /* utils.c */
 char		*skip_whitespace(char *str);
+void		print_list(t_list *list);
+void		print_err(t_error error);
+int			parsing(t_map *map);
+
 
 #endif 
