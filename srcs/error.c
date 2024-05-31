@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:27:11 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 18:18:29 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:29:34 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,6 @@ void	print_err(t_error error)
 		ft_putstr_fd("Error\nMissing texture definition\n", STDERR_FILENO);
 	if (error == TEXTURE_DUPLICATED)
 		ft_putstr_fd("Error\nDuplicated texture definition\n", STDERR_FILENO);
+	if (error == MAP_BORDERS)
+		ft_putstr_fd("Error\nNo borders in the map\n", STDERR_FILENO);
 }

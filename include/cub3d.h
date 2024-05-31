@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 18:31:08 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/31 12:46:58 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ typedef enum s_error
 	TEXTURE_PATH,
 	TEXTURE_MISSING,
 	TEXTURE_DUPLICATED,
+	MAP_BORDERS,
 }t_error;
 
 typedef struct s_data
@@ -209,6 +210,12 @@ int			check_every_directions(char **tab);
 int			is_valid_texture_format(char **tab);
 int			nb_textures(char **tab);
 
+/* parse_utils.c */
+int			tab_size(char **tab);
+int			is_space(int c);
+char		*skip_whitespace(char *str);
+int			is_space_or_one(char c);
+
 /* A trier */
 int			get_texture_color(t_texture *texture, int x, int y);
 int			calculate_texture_num(t_data *data);
@@ -227,11 +234,9 @@ void		update_timing_and_movement(t_data *data);
 void		extract_texture_paths(t_map *map);
 void		init_textures(t_data *data);
 void		calculate_map_dimensions(t_map *map);
-void		calculate_map_dimensions(t_map *map);
 void		print_list(t_list *list);
-char		*skip_whitespace(char *str);
 void		print_err(t_error error);
 int			parsing(t_map *map);
-int			tab_size(char **tab);
+
 
 #endif 
