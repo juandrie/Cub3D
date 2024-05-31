@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/31 12:46:58 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:42:03 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ typedef enum s_error
 	TEXTURE_SIZE,
 	TEXTURE_FORMAT,
 	TEXTURE_PATH,
-	TEXTURE_MISSING,
+	TEXTURE_INVAL,
 	TEXTURE_DUPLICATED,
 	MAP_BORDERS,
 }t_error;
@@ -202,13 +202,14 @@ void		free_data(t_data **data);
 void		print_data(t_data *data);
 
 /* parse_textures.c */
+// int			check_correct_directions(char **tab);
+// int			check_every_directions(char **tab);
+// int			check_texture_format(char **tab);
 int			parse_textures(char **tab);
 
 /* parse_textures_utils.c */
-int			check_correct_directions(char **tab);
-int			check_every_directions(char **tab);
-int			is_valid_texture_format(char **tab);
-int			nb_textures(char **tab);
+int			check_nb_textures(char **tab);
+int			is_valid_path_start(const char *path);
 
 /* parse_utils.c */
 int			tab_size(char **tab);
