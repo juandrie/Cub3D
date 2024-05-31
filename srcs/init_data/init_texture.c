@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 void	init_texture(t_texture *texture, void *mlx_ptr, char *filepath)
 {
 	texture->img_ptr = mlx_xpm_file_to_image(mlx_ptr, filepath, &texture->width, &texture->height);
@@ -50,3 +50,5 @@ void	extract_texture_paths(t_map *map)
 		current = current->next;
 	}
 }
+
+*/

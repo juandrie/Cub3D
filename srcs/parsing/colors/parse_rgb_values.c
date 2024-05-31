@@ -78,7 +78,7 @@ int	check_nbs_range(char *tab)
 		return (perror("Error"), 1);
 	while (split[++i])
 		nbs[i] = ft_atoi(split[i]);
-	while (i-- >= 0)
+	while (i-- > 0)
 	{
 		if (nbs[i] < 0 || nbs[i] > 255)
 			return (free_full_tab(split), 1);

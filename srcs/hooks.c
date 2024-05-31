@@ -12,6 +12,7 @@
 
 #include "../include/cub3d.h"
 
+/*
 int	key_press(int keycode, t_data *data)
 {
 	data->window->key_pressed = keycode;
@@ -41,3 +42,4 @@ void	hooks(t_data *data)
 	mlx_loop_hook(data->window->mlx_ptr, loop_hook, data);
 	mlx_loop(data->window->mlx_ptr);
 }
+*/

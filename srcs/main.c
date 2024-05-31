@@ -12,7 +12,7 @@
 
 #include "../include/cub3d.h"
 
-
+/*
 int	loop_hook(t_data *data)
 {
 	if (!data->window->running)
@@ -26,6 +26,7 @@ int	loop_hook(t_data *data)
 	mlx_put_image_to_window(data->window->mlx_ptr, data->window->win_ptr, data->window->img_ptr, 0, 0);
 	return (0);
 }
+*/
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -37,10 +38,10 @@ int	main(int argc, char **argv, char **envp)
 	data = init_data(argv[1]);
 	if (!data)
 		return (1);
-	print_data(data);
-	printf("FIN DE PRINT DATA\n\n");
+	//print_data(data);
 	if (parsing(data->map))
 		return (free_data(&data), 1);
+	printf("SUCCESS !\n\n");
 	// start_the_game(data);
 	// init_player_position(data);
 	// hooks(data);

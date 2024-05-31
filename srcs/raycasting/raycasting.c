@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 void	draw_textured_wall_slice(t_data *data)
 {
 	int		y;
@@ -50,11 +50,11 @@ void	draw(t_data *data)
 
 void	draw_wall_slice(t_data *data)
 {
-	int		mapx;
-	int		mapy;
+	//int		mapx;
+	//int		mapy;
 
-	mapx = (int)data->ray->map.x;
-	mapy = (int)data->ray->map.y;
+	//mapx = (int)data->ray->map.x;
+	//mapy = (int)data->ray->map.y;
 	if (data->ray->side == 0)
 	{
 		data->ray->perpwalldist = (data->ray->map.x - data->player->pos.x + \
@@ -75,11 +75,12 @@ void	draw_wall_slice(t_data *data)
 		data->map->drawend = HEIGHT - 1;
 }
 
-/*
+
 Fonction qui calcule la direction du rayon pour chaque colonne de pixels sur l'ecran.
 Elle permet de déterminer la direction dans laquelle le rayon doit progresser 
 depuis la position du joueur pour vérifier les intersections avec des obstacles ou des murs dans l'environnement. 
 */
+/*
 void	calculate_ray_direction(t_data *data)
 {
 	double	camera_x;
@@ -90,9 +91,12 @@ void	calculate_ray_direction(t_data *data)
 	data->ray->ray_dir.y = data->player->dir.y + \
 	data->player->plane.y * camera_x;
 }
-
+*/
 /* Fonction qui sert a calculer les distances que chaque rayon doit parcourir sur l'axe x et y, 
-pour atteindre le prochain cote vertical ou horizontal du quadrillage de la map. */
+pour atteindre le prochain cote vertical ou horizontal du quadrillage de la map. 
+*/
+
+/*
 void	calculate_delta_distances(t_data *data)
 {
 	if (data->ray->ray_dir.x == 0)
@@ -181,6 +185,7 @@ void draw_floor(t_data *data)
         x = 0;
 		while (x < WIDTH)
         {
+
             int pixel_index = (y * data->window->size_line) + (x * (data->window->bpp / 8));
             *(int *)(data->window->img_data + pixel_index) = color;
 			x++;
@@ -226,4 +231,5 @@ void	perform_ray_casting(t_data *data)
 		data->vector->x++;
 	}
 }
+*/
 

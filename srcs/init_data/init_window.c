@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 t_window	*init_window(void)
 {
 	t_window	*window;
@@ -35,3 +35,4 @@ t_window	*init_window(void)
 	window->running = 1;
 	return (window);
 }
+*/

@@ -93,10 +93,11 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(PURPLE)Making cub3D...$(RESET)"
 	@make --no-print-directory -C $(LIBFT_DIR)
-	@echo "$(CYAN)Making minilibx...$(RESET)"
-	@make --no-print-directory -C $(MLX_DIR)
-	@echo "$(CYAN)Minilibx done !$(RESET)"
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
+#@echo "$(CYAN)Making minilibx...$(RESET)"
+#	@make --no-print-directory -C $(MLX_DIR)
+#	@echo "$(CYAN)Minilibx done !$(RESET)"
+#	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
 	@echo "$(PURPLE)Cub3D done !$(RESET)"
 
 # Creating object files

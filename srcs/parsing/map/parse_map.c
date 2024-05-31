@@ -37,8 +37,7 @@ int	empty_line(char **tab)
 
 int	is_wrong_char(char c)
 {
-	return (c != '0' && c != '1' && c != 'N' \
-	&& c != 'S' && c != 'E' && c != 'W' && c != ' ');
+	return (c != '0' && c != '1' && !is_player(c) && !ft_isspace(c));
 }
 
 int	wrong_char(char **tab)
@@ -150,19 +149,21 @@ int	find_longer_line(char **tab)
 	{
 		len = ft_strlen(tab[i]);
 		if (len > longer)
+		{
+			longer = len;
 			line = i;
+		}
 	}
-	return (i);
+	return (line);
 }
 
 int	check_borders_up_down(char **tab)
 {
-	int	i;
+	//int	i;
 	int	longer;
 
-	i = -1;
+	//i = -1;
 	longer = find_longer_line(tab);
-	printf("line = %d\n", longer);
 	printf("CHECK TAB : %s\n\n\n", tab[longer]);
 	tab = &tab[longer];
 	printf("CHECK TAB : %s\n\n\n", *tab);
@@ -205,23 +206,8 @@ int	check_borders(char **tab)
 {
 	if (check_borders_right_left(tab))
 		return (1);
-	if (check_borders_up_down(tab))
-		return (1);
-	// while (i < map->width)
-	// {
-	// 	if (is_space_or_one(map->map_tab[0][i]) || \
-	// 	is_space_or_one(map->map_tab[map->height - 1]))
-	// 		return (1);
-	// 	i++;
-	// }
-	// i = 0;
-	// while (i < map->height)
-	// {
-	// 	if (is_space_or_one(map->map_tab[0][i]) || \
-	// 	is_space_or_one(map->map_tab[map->width - 2]))
-	// 		return (1);
-	// 	i++;
-	// }
+	//if (check_borders_up_down(tab))
+	//	return (1);
 	return (0);
 }
 

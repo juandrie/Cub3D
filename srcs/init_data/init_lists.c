@@ -83,7 +83,7 @@ int	init_lists(t_map *map, char *filename, t_data *data)
 	}
 	if (close(fd) == -1)
 		return (perror("Error"), 1);
-	calculate_map_dimensions(map);
-	extract_texture_paths(map);
+	//calculate_map_dimensions(map);
+	//extract_texture_paths(map);
 	return (0);
 }

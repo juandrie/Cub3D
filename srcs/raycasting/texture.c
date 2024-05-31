@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 int	get_texture_color(t_texture *texture, int x, int y)
 {
 	char	*pixel;
@@ -66,3 +66,4 @@ int	calculate_texture_x(t_data *data)
 		data->map->texture.x = data->texture->width - data->map->texture.x - 1;
 	return (data->map->texture.x);
 }
+*/

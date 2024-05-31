@@ -17,7 +17,7 @@ void	free_data(t_data **data)
 	if (!(*data))
 		return ;
 	free_map(&(*data)->map);
-	free_window(&(*data)->window);
+	//free_window(&(*data)->window);
 	if ((*data)->player)
 		free((*data)->player);
 	if ((*data)->ray)

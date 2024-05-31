@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 void	free_window(t_window **window)
 {
 	if (!(*window))
@@ -33,3 +33,4 @@ void	free_window(t_window **window)
 	free((*window));
 	*window = NULL;
 }
+*/

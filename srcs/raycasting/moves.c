@@ -12,6 +12,7 @@
 
 #include "../../include/cub3d.h"
 
+/*
 int	get_key_press(t_data *data)
 {
 	int	last_key;
@@ -110,3 +111,5 @@ void	read_keys(t_data *data)
 	if (key == ESC)
 		data->window->running = 0;
 }
+
+*/

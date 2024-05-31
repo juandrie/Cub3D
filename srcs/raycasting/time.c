@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
+/*
 double	get_ticks(void)
 {
 	return ((double)clock() / CLOCKS_PER_SEC);
@@ -30,3 +30,4 @@ void	update_timing_and_movement(t_data *data)
 	data->window->movespeed = frametime * MOVE_SPEED;
 	data->window->rotspeed = frametime * ROTATE_SPEED;
 }
+*/
