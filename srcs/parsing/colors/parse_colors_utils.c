@@ -6,21 +6,11 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:38:06 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/29 17:38:36 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/31 15:34:59 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
-
-int	tab_size(char **tab)
-{
-	int	size;
-
-	size = 0;
-	while (tab[size])
-		size++;
-	return (size);
-}
 
 int	is_comma(char c)
 {

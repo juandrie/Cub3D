@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/31 15:30:24 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/05/31 18:15:21 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,11 +153,13 @@ typedef enum s_error
 	EMPTY_L,
 	WRONG_C,
 	NO_PLAYER,
-	MUCH_PLAYERS,TEXTURE_SIZE,
+	MUCH_PLAYERS,
+	TEXTURE_SIZE,
 	TEXTURE_FORMAT,
 	TEXTURE_PATH,
 	TEXTURE_INVAL,
 	TEXTURE_DUPLICATED,
+	PLAYER_SURR,
 	MAP_BORDERS,
 }t_error;
 
@@ -221,7 +223,6 @@ void		print_data(t_data *data);
 int			parse_colors(char **tab);
 
 
-int			tab_size(char **tab);
 int			is_comma(char c);
 int			is_nb(char c);
 
@@ -245,9 +246,7 @@ int			check_nb_textures(char **tab);
 int			is_valid_path_start(const char *path);
 
 /* parse_utils.c */
-int			tab_size(char **tab);
 int			is_space(int c);
-char		*skip_whitespace(char *str);
 int			is_space_or_one(char c);
 
 /* A trier */
@@ -276,9 +275,14 @@ void		free_tab(char ***tab);
 
 /* utils.c */
 char		*skip_whitespace(char *str);
+int			tab_size(char **tab);
 void		print_list(t_list *list);
 void		print_err(t_error error);
 int			parsing(t_map *map);
+
+char		**skip_whitespace_line(char **str);
+char		*rev_skip_whitespace(char *str);
+char		**rev_skip_whitespace_line(char **str);
 
 
 #endif 
