@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **envp)
 	if (!data)
 		return (1);
 	print_data(data);
-	//print_data(data);
+	printf("FIN DE PRINT DATA\n\n");
 	if (parsing(data->map))
 		return (free_data(&data), 1);
 	// start_the_game(data);
