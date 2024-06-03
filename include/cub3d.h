@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 15:44:23 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 18:10:50 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 # define WIDTH 640
 # define HEIGHT 480
 
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
+
+
 typedef struct s_vector
 {
 	double	x;
@@ -60,10 +66,6 @@ typedef struct s_map
 	char		**map_tab;
 	char		**text_tab;
 	char		**color_tab;
-	char		*north_texture;
-	char		*south_texture;
-	char		*west_texture;
-	char		*east_texture;
 	int			floor_color[3];
 	int			ceiling_color[3];
 	int			width;
@@ -126,6 +128,7 @@ typedef struct s_texture
 
 typedef struct s_texture
 {
+	char	*text_path;
 	void	*img_ptr;
 	char	*addr;
 	int		width;
@@ -161,10 +164,9 @@ typedef struct s_data
 	t_player	*player;
 	t_ray		*ray;
 	t_vector	*vector;
-	t_texture	*texture;
+	t_texture	**texture;
 	int			keycode;
 	int			player_initialized;
-	t_error		error;
 }t_data;
 
 /* parse_args.c */
@@ -173,13 +175,13 @@ int			check_args(int argc, char **argv, char **envp);
 
 /* init_data.c */
 void		free_data(t_data **data);
-t_data		*init_data(char *filename);
+int			init_data(t_data **data, char *filename, int step);
 
 /* init_map.c */
-t_map		*init_map(char *filename, t_data *data);
+t_map		*init_map(char *filename);
 
 /* init_lists.c */
-int			init_lists(t_map *map, char *filename, t_data *data);
+int			init_lists(t_map *map, char *filename);
 
 /* init_tabs.c */
 int			init_tabs(t_map *map);
@@ -255,7 +257,7 @@ void		read_keys(t_data *data);
 int			loop_hook(t_data *data);
 void		update_timing_and_movement(t_data *data);
 void		extract_texture_paths(t_map *map);
-void		init_textures(t_data *data);
+int			init_textures(t_data *data);
 void		calculate_map_dimensions(t_map *map);
 void		calculate_map_dimensions(t_map *map);
 void    	print_err(t_error error);
@@ -273,6 +275,6 @@ int			parsing(t_map *map);
 char		**skip_whitespace_line(char **str);
 char		*rev_skip_whitespace(char *str);
 char		**rev_skip_whitespace_line(char **str);
-
+char		*get_text_path(char *str);
 
 #endif 

@@ -6,27 +6,11 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 15:30:03 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 17:30:43 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-
-int	loop_hook(t_data *data)
-{
-	if (!data->window->running)
-	{
-		mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
-		exit(0);
-	}
-	read_keys(data);
-	update_timing_and_movement(data);
-	perform_ray_casting(data);
-	mlx_put_image_to_window(data->window->mlx_ptr, data->window->win_ptr, data->window->img_ptr, 0, 0);
-	return (0);
-}
-
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -35,27 +19,24 @@ int	main(int argc, char **argv, char **envp)
 	data = NULL;
 	if (check_args(argc, argv, envp))
 		return (1);
-	data = init_data(argv[1]);
-	if (!data)
+	if (init_data(&data, argv[1], 0))
 		return (1);
 	if (parsing(data->map))
 		return (free_data(&data), 1);
-	printf("SUCCESS !\n\n");
+	if (init_data(&data, argv[1], 1))
+		return (1);
 	//print_data(data);
 	// start_the_game(data);
 	// init_player_position(data);
 	// hooks(data);
-	// mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
 	free_data(&data);
+	printf("SUCCESS !\n\n");
 	return (0);
 }
 
-//remove height and width from structure window and replace by macros
 //ajouter in int a init_data pour le lancer en deux parties
 // creer un dossier .build avec sous dossiers pour les .o
 // parser l'ordre de la map ?
-/* if (!data->map)
-		// return (print_err(data->error), free_data(&data), NULL);
-==> enlever le print_err le mettre plus bas pour eviter
-les dbles msg d'err de perror et print_err si map empty
+/*
+
 */

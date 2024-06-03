@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:26:51 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/31 14:35:53 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 16:49:18 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,4 @@ int	check_nb_textures(char **tab)
 	if (size != 4)
 		return (1);
 	return (0);
-}
-
-int	is_valid_path_start(const char *path)
-{
-	if ((ft_strncmp(path, "./", 2) == 0))
-		return (0);
-	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/06/03 15:48:51 by cabdli           ###   ########.fr        #
+#    Updated: 2024/06/03 17:19:08 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,9 +69,9 @@ SRCS = 	srcs/main.c \
 		srcs/free_data/free_window.c \
 		srcs/print_data/print_data.c \
 		srcs/start_game/start_game.c \
-		
 
-OBJS = $(SRCS:.c=.o)
+BUILD_DIR = .build
+OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)	
 
 # mlx library paths
 MLX_DIR = ./minilibx-linux
@@ -87,10 +87,25 @@ LIBFT_INC = -I $(LIBFT_DIR)
 # Include paths for headers
 INC = -I ./includes
 
+# Create build directory and subdirectories
+$(BUILD_DIR):
+	@mkdir -p $(BUILD_DIR)
+	@mkdir -p $(BUILD_DIR)/srcs
+	@mkdir -p $(BUILD_DIR)/srcs/raycasting
+	@mkdir -p $(BUILD_DIR)/srcs/init_data
+	@mkdir -p $(BUILD_DIR)/srcs/parsing
+	@mkdir -p $(BUILD_DIR)/srcs/parsing/colors
+	@mkdir -p $(BUILD_DIR)/srcs/parsing/map
+	@mkdir -p $(BUILD_DIR)/srcs/parsing/textures
+	@mkdir -p $(BUILD_DIR)/srcs/free_data
+	@mkdir -p $(BUILD_DIR)/srcs/print_data
+	@mkdir -p $(BUILD_DIR)/srcs/start_game
+
 # Compiling
 all: $(NAME)
+	@./start_cub3d.sh
 
-$(NAME): $(OBJS)
+$(NAME): $(BUILD_DIR) $(OBJS)
 	@echo "$(PURPLE)Making cub3D...$(RESET)"
 	@make --no-print-directory -C $(LIBFT_DIR)
 	@echo "$(CYAN)Making minilibx...$(RESET)"
@@ -100,14 +115,15 @@ $(NAME): $(OBJS)
 	@echo "$(PURPLE)Cub3D done !$(RESET)"
 
 # Creating object files
-%.o: %.c
+$(BUILD_DIR)/%.o: %.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC) $(MLX_INC) $(LIBFT_INC) -c $< -o $@
 
 # Clean objects
 clean:
 	@echo "Cleaning in progress..."
 	@make --no-print-directory -C $(LIBFT_DIR) clean
-	@rm -f $(OBJS)
+	@rm -rf $(BUILD_DIR)
 	@make --no-print-directory -C $(MLX_DIR) clean
 	@echo "$(YELLOW)Cleaning done !$(RESET)"
 

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/31 15:25:01 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 17:26:05 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	process_line(t_map *map, char *line)
 	return (0);
 }
 
-int	init_lists(t_map *map, char *filename, t_data *data)
+int	init_lists(t_map *map, char *filename)
 {
 	char	*line;
 	int		fd;
@@ -73,7 +73,7 @@ int	init_lists(t_map *map, char *filename, t_data *data)
 		return (1);
 	line = get_next_line(fd);
 	if (!line)
-		return (data->error = EMPTY, 1);
+		return (print_err(EMPTY), 1);
 	while (line)
 	{
 		if (process_line(map, line))
@@ -83,7 +83,5 @@ int	init_lists(t_map *map, char *filename, t_data *data)
 	}
 	if (close(fd) == -1)
 		return (perror("Error"), 1);
-	//calculate_map_dimensions(map);
-	//extract_texture_paths(map);
 	return (0);
 }

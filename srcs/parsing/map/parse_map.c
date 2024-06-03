@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:03:08 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/03 15:45:44 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 18:13:05 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,19 +108,6 @@ int	too_much_players(char **tab)
 	return (0);
 }
 
-int	check_line_ud(char **tab)
-{
-	char	**rev_tab;
-
-	tab = &tab[0];
-	tab = skip_whitespace_line(tab);
-	rev_tab = rev_skip_whitespace_line(tab);
-	if (**tab != '1')
-		return (1);
-	if (**rev_tab != '1')
-		return (1);
-	return (0);
-}
 
 int	check_borders_up_down(char **tab)
 {

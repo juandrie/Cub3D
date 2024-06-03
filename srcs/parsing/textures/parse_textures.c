@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:22:26 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 15:39:44 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 17:36:33 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,11 @@ int	check_texture_format(char **tab)
 	fd = 0;
 	while (tab[++i])
 	{
-		line = tab[i] + 2;
-		line = skip_whitespace(line);
+		line = get_text_path(tab[i]);
 		fd = open(line, O_RDONLY);
 		if (fd == -1)
 			return (1);
-		// if ((is_valid_path_start(line) != 0))
-		// 	return (print_err(TEXTURE_PATH), 1);
-		// if (!is_correct_extension(line, ".xpm"))
-		// 	return (print_err(TEXTURE_FORMAT), 1);
+		close(fd);
 	}
 	return (0);
 }

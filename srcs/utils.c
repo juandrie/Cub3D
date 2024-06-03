@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:46:21 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/03 15:22:43 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 17:35:57 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@ char	*skip_whitespace(char *str)
 {
 	while (*str && (*str == ' ' || *str == '\t' || *str == '\r' \
 	|| *str == '\v' || *str == '\f'))
-		str++;
-	return (str);
-}
-
-char	**skip_whitespace_line(char **str)
-{
-	while (*str && (**str == ' ' || **str == '\t' || **str == '\r' \
-	|| **str == '\v' || **str == '\f'))
 		str++;
 	return (str);
 }
@@ -40,18 +32,6 @@ char	*rev_skip_whitespace(char *str)
 	return (str);
 }
 
-char	**rev_skip_whitespace_line(char **str)
-{
-	int	len;
-
-	len = tab_size(str);
-	str = &str[len - 1];
-	while (len > 0 && (**str == ' ' || **str == '\t' || **str == '\r' \
-	|| **str == '\v' || **str == '\f'))
-		str--;
-	return (str);
-}
-
 int	tab_size(char **tab)
 {
 	int	size;
@@ -60,6 +40,15 @@ int	tab_size(char **tab)
 	while (tab[size])
 		size++;
 	return (size);
+}
+
+char	*get_text_path(char *str)
+{
+	char	*path;
+
+	path = str + 2;
+	path = skip_whitespace(path);
+	return (path);
 }
 
 int	find_map_width(char **tab)

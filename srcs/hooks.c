@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:43:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 11:50:05 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:12:34 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,16 @@ void	hooks(t_data *data)
 	mlx_loop(data->window->mlx_ptr);
 }
 
+int	loop_hook(t_data *data)
+{
+	if (!data->window->running)
+	{
+		mlx_destroy_window(data->window->mlx_ptr, data->window->win_ptr);
+		exit(0);
+	}
+	read_keys(data);
+	update_timing_and_movement(data);
+	perform_ray_casting(data);
+	mlx_put_image_to_window(data->window->mlx_ptr, data->window->win_ptr, data->window->img_ptr, 0, 0);
+	return (0);
+}

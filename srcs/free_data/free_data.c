@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:38:57 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/24 16:17:05 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 17:01:41 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ void	free_data(t_data **data)
 {
 	if (!(*data))
 		return ;
-	free_map(&(*data)->map);
-	//free_window(&(*data)->window);
+	free_window(&(*data)->window);
 	if ((*data)->player)
 		free((*data)->player);
 	if ((*data)->ray)
@@ -26,6 +25,7 @@ void	free_data(t_data **data)
 		free((*data)->vector);
 	if ((*data)->texture)
 		free((*data)->texture);
+	free_map(&(*data)->map);
 	free(*data);
 	*data = NULL;
 }
