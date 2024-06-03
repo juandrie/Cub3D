@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:45:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 11:58:15 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:19:13 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ double	calculate_wall_x(t_data *data)
 	return (data->map->wall_x);
 }
 
-int	calculate_texture_x(t_data *data)
+int	calculate_texture_x(t_data *data, t_texture *texture)
 {
 	data->map->texture.x = (int)(data->map->wall_x * \
-	(double)(data->texture->width));
+	(double)(texture->width));
 	if (data->ray->side == 0 && data->ray->ray_dir.x > 0)
-		data->map->texture.x = data->texture->width - data->map->texture.x - 1;
+		data->map->texture.x = texture->width - data->map->texture.x - 1;
 	if (data->ray->side == 1 && data->ray->ray_dir.y < 0)
-		data->map->texture.x = data->texture->width - data->map->texture.x - 1;
+		data->map->texture.x = texture->width - data->map->texture.x - 1;
 	return (data->map->texture.x);
 }
 

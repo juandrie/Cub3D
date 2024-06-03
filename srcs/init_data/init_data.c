@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 18:14:00 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 18:56:17 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int	init_second_step(t_data **data)
 	(*data)->texture = ft_calloc(4, sizeof(t_texture *));
 	if (!(*data)->texture)
 		return (free_data(data), 1);
-	if (init_textures(*data))
-		return (1);
+	init_textures(*data);
+	// if (init_textures(*data))
+	// 	return (1);
 	//calculate_map_dimensions(map);
 	//extract_texture_paths(map);
 	// init_colors();

@@ -6,13 +6,13 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:29:32 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 11:57:26 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:19:42 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	draw_textured_wall_slice(t_data *data)
+void	draw_textured_wall_slice(t_data *data, t_texture *texture)
 {
 	int		y;
 	int		pixel_index;
@@ -20,16 +20,16 @@ void	draw_textured_wall_slice(t_data *data)
 	double	step;
 
 	y = data->map->drawstart;
-	step = 1.0 * data->texture[data->texture->texture_num].height \
+	step = 1.0 * texture[texture->texture_num].height \
 	/ data->map->lineheight;
 	data->map->text_pos = (data->map->drawstart - HEIGHT / 2 \
 	+ data->map->lineheight / 2) * step;
 	while (y < data->map->drawend)
 	{
 		data->map->texture.y = (int)data->map->text_pos & \
-		(data->texture[data->texture->texture_num].height - 1);
+		(texture[texture->texture_num].height - 1);
 		data->map->text_pos += step;
-		color = get_texture_color(&data->texture[data->texture->texture_num], \
+		color = get_texture_color(&texture[texture->texture_num], \
 		data->map->texture.x, data->map->texture.y);
 		if (data->ray->side == 1)
 			color = (color >> 1) & 8355711;
@@ -40,12 +40,12 @@ void	draw_textured_wall_slice(t_data *data)
 	}
 }
 
-void	draw(t_data *data)
+void	draw(t_data *data, t_texture *texture)
 {
-	data->texture->texture_num = calculate_texture_num(data);
+	texture->texture_num = calculate_texture_num(data);
 	data->map->wall_x = calculate_wall_x(data);
-	data->map->texture.x = calculate_texture_x(data);
-	draw_textured_wall_slice(data);
+	data->map->texture.x = calculate_texture_x(data, texture);
+	draw_textured_wall_slice(data, texture);
 }
 
 void	draw_wall_slice(t_data *data)
@@ -213,7 +213,7 @@ void draw_ceiling(t_data *data)
 		y++;
     }
 }
-void	perform_ray_casting(t_data *data)
+void	perform_ray_casting(t_data *data, t_texture *texture)
 {
 	draw_floor(data);
 	draw_ceiling(data);
@@ -227,7 +227,7 @@ void	perform_ray_casting(t_data *data)
 		initialize_step_and_side_distance(data);
 		perform_dda(data);
 		draw_wall_slice(data);
-		draw(data);
+		draw(data, texture);
 		data->vector->x++;
 	}
 }
