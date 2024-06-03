@@ -6,18 +6,15 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 12:12:07 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/31 16:50:20 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 15:28:27 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int	is_space(int c)
-{
-	return (c == ' ' || c == '\t' || c == '\r' || c == '\v' || c == '\f');
-}
-
 int	is_space_or_one(char c)
 {
-	return (is_space(c) || c == '1');
+	if (ft_isspace(c) || c == '1')
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:27:11 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/31 16:45:59 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 15:44:58 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,10 @@ void	print_err(t_error error)
 		ft_putstr_fd("Error\nInvalid texture definition\n", STDERR_FILENO);
 	if (error == TEXTURE_DUPLICATED)
 		ft_putstr_fd("Error\nDuplicated texture definition\n", STDERR_FILENO);
-	if (error == TEXTURE_FORMAT)
-		ft_putstr_fd("Error\nInvalid texture format\n", STDERR_FILENO);
 	if (error == TEXTURE_PATH)
 		ft_putstr_fd("Error\nInvalid texture path\n", STDERR_FILENO);
-	if (error == PLAYER_SURR)
-		ft_putstr_fd("Error\nPlayer not surrounded\n", STDERR_FILENO);
 	if (error == MAP_BORDERS)
 		ft_putstr_fd("Error\nNo borders in the map\n", STDERR_FILENO);
+	if (error == SPACE_WALLS)
+		ft_putstr_fd("Error\nSpace not surrounded by walls\n", STDERR_FILENO);
 }

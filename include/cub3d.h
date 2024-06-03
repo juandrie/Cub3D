@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/31 18:15:21 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 15:44:23 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,12 +147,11 @@ typedef enum s_error
 	NO_PLAYER,
 	MUCH_PLAYERS,
 	TEXTURE_SIZE,
-	TEXTURE_FORMAT,
 	TEXTURE_PATH,
 	TEXTURE_INVAL,
 	TEXTURE_DUPLICATED,
-	PLAYER_SURR,
 	MAP_BORDERS,
+	SPACE_WALLS
 }t_error;
 
 typedef struct s_data
@@ -238,7 +237,6 @@ int			check_nb_textures(char **tab);
 int			is_valid_path_start(const char *path);
 
 /* parse_utils.c */
-int			is_space(int c);
 int			is_space_or_one(char c);
 
 /* A trier */

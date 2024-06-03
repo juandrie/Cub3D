@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:46:21 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/31 18:17:53 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 15:22:43 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,44 @@ int	tab_size(char **tab)
 		size++;
 	return (size);
 }
+
+int	find_map_width(char **tab)
+{
+	int	i;
+	int	len;
+	int	longer;
+
+	i = -1;
+	len = 0;
+	longer = 0;
+	while (tab[++i])
+	{
+		len = ft_strlen(tab[i]);
+		if (len > longer)
+			longer = len;
+	}
+	return (longer);
+}
+
+// int find_player_line(char **tab)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	while (tab[++i])
+// 	{
+// 		if (check_player(tab[i]))
+// 			return (i);
+// 	}
+// 	return (1);
+// }
+
+// int find_player_column(char *tab)
+// {
+// 	int	col;
+
+// 	col = 0;
+// 	while (tab[col] && !is_player(tab[col]))
+// 		col++;
+// 	return (col);
+// }

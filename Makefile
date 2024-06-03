@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
+#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/06/03 12:06:04 by juandrie         ###   ########.fr        #
+#    Updated: 2024/06/03 15:48:51 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,7 +97,6 @@ $(NAME): $(OBJS)
 	@make --no-print-directory -C $(MLX_DIR)
 	@echo "$(CYAN)Minilibx done !$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
-#@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
 	@echo "$(PURPLE)Cub3D done !$(RESET)"
 
 # Creating object files

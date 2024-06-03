@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 11:50:15 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:30:03 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	main(int argc, char **argv, char **envp)
 	data = init_data(argv[1]);
 	if (!data)
 		return (1);
-	//print_data(data);
 	if (parsing(data->map))
 		return (free_data(&data), 1);
 	printf("SUCCESS !\n\n");
+	//print_data(data);
 	// start_the_game(data);
 	// init_player_position(data);
 	// hooks(data);
