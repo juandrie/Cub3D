@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:03:08 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/31 18:51:41 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 11:51:58 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ int	empty_line(char **tab)
 	return (0);
 }
 
+int	is_player(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
 int	is_wrong_char(char c)
 {
 	return (c != '0' && c != '1' && !is_player(c) && !ft_isspace(c));
@@ -57,11 +62,6 @@ int	wrong_char(char **tab)
 		}
 	}
 	return (0);
-}
-
-int	is_player(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
 int	check_player(char *tab)

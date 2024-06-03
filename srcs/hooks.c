@@ -6,13 +6,13 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:43:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/22 19:01:14 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:50:05 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-/*
+
 int	key_press(int keycode, t_data *data)
 {
 	data->window->key_pressed = keycode;
@@ -42,4 +42,4 @@ void	hooks(t_data *data)
 	mlx_loop_hook(data->window->mlx_ptr, loop_hook, data);
 	mlx_loop(data->window->mlx_ptr);
 }
-*/
+

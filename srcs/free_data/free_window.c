@@ -6,12 +6,12 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:46:07 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/30 17:49:02 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:50:32 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-/*
+
 void	free_window(t_window **window)
 {
 	if (!(*window))
@@ -33,4 +33,4 @@ void	free_window(t_window **window)
 	free((*window));
 	*window = NULL;
 }
-*/
+

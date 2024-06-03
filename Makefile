@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
+#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/05/31 15:19:11 by cabdli           ###   ########.fr        #
+#    Updated: 2024/06/03 12:06:04 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,11 +93,11 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(PURPLE)Making cub3D...$(RESET)"
 	@make --no-print-directory -C $(LIBFT_DIR)
-#@echo "$(CYAN)Making minilibx...$(RESET)"
-#	@make --no-print-directory -C $(MLX_DIR)
-#	@echo "$(CYAN)Minilibx done !$(RESET)"
-#	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
+	@echo "$(CYAN)Making minilibx...$(RESET)"
+	@make --no-print-directory -C $(MLX_DIR)
+	@echo "$(CYAN)Minilibx done !$(RESET)"
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
+#@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB)
 	@echo "$(PURPLE)Cub3D done !$(RESET)"
 
 # Creating object files

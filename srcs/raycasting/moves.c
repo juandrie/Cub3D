@@ -6,13 +6,13 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 17:58:43 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:56:26 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-/*
+
 int	get_key_press(t_data *data)
 {
 	int	last_key;
@@ -111,5 +111,3 @@ void	read_keys(t_data *data)
 	if (key == ESC)
 		data->window->running = 0;
 }
-
-*/

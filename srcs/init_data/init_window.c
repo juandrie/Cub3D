@@ -6,12 +6,12 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:50:34 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 18:05:44 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:50:55 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-/*
+
 t_window	*init_window(void)
 {
 	t_window	*window;
@@ -35,4 +35,4 @@ t_window	*init_window(void)
 	window->running = 1;
 	return (window);
 }
-*/
+

@@ -6,12 +6,12 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:29:32 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 18:13:19 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:57:26 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-/*
+
 void	draw_textured_wall_slice(t_data *data)
 {
 	int		y;
@@ -75,12 +75,12 @@ void	draw_wall_slice(t_data *data)
 		data->map->drawend = HEIGHT - 1;
 }
 
-
+/*
 Fonction qui calcule la direction du rayon pour chaque colonne de pixels sur l'ecran.
 Elle permet de déterminer la direction dans laquelle le rayon doit progresser 
 depuis la position du joueur pour vérifier les intersections avec des obstacles ou des murs dans l'environnement. 
 */
-/*
+
 void	calculate_ray_direction(t_data *data)
 {
 	double	camera_x;
@@ -91,12 +91,12 @@ void	calculate_ray_direction(t_data *data)
 	data->ray->ray_dir.y = data->player->dir.y + \
 	data->player->plane.y * camera_x;
 }
-*/
+
 /* Fonction qui sert a calculer les distances que chaque rayon doit parcourir sur l'axe x et y, 
 pour atteindre le prochain cote vertical ou horizontal du quadrillage de la map. 
 */
 
-/*
+
 void	calculate_delta_distances(t_data *data)
 {
 	if (data->ray->ray_dir.x == 0)
@@ -231,5 +231,5 @@ void	perform_ray_casting(t_data *data)
 		data->vector->x++;
 	}
 }
-*/
+
 

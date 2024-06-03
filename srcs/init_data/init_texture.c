@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:46:12 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/31 15:25:36 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/03 11:50:45 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-/*
+
 void	init_texture(t_texture *texture, void *mlx_ptr, char *filepath)
 {
 	texture->img_ptr = mlx_xpm_file_to_image(mlx_ptr, filepath, &texture->width, &texture->height);
@@ -50,5 +50,3 @@ void	extract_texture_paths(t_map *map)
 		current = current->next;
 	}
 }
-
-*/
