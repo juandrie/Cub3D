@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 17:44:05 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/04 18:10:17 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,16 +250,16 @@ int			is_space_or_one(char c);
 int			get_texture_color(t_texture *texture, int x, int y);
 int			calculate_texture_num(t_data *data);
 double		calculate_wall_x(t_data *data);
-int			calculate_texture_x(t_data *data, t_texture *texture);
+int			calculate_texture_x(t_data *data);
 int			get_player_pos(t_data *data);
 
-void		perform_ray_casting(t_data *data, t_texture *texture);
+void		perform_ray_casting(t_data *data);
 void		update_timing_and_movement(t_data *data);
 double		get_ticks(void);
 void		hooks(t_data *data);
 int			get_key_press(t_data *data);
 void		read_keys(t_data *data);
-int			loop_hook(t_data *data, t_texture *texture);
+int			loop_hook(t_data *data);
 void		update_timing_and_movement(t_data *data);
 // void		extract_texture_paths(t_map *map);
 // int			init_textures(t_data *data);
