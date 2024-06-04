@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:35:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 18:50:20 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:05:03 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,38 +44,41 @@ void	pos_w(t_data *data)
 	data->player->plane.y = 0.0;
 }
 
-int	init_player_position(t_data *data)
+void	handle_player(char c, t_data *data, int x, int y)
+{
+	data->player->pos.x = x + 0.5;
+	data->player->pos.y = y + 0.5;
+	if (c == 'N')
+		pos_n(data);
+	else if (c == 'S')
+		pos_s(data);
+	else if (c == 'E')
+		pos_e(data);
+	else if (c == 'W')
+		pos_w(data);
+	data->map->map_tab[y][x] = '0';
+	data->player_initialized = 1;
+}
+
+int	get_player_pos(t_data *data)
 {
 	int		y;
 	int		x;
 	char	c;
 
-	y = 0;
-	while (y < data->map->height)
+	y = -1;
+	while (++y < data->map->height)
 	{
-		x = 0;
-		while (x < data->map->width)
+		x = -1;
+		while (++x < data->map->width)
 		{
 			c = data->map->map_tab[y][x];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			if (is_player(c))
 			{
-				data->player->pos.x = x + 0.5;
-				data->player->pos.y = y + 0.5;
-				if (c == 'N')
-					pos_n(data);
-				else if (c == 'S')
-					pos_s(data);
-				else if (c == 'E')
-					pos_e(data);
-				else if (c == 'W')
-					pos_w(data);
-				data->map->map_tab[y][x] = '0';
-				data->player_initialized = 1;
+				handle_player(c, data, x, y);
 				return (1);
 			}
-			x++;
 		}
-		y++;
 	}
 	return (0);
 }

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 11:56:26 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:25:20 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 int	get_key_press(t_data *data)
 {
@@ -109,5 +108,5 @@ void	read_keys(t_data *data)
 	if (key == LEFT)
 		rotate_camera(data, -data->window->rotspeed);
 	if (key == ESC)
-		data->window->running = 0;
+		close_window(data);
 }

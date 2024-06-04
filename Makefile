@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
+#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/06/04 14:12:38 by juandrie         ###   ########.fr        #
+#    Updated: 2024/06/04 17:09:26 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,6 @@ NAME = cub3D
 SRCS = 	srcs/main.c \
 		srcs/error.c \
 		srcs/hooks.c \
-		srcs/map.c \
 		srcs/utils.c \
 		srcs/raycasting/raycasting.c \
 		srcs/raycasting/moves.c \
@@ -54,7 +53,7 @@ SRCS = 	srcs/main.c \
 		srcs/init_data/init_tabs.c \
 		srcs/init_data/init_window.c\
 		srcs/init_data/init_texture.c\
-		srcs/init_data/init_player.c \
+		srcs/init_data/init_colors.c \
 		srcs/parsing/parsing.c \
 		srcs/parsing/colors/parse_colors.c \
 		srcs/parsing/colors/parse_colors_utils.c \
@@ -70,6 +69,7 @@ SRCS = 	srcs/main.c \
 		srcs/free_data/free_textures.c \
 		srcs/print_data/print_data.c \
 		srcs/start_game/start_game.c \
+		srcs/start_game/get_player.c \
 
 BUILD_DIR = .build
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)	

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:37:27 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 14:08:56 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:43:35 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	free_textures(t_texture ***texture)
+void	free_text_path(char ***texture)
 {
 	int	i;
 

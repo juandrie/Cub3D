@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_colors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:22:02 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 14:40:53 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:40:16 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,15 @@ int	init_colors(char **tab, int *ceiling, int *floor)
 	while (tab[++i])
 	{
 		if (ft_strncmp(tab[i], "C", 1) == 0)
-			extract_colors(tab[i], ceiling);
+		{
+			if (extract_colors(tab[i], ceiling))
+				return (1);
+		}
 		else
-			extract_colors(tab[i], floor);
+		{
+			if (extract_colors(tab[i], floor))
+				return (1);
+		}
 	}
 	return (0);
 }
-
-	// if (ft_strncmp(line, "F ", 2) == 0)
-// 		return (parse_color(line, data->map->floor_color));
-// 	if (ft_strncmp(line, "C ", 2) == 0)
-// 		return (parse_color(line, data->map->ceiling_color));

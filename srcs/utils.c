@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:46:21 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/04 14:37:10 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:55:37 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,7 @@ char	*get_text_path(char *str)
 	return (path);
 }
 
-int	find_map_width(char **tab)
-{
-	int	i;
-	int	len;
-	int	longer;
 
-	i = -1;
-	len = 0;
-	longer = 0;
-	while (tab[++i])
-	{
-		len = ft_strlen(tab[i]);
-		if (len > longer)
-			longer = len;
-	}
-	return (longer);
-}
 
 // int find_player_line(char **tab)
 // {

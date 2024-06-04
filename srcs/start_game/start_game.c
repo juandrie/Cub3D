@@ -6,32 +6,39 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 16:31:20 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/24 16:33:57 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/04 17:08:37 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	calculate_map_dimensions(t_map *map)
+int	find_map_width(char **tab)
 {
-	t_list	*current;
-	int		max_width;
-	int		height;
-	int		line_length;
+	int	i;
+	int	len;
+	int	longer;
 
-	current = map->map_list;
-	max_width = 0;
-	height = 0;
-	while (current)
+	i = -1;
+	len = 0;
+	longer = 0;
+	while (tab[++i])
 	{
-		line_length = ft_strlen(current->line);
-		if (line_length > max_width)
-		{
-			max_width = line_length;
-		}
-		height++;
-		current = current->next;
+		len = ft_strlen(tab[i]);
+		if (len > longer)
+			longer = len;
 	}
-	map->height = height;
-	map->width = max_width;
+	return (longer);
+}
+
+void	calculate_map_dimensions(char **tab, t_map *map)
+{
+	map->height = tab_size(tab);
+	map->width = find_map_width(tab);
+}
+
+void	start_the_game(t_data *data)
+{
+	calculate_map_dimensions(data->map->map_tab, data->map);
+	get_player_pos(data);
+	hooks(data);
 }

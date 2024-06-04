@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 14:15:32 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:44:05 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 # include <time.h>
+
+# ifndef X_CROSS
+#  define X_CROSS 17
+# endif /*X_CROSS*/
 
 # define W 119
 # define S 115
@@ -88,7 +92,6 @@ typedef struct s_window
 	int			size_line;
 	int			endian;
 	int			key_pressed;
-	int			running;
 	double		movespeed;
 	double		rotspeed;
 }t_window;
@@ -128,7 +131,6 @@ typedef struct s_texture
 
 typedef struct s_texture
 {
-	char	*text_path;
 	void	*img_ptr;
 	char	*addr;
 	int		width;
@@ -164,7 +166,8 @@ typedef struct s_data
 	t_player	*player;
 	t_ray		*ray;
 	t_vector	*vector;
-	t_texture	**texture;
+	t_texture	*texture;
+	char		**text_path;
 	int			keycode;
 	int			player_initialized;
 }t_data;
@@ -198,7 +201,7 @@ int			list_size(t_list *list);
 void		free_window(t_window **window);
 
 /* free_textures.c */
-void		free_textures(t_texture ***texture);
+void		free_text_path(char ***texture);
 
 /* free_map.c */
 void		free_list(t_list **list);
@@ -248,7 +251,7 @@ int			get_texture_color(t_texture *texture, int x, int y);
 int			calculate_texture_num(t_data *data);
 double		calculate_wall_x(t_data *data);
 int			calculate_texture_x(t_data *data, t_texture *texture);
-int			init_player_position(t_data *data);
+int			get_player_pos(t_data *data);
 
 void		perform_ray_casting(t_data *data, t_texture *texture);
 void		update_timing_and_movement(t_data *data);
@@ -260,8 +263,7 @@ int			loop_hook(t_data *data, t_texture *texture);
 void		update_timing_and_movement(t_data *data);
 // void		extract_texture_paths(t_map *map);
 // int			init_textures(t_data *data);
-void		calculate_map_dimensions(t_map *map);
-void		calculate_map_dimensions(t_map *map);
+void		calculate_map_dimensions(char **tab, t_map *map);
 void    	print_err(t_error error);
 int			parsing(t_map *map);
 void		free_full_tab(char **tab);
@@ -278,6 +280,10 @@ char		**skip_whitespace_line(char **str);
 char		*rev_skip_whitespace(char *str);
 char		**rev_skip_whitespace_line(char **str);
 char		*get_text_path(char *str);
-t_texture	**create_texture(t_data *data);
+char		**create_text_path(t_data *data);
+int			init_colors(char **tab, int *ceiling, int *floor);
+int			is_player(char c);
+void		start_the_game(t_data *data);
+int			close_window(t_data *data);
 
 #endif 

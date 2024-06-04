@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 14:29:03 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 17:49:47 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,20 @@ int	init_first_step(t_data **data, char *filename)
 
 int	init_second_step(t_data **data)
 {
+	int	i;
+
+	i = -1;
 	(*data)->window = init_window();
 	if (!(*data)->window)
+		return (free_data(data), 1);
+	(*data)->texture = ft_calloc(1, sizeof(t_texture));
+	if (!(*data)->texture)
+		return (free_data(data), 1);
+	(*data)->text_path = create_text_path(*data);
+	if (!(*data)->text_path)
+		return (free_data(data), 1);
+	if (init_colors((*data)->map->color_tab, \
+	(*data)->map->ceiling_color, (*data)->map->floor_color))
 		return (free_data(data), 1);
 	(*data)->player = ft_calloc(1, sizeof(t_player));
 	if (!(*data)->player)
@@ -37,14 +49,6 @@ int	init_second_step(t_data **data)
 	(*data)->vector = ft_calloc(1, sizeof(t_vector));
 	if (!(*data)->vector)
 		return (free_data(data), 1);
-	(*data)->texture = create_texture(*data);
-	if (!(*data)->texture)
-		return (free_data(data), 1);
-	init_colors((*data)->map->color_tab, \
-	(*data)->map->ceiling_color, (*data)->map->floor_color);
-	//calculate_map_dimensions((*data)->map);
-	// init_colors();
-	// 	return (1);
 	return (0);
 }
 
