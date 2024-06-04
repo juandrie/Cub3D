@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:14:53 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/03 19:04:30 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:36:55 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,6 @@ void	free_map(t_map **map)
 		return ;
 	free_lists(*map);
 	free_tabs((*map));
-	if ((*map)->north_texture)
-		free((*map)->north_texture);
-	if ((*map)->south_texture)
-		free((*map)->south_texture);
-	if ((*map)->west_texture)
-		free((*map)->west_texture);
-	if ((*map)->east_texture)
-		free((*map)->east_texture);
 	free(*map);
 	*map = NULL;
 }

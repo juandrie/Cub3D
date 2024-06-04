@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 19:26:44 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:12:13 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	//print_data(data);
 	// start_the_game(data);
-	// init_player_position(data);
-	// hooks(data);
+	init_player_position(data);
+	hooks(data);
 	free_data(&data);
 	printf("SUCCESS !\n\n");
 	return (0);

@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_data.c                                        :+:      :+:    :+:   */
+/*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 14:38:57 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/04 14:05:19 by juandrie         ###   ########.fr       */
+/*   Created: 2024/06/04 12:37:27 by juandrie          #+#    #+#             */
+/*   Updated: 2024/06/04 14:08:56 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	free_data(t_data **data)
+void	free_textures(t_texture ***texture)
 {
-	if (!(*data))
+	int	i;
+
+	i = -1;
+	if (!*texture)
 		return ;
-	free_window(&(*data)->window);
-	
-	if ((*data)->player)
-		free((*data)->player);
-	if ((*data)->ray)
-		free((*data)->ray);
-	if ((*data)->vector)
-		free((*data)->vector);
-	free_map(&(*data)->map);
-	free(*data);
-	*data = NULL;
+	while (*texture[++i])
+		free(*texture[i]);
+	free(*texture);
+	*texture = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 19:25:08 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:15:32 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,6 @@ typedef struct s_map
 	t_list		*color_list;
 	char		**map_tab;
 	char		**text_tab;
-	char		*north_texture;
-	char		*south_texture;
-	char		*west_texture;
-	char		*east_texture;
 	char		**color_tab;
 	int			floor_color[3];
 	int			ceiling_color[3];
@@ -201,6 +197,9 @@ int			list_size(t_list *list);
 /* free_window.c */
 void		free_window(t_window **window);
 
+/* free_textures.c */
+void		free_textures(t_texture ***texture);
+
 /* free_map.c */
 void		free_list(t_list **list);
 void		free_lists(t_map *map);
@@ -240,7 +239,6 @@ int			parse_textures(char **tab);
 
 /* parse_textures_utils.c */
 int			check_nb_textures(char **tab);
-int			is_valid_path_start(const char *path);
 
 /* parse_utils.c */
 int			is_space_or_one(char c);
@@ -260,9 +258,8 @@ int			get_key_press(t_data *data);
 void		read_keys(t_data *data);
 int			loop_hook(t_data *data, t_texture *texture);
 void		update_timing_and_movement(t_data *data);
-void		extract_texture_paths(t_map *map);
+// void		extract_texture_paths(t_map *map);
 // int			init_textures(t_data *data);
-void		init_textures(t_data *data);
 void		calculate_map_dimensions(t_map *map);
 void		calculate_map_dimensions(t_map *map);
 void    	print_err(t_error error);
@@ -281,5 +278,6 @@ char		**skip_whitespace_line(char **str);
 char		*rev_skip_whitespace(char *str);
 char		**rev_skip_whitespace_line(char **str);
 char		*get_text_path(char *str);
+t_texture	**create_texture(t_data *data);
 
 #endif 

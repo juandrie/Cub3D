@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
+#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/06/03 17:19:08 by cabdli           ###   ########.fr        #
+#    Updated: 2024/06/04 14:12:38 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,7 @@ SRCS = 	srcs/main.c \
 		srcs/free_data/free_data.c \
 		srcs/free_data/free_map.c \
 		srcs/free_data/free_window.c \
+		srcs/free_data/free_textures.c \
 		srcs/print_data/print_data.c \
 		srcs/start_game/start_game.c \
 

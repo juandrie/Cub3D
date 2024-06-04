@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 18:56:17 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:29:03 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,12 @@ int	init_second_step(t_data **data)
 	(*data)->vector = ft_calloc(1, sizeof(t_vector));
 	if (!(*data)->vector)
 		return (free_data(data), 1);
-	(*data)->texture = ft_calloc(4, sizeof(t_texture *));
+	(*data)->texture = create_texture(*data);
 	if (!(*data)->texture)
 		return (free_data(data), 1);
-	init_textures(*data);
-	// if (init_textures(*data))
-	// 	return (1);
-	//calculate_map_dimensions(map);
-	//extract_texture_paths(map);
+	init_colors((*data)->map->color_tab, \
+	(*data)->map->ceiling_color, (*data)->map->floor_color);
+	//calculate_map_dimensions((*data)->map);
 	// init_colors();
 	// 	return (1);
 	return (0);
