@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 17:49:47 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/04 19:05:06 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	init_second_step(t_data **data)
 	(*data)->window = init_window();
 	if (!(*data)->window)
 		return (free_data(data), 1);
-	(*data)->texture = ft_calloc(1, sizeof(t_texture));
+	(*data)->texture = ft_calloc(4, sizeof(t_texture));
 	if (!(*data)->texture)
 		return (free_data(data), 1);
 	(*data)->text_path = create_text_path(*data);

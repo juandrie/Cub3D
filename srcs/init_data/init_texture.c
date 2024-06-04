@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:46:12 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 18:16:08 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:08:02 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	init_textures(t_texture *texture, char **text_path, t_data *data)
 	extract_text_paths(data->map->text_tab, text_path);
 	while (++dir < 4)
 	{
-		if (init_text(texture, data->window->mlx_ptr, \
+		if (init_text(&texture[dir], data->window->mlx_ptr, \
 		text_path[dir]))
 			return (1);
 	}

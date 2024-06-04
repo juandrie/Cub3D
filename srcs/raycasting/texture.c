@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:45:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 18:08:43 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:31:21 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ int	calculate_texture_num(t_data *data)
 	if (data->ray->side == 0)
 	{
 		if (data->ray->ray_dir.x > 0)
-			return (2); // Sud (rayon venant de l'ouest)
+			return (SOUTH);
 		else
-			return (0); // Nord (rayon venant de l'est)
+			return (NORTH);
 	}
 	else
 	{
 		if (data->ray->ray_dir.y > 0)
-			return (3); // Est (rayon venant du nord)
+			return (EAST);
 		else
-			return (1); // Ouest (rayon venant du sud)
+			return (WEST);
 	}
 }
 

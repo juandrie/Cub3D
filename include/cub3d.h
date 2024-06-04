@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 18:10:17 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:15:12 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,6 +202,7 @@ void		free_window(t_window **window);
 
 /* free_textures.c */
 void		free_text_path(char ***texture);
+void		free_textures(t_texture **texture);
 
 /* free_map.c */
 void		free_list(t_list **list);
