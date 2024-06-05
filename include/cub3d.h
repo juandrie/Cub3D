@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/05 16:40:33 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/05 19:58:46 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,9 +238,6 @@ int			check_nbs_range(char *tab);
 int			parse_map(char **tab);
 
 /* parse_textures.c */
-// int			check_correct_directions(char **tab);
-// int			check_every_directions(char **tab);
-// int			check_texture_format(char **tab);
 int			parse_textures(char **tab);
 
 /* parse_textures_utils.c */
@@ -278,11 +275,10 @@ int			tab_size(char **tab);
 char		*remove_spaces(char *str);
 void		print_list(t_list *list);
 void		print_err(t_error error);
-int			parsing(t_map *map);
 
-char		**skip_whitespace_line(char **str);
-char		*rev_skip_whitespace(char *str);
-char		**rev_skip_whitespace_line(char **str);
+int			parsing(t_map *map);
+char		*rev_skip_whitespace_borders(char *str);
+char		*rev_skip_whitespace_path(char *str);
 char		*get_text_path(char *str);
 char		**create_text_path(t_data *data);
 int			init_colors(char **tab, int *ceiling, int *floor);

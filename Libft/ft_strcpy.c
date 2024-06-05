@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_utils.c                                      :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/29 12:12:07 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/05 19:36:08 by juandrie         ###   ########.fr       */
+/*   Created: 2024/06/05 18:43:00 by juandrie          #+#    #+#             */
+/*   Updated: 2024/06/05 18:45:52 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "libft.h"
 
-int	is_space_or_one(char c)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	if (ft_isspace(c) || c == '1')
-		return (0);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }
 

@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:35:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/05 16:48:02 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/05 17:38:16 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,11 @@ int	get_player_pos(t_data *data)
 	char	c;
 
 	y = -1;
-	//printf("Map dimensions in get_player_pos: width = %d, height = %d\n", data->map->width, data->map->height);
 	while (++y < data->map->height)
 	{
 		x = -1;
 		while (++x < data->map->width)
 		{
-			//printf("Checking position y=%d, x=%d, char=%c\n", y, x, data->map->map_tab[y][x]);
 			c = data->map->map_tab[y][x];
 			if (is_player(c))
 			{

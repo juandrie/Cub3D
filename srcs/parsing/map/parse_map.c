@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 14:03:08 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/05 11:29:28 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/05 19:55:33 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,12 +130,13 @@ int	check_borders_up_down(char **tab)
 	return (0);
 }
 
+
 int	check_line_rl(char *tab)
 {
 	char	*rev_tab;
 
 	tab = skip_whitespace(tab);
-	rev_tab = rev_skip_whitespace(tab);
+	rev_tab = rev_skip_whitespace_borders(tab);
 	if (*tab != '1' || *rev_tab != '1')
 		return (1);
 	return (0);
@@ -187,6 +188,8 @@ int	invalid_block_around(char **tab, int i, int j)
 		check += is_space_or_one(tab[i][right]);
 	return (check);
 }
+
+
 int	check_around_spaces(char **tab)
 {
 	int	i;

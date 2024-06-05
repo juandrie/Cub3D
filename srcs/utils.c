@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:46:21 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/05 16:21:00 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/05 19:58:42 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*skip_whitespace(char *str)
 	return (str);
 }
 
-char	*rev_skip_whitespace(char *str)
+char	*rev_skip_whitespace_borders(char *str)
 {
 	int	len;
 
@@ -33,6 +33,21 @@ char	*rev_skip_whitespace(char *str)
 		len--;
 	}
 	*(str + 1) = '\0';
+	return (str);
+}
+
+char	*rev_skip_whitespace_path(char *str)
+{
+	int	len;
+
+	len = ft_strlen(str);
+	while (len > 0 && (str[len - 1] == ' ' || \
+	str[len - 1] == '\t' || str[len - 1] == '\r' || \
+	str[len - 1] == '\v' || str[len - 1] == '\f'))
+	{
+		len--;
+	}
+	str[len] = '\0';
 	return (str);
 }
 
@@ -52,6 +67,7 @@ char	*get_text_path(char *str)
 
 	path = str + 2;
 	path = skip_whitespace(path);
+	path = rev_skip_whitespace_path(path);
 	return (path);
 }
 

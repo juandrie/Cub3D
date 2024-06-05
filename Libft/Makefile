@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
+#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 19:31:50 by cabdli            #+#    #+#              #
-#    Updated: 2024/05/07 11:45:25 by cabdli           ###   ########.fr        #
+#    Updated: 2024/06/05 18:46:18 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS = ft_atoi.c\
 		ft_strjoin.c\
 		ft_strlcat.c\
 		ft_strlcpy.c\
+		ft_strcpy.c\
 		ft_strlen.c\
 		ft_strmapi.c\
 		ft_strcmp.c\
