@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:14:53 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/04 12:36:55 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:11:45 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ void	free_list(t_list **list)
 void	free_lists(t_map *map)
 {
 	free_list(&(map->map_list));
-	free_list(&(map->text_list));
-	free_list(&(map->color_list));
+	free_list(&(map->text_color_list));
+	// free_list(&(map->text_list));
+	// free_list(&(map->color_list));
 }
 
 void	free_tab(char ***tab)
@@ -59,6 +60,7 @@ void	free_tabs(t_map *map)
 {
 	free_tab(&map->color_tab);
 	free_tab(&map->text_tab);
+	free_tab(&map->text_color_tab);
 	free_tab(&map->map_tab);
 }
 

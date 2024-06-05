@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_rgb_values.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:39:24 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/29 17:40:03 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/05 16:17:03 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	check_nb_of_nbs(char *tab)
 	return (0);
 }
 
+
 int	check_nb_of_commas(char *tab)
 {
 	int	i;
@@ -86,3 +87,4 @@ int	check_nbs_range(char *tab)
 	free_full_tab(split);
 	return (0);
 }
+

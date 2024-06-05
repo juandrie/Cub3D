@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:54:57 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/27 14:57:35 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:26:32 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ void	print_tab(char **tab)
 void	print_map(t_map *map)
 {
 	printf("LISTS :\n\n");
-	printf("text_list :\n");
-	print_list(map->text_list);
-	printf("\n");
-	printf("color_list :\n");
-	print_list(map->color_list);
-	printf("\n");
+	// printf("text_list :\n");
+	// print_list(map->text_list);
+	// printf("\n");
+	// printf("color_list :\n");
+	// print_list(map->color_list);
+	// printf("\n");
 	printf("map_list :\n");
 	print_list(map->map_list);
 	printf("\n");

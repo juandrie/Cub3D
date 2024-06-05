@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:46:21 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/04 16:55:37 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/05 16:21:00 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ char	*rev_skip_whitespace(char *str)
 	str = &str[len - 1];
 	while (len > 0 && (*str == ' ' || *str == '\t' || *str == '\r' \
 	|| *str == '\v' || *str == '\f'))
+	{
 		str--;
+		len--;
+	}
+	*(str + 1) = '\0';
 	return (str);
 }
 
@@ -52,7 +56,23 @@ char	*get_text_path(char *str)
 }
 
 
+char	*remove_spaces(char *str)
+{
+	char	*out;
+	char	*dst;
 
+	out = str;
+	dst = str;
+	while (*str != '\0')
+	{
+		if (*str != ' ' && *str != '\t' && *str != '\r' \
+		&& *str != '\v' && *str != '\f')
+			*dst++ = *str;
+		str++;
+	}
+	*dst = '\0';
+	return (out);
+}
 // int find_player_line(char **tab)
 // {
 // 	int	i;

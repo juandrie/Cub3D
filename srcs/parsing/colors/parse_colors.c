@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:00:07 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/30 13:52:00 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/05 16:21:34 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static int	check_ceiling_floor(char **tab)
 static int	rgb_values(char *tab)
 {
 	tab = skip_whitespace(tab);
+	tab = remove_spaces(tab);
 	if (check_comma_nbs(tab))
 		return (1);
 	if (check_nb_of_commas(tab))
@@ -81,3 +82,4 @@ int	parse_colors(char **tab)
 		return (print_err(INVAL_RGB), 1);
 	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 12:13:06 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/05 15:28:03 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,38 @@ static int	add_node_bottom(t_list **list, char *line)
 	return (0);
 }
 
-static int	process_line(t_map *map, char *line)
+// static int	process_line(t_map *map, char *line)
+// {
+// 	char	*tmp;
+
+// 	tmp = skip_whitespace(line);
+// 	if (ft_replace_nl(map, tmp))
+// 		return (0);
+// 	if (!ft_strncmp(tmp, "NO", 2) || !ft_strncmp(tmp, "SO", 2) || \
+// 	!ft_strncmp(tmp, "WE", 2) || !ft_strncmp(tmp, "EA", 2))
+// 		return (add_node_bottom(&(map->text_list), tmp));
+// 	else if (!ft_strncmp(tmp, "F", 1) || !ft_strncmp(tmp, "C", 1))
+// 		return (add_node_bottom(&(map->color_list), tmp));
+// 	else
+// 		return (add_node_bottom(&(map->map_list), line));
+// 	return (0);
+// }
+
+
+static int process_line(t_map *map, char *line)
 {
-	char	*tmp;
+    char *tmp;
 
 	tmp = skip_whitespace(line);
 	if (ft_replace_nl(map, tmp))
 		return (0);
 	if (!ft_strncmp(tmp, "NO", 2) || !ft_strncmp(tmp, "SO", 2) || \
-	!ft_strncmp(tmp, "WE", 2) || !ft_strncmp(tmp, "EA", 2))
-		return (add_node_bottom(&(map->text_list), tmp));
-	else if (!ft_strncmp(tmp, "F", 1) || !ft_strncmp(tmp, "C", 1))
-		return (add_node_bottom(&(map->color_list), tmp));
+		!ft_strncmp(tmp, "WE", 2) || !ft_strncmp(tmp, "EA", 2) || \
+		!ft_strncmp(tmp, "F", 1) || !ft_strncmp(tmp, "C", 1))
+		return (add_node_bottom(&(map->text_color_list), tmp));
 	else
 		return (add_node_bottom(&(map->map_list), line));
-	return (0);
+    return (0);
 }
 
 int	init_lists(t_map *map, char *filename)

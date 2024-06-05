@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 19:15:12 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:40:33 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ typedef struct s_list
 typedef struct s_map
 {
 	t_list		*map_list;
-	t_list		*text_list;
-	t_list		*color_list;
+	// t_list		*text_list;
+	// t_list		*color_list;
+	t_list		*text_color_list;
+	char		**text_color_tab;
 	char		**map_tab;
 	char		**text_tab;
 	char		**color_tab;
@@ -273,6 +275,7 @@ void		free_tab(char ***tab);
 /* utils.c */
 char		*skip_whitespace(char *str);
 int			tab_size(char **tab);
+char		*remove_spaces(char *str);
 void		print_list(t_list *list);
 void		print_err(t_error error);
 int			parsing(t_map *map);
