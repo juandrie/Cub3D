@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:14:53 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/06 13:00:23 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/06 16:45:38 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	free_tabs(t_map *map)
 {
 	free_tab(&map->color_tab);
 	free_tab(&map->text_tab);
-	free_tab(&map->map_tab);
+	free_full_tab(map->map_tab);
 }
 
 void	free_map(t_map **map)

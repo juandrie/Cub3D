@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 13:00:25 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/06 15:52:38 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@
 # define RIGHT 0xff51
 # define LEFT 0xff53
 
-# define MOVE_SPEED 0.035
-# define ROTATE_SPEED 0.035
+# define MOVE_SPEED  0.02//0.035
+# define ROTATE_SPEED 0.02//0.035
 
 # define WIDTH 640
 # define HEIGHT 480

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:37:27 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 14:14:13 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/06 15:45:28 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ void	free_textures(t_texture **texture)
 	i = -1;
 	if (!*texture)
 		return ;
-	// if ((*texture)->img_ptr)
-	// 	free((*texture)->img_ptr);
+	// while (texture[++i])
+	// {
+	// 	// if ((*texture[i]).img_ptr)
+	// 	// 	free((*texture[i]).img_ptr);
+	// 	free(*texture[i]->img_ptr);
+	// }
 	free(*texture);
 	*texture = NULL;
 }
