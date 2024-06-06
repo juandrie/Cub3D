@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/05 19:58:46 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:00:25 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ typedef struct s_list
 typedef struct s_map
 {
 	t_list		*map_list;
-	// t_list		*text_list;
-	// t_list		*color_list;
 	t_list		*text_color_list;
-	char		**text_color_tab;
 	char		**map_tab;
 	char		**text_tab;
 	char		**color_tab;

@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:37:27 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 19:21:37 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:14:13 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 void	free_textures(t_texture **texture)
 {
 	int	i;
 
 	i = -1;
-	if (!texture)
+	if (!*texture)
 		return ;
-	while (texture[++i])
-		free(texture[i]);
+	// if ((*texture)->img_ptr)
+	// 	free((*texture)->img_ptr);
+	free(*texture);
+	*texture = NULL;
 }
 
 void	free_text_path(char ***texture)
@@ -31,8 +32,6 @@ void	free_text_path(char ***texture)
 	i = -1;
 	if (!*texture)
 		return ;
-	// while (*texture[++i])
-	// 	free(*texture[i]);
 	free(*texture);
 	*texture = NULL;
 }

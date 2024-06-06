@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:46:12 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 19:08:02 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:13:12 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static int	init_text(t_texture *texture, void *mlx_ptr, char *filepath)
 		return (perror("Error"), 1);
 	texture->addr = mlx_get_data_addr(texture->img_ptr, &texture->bpp, \
 	&texture->size_line, &texture->endian);
+	free(texture->img_ptr);
 	return (0);
 }
 
@@ -47,7 +48,6 @@ static int	init_textures(t_texture *texture, char **text_path, t_data *data)
 	int	dir;
 
 	dir = -1;
-	extract_text_paths(data->map->text_tab, text_path);
 	while (++dir < 4)
 	{
 		if (init_text(&texture[dir], data->window->mlx_ptr, \
@@ -66,12 +66,7 @@ char	**create_text_path(t_data *data)
 	text_path = ft_calloc(4, sizeof(char *));
 	if (!text_path)
 		return (NULL);
-	while (++i < 4)
-	{
-		text_path[i] = ft_calloc(1, sizeof(char));
-		if (!text_path[i])
-			return (free_text_path(&text_path), NULL);
-	}
+	extract_text_paths(data->map->text_tab, text_path);
 	if (init_textures(data->texture, text_path, data))
 		return (NULL);
 	return (text_path);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 14:38:57 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/04 19:23:15 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:06:18 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void	free_data(t_data **data)
 	if (!(*data))
 		return ;
 	free_window(&(*data)->window);
-	if ((*data)->text_path)
-		free_text_path(&(*data)->text_path);
-	if ((*data)->texture)
-		free_textures(&(*data)->texture);
+	free_textures(&(*data)->texture);
+	free_text_path(&(*data)->text_path);
 	if ((*data)->player)
 		free((*data)->player);
 	if ((*data)->ray)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 19:05:06 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/06 13:47:34 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	init_second_step(t_data **data)
 	(*data)->text_path = create_text_path(*data);
 	if (!(*data)->text_path)
 		return (free_data(data), 1);
+	
 	if (init_colors((*data)->map->color_tab, \
 	(*data)->map->ceiling_color, (*data)->map->floor_color))
 		return (free_data(data), 1);
