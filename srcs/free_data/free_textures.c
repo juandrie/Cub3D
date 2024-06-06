@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 12:37:27 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 15:45:28 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/06 20:00:03 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,13 @@ void	free_textures(t_texture **texture)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (!*texture)
 		return ;
-	// while (texture[++i])
-	// {
-	// 	// if ((*texture[i]).img_ptr)
-	// 	// 	free((*texture[i]).img_ptr);
-	// 	free(*texture[i]->img_ptr);
-	// }
 	free(*texture);
 	*texture = NULL;
 }
+
 
 void	free_text_path(char ***texture)
 {

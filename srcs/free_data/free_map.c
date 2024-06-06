@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:14:53 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/06 16:45:38 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/06 19:21:46 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	free_tab(char ***tab)
 	free(*tab);
 	*tab = NULL;
 }
+
 
 void	free_full_tab(char **tab)
 {
