@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 18:46:12 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 19:54:21 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:22:35 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,8 @@ static int	init_text(t_texture *texture, void *mlx_ptr, char *filepath)
 		return (perror("Error"), 1);
 	texture->addr = mlx_get_data_addr(texture->img_ptr, &texture->bpp, \
 	&texture->size_line, &texture->endian);
-	free(texture->img_ptr);
 	return (0);
 }
-
 
 static int	init_textures(t_texture *texture, char **text_path, t_data *data)
 {

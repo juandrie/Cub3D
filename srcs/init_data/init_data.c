@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:03:13 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 15:41:42 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/07 17:46:53 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,12 @@ int	init_second_step(t_data **data)
 	(*data)->window = init_window();
 	if (!(*data)->window)
 		return (free_data(data), 1);
-	(*data)->texture = ft_calloc(5, sizeof(t_texture));
+	(*data)->texture = ft_calloc(4, sizeof(t_texture));
 	if (!(*data)->texture)
 		return (free_data(data), 1);
 	(*data)->text_path = create_text_path(*data);
 	if (!(*data)->text_path)
 		return (free_data(data), 1);
-	
 	if (init_colors((*data)->map->color_tab, \
 	(*data)->map->ceiling_color, (*data)->map->floor_color))
 		return (free_data(data), 1);

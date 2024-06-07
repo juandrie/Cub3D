@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 12:50:22 by juandrie          #+#    #+#             */
-/*   Updated: 2024/05/30 17:24:00 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 16:48:50 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	is_correct_extension(char *filename, char *str)
 int	check_args(int argc, char **argv, char **envp)
 {
 	if (!envp[0])
-		return (ft_putstr_fd("Error: no env\n", STDERR_FILENO), 1);
+		return (ft_putstr_fd("Error:\nNo env\n", STDERR_FILENO), 1);
 	if (argc != 2)
-		return (ft_putstr_fd("Error: enter ./cub3d NAME.cub\n", \
+		return (ft_putstr_fd("Error:\nEnter ./cub3d NAME.cub\n", \
 		STDERR_FILENO), 1);
 	if (!is_correct_extension(argv[1], ".cub"))
-		return (ft_putstr_fd("Error: the file is not a .cub file\n", \
+		return (ft_putstr_fd("Error:\nThe file is not a .cub file\n", \
 		STDERR_FILENO), 1);
 	return (0);
 }

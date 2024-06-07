@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 19:59:52 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:52:25 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,36 +50,37 @@
 # define EAST 3
 
 
-typedef struct s_vector
-{
-	double	x;
-	double	y;
-}t_vector;
+// typedef struct s_vector
+// {
+// 	double	x;
+// 	double	y;
+// }t_vector;
 
-typedef struct s_list
-{
-	char			*line;
-	struct s_list	*next;
-}t_list;
+// typedef struct s_list
+// {
+// 	char			*line;
+// 	struct s_list	*next;
+// }t_list;
 
-typedef struct s_map
-{
-	t_list		*map_list;
-	t_list		*text_color_list;
-	char		**map_tab;
-	char		**text_tab;
-	char		**color_tab;
-	int			floor_color[3];
-	int			ceiling_color[3];
-	int			width;
-	int			height;
-	double		wall_x;
-	double		text_pos;
-	int			lineheight;
-	int			drawstart;
-	int			drawend;
-	t_vector	texture;
-}t_map;
+// typedef struct s_map
+// {
+// 	t_list		*map_list;
+// 	t_list		*text_color_list;
+// 	char		**map_tab;
+// 	char		**text_tab;
+// 	char		**color_tab;
+// 	int			floor_color[3];
+// 	int			ceiling_color[3];
+// 	int			width;
+// 	int			height;
+// 	double		wall_x;
+// 	double		text_pos;
+// 	int			lineheight;
+// 	int			drawstart;
+// 	int			drawend;
+// 	t_vector	texture;
+// 	char		*save;
+// }t_map;
 
 typedef struct s_window
 {
@@ -201,7 +202,8 @@ void		free_window(t_window **window);
 
 /* free_textures.c */
 void		free_text_path(char ***texture);
-void		free_textures(t_texture **texture);
+// void		free_textures(t_texture **texture);
+void		free_textures(t_texture *texture, t_data *data);
 
 /* free_map.c */
 void		free_list(t_list **list);
@@ -282,5 +284,10 @@ int			init_colors(char **tab, int *ceiling, int *floor);
 int			is_player(char c);
 void		start_the_game(t_data *data);
 int			close_window(t_data *data);
+void		fill_spaces(char **tab);
+int			dup_tab(t_map *map);
+void		calculate_map_dimensions(char **tab, t_map *map);
+int			find_map_width(char **tab);
+
 
 #endif 

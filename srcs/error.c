@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:27:11 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 16:36:01 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/07 15:43:37 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_err(t_error error)
 		ft_putstr_fd("Error\nMissing or duplicated color definitions\n", \
 		STDERR_FILENO);
 	else if (error == INVAL_RGB)
-		ft_putstr_fd("Error\nIvalid RGB values for at least one color\n", \
+		ft_putstr_fd("Error\nInvalid RGB values for at least one color\n", \
 		STDERR_FILENO);
 	else if (error == EMPTY_L)
 		ft_putstr_fd("Error\nThe map contains an empty line\n", STDERR_FILENO);

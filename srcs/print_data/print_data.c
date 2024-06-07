@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:54:57 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/06 13:36:26 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/07 17:16:59 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,29 @@ void	print_map(t_map *map)
 	print_tab(map->map_tab);
 }
 
+void	print_texture(t_texture *texture)
+{
+	int	i;
+
+	i = -1;
+	printf("\nTEXTURE :\n\n");
+	while (++i < 4)
+	{
+		printf("\n---------i = %d\n", i);
+		printf("---------imp_ptr   = %p\n", texture[i].img_ptr);
+		printf("---------addr      = %s\n", texture[i].addr);
+		printf("---------width     = %d\n", texture[i].width);
+		printf("---------height    = %d\n", texture[i].height);
+		printf("---------bpp       = %d\n", texture[i].bpp);
+		printf("---------size_line = %d\n", texture[i].size_line);
+		printf("---------endian    = %d\n", texture[i].endian);
+		printf("---------text_num  = %d\n", texture[i].texture_num);
+	}
+}
+
 void	print_data(t_data *data)
 {
 	printf("Data :\n\n");
 	print_map(data->map);
+	// print_texture(data->texture);
 }

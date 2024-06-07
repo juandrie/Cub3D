@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 23:47:51 by cabdli            #+#    #+#             */
-/*   Updated: 2024/05/24 15:55:45 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/07 17:48:47 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static char	*ft_save(char *save)
 	return (str);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, t_map *map)
 {
 	char		*line;
 	static char	*save;
@@ -101,5 +101,6 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (free(save), NULL);
 	save = ft_save(save);
+	map->save = save;
 	return (line);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 01:09:22 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/05 18:45:36 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:52:33 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,38 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <limits.h>
+// # include "../include/cub3d.h"
+
+typedef struct s_vector
+{
+	double	x;
+	double	y;
+}t_vector;
+typedef struct s_list
+{
+	char			*line;
+	struct s_list	*next;
+}t_list;
+
+typedef struct s_map
+{
+	t_list		*map_list;
+	t_list		*text_color_list;
+	char		**map_tab;
+	char		**text_tab;
+	char		**color_tab;
+	int			floor_color[3];
+	int			ceiling_color[3];
+	int			width;
+	int			height;
+	double		wall_x;
+	double		text_pos;
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
+	t_vector	texture;
+	char		*save;
+}t_map;
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
@@ -76,6 +108,6 @@ int				ft_print_hex(unsigned int nb, const char type);
 int				ft_print_ptr(uintptr_t ptr);
 
 /*  Prototype GNL : */
-char			*get_next_line(int fd);
+char			*get_next_line(int fd, t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 12:23:12 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/07 17:54:57 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,31 +46,37 @@ static int	add_node_bottom(t_list **list, char *line)
 	return (0);
 }
 
-// static int	process_line(t_map *map, char *line)
-// {
-// 	char	*tmp;
+int	check_map_position(char *line)
+{
+	static int	map;
+	static int	text;
+	static int	colors;
 
-// 	tmp = skip_whitespace(line);
-// 	if (ft_replace_nl(map, tmp))
-// 		return (0);
-// 	if (!ft_strncmp(tmp, "NO", 2) || !ft_strncmp(tmp, "SO", 2) \
-// 	|| !ft_strncmp(tmp, "WE", 2) || !ft_strncmp(tmp, "EA", 2))
-// 		return (add_node_bottom(&(map->text_list), tmp));
-// 	else if (!ft_strncmp(tmp, "F", 1) || !ft_strncmp(tmp, "C", 1))
-// 		return (add_node_bottom(&(map->color_list), tmp));
-// 	else
-// 		return (add_node_bottom(&(map->map_list), line));
-// 	return (0);
-// }
-
+	if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2) || \
+		!ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
+			text = 1;
+	else if (!ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
+		colors = 1;
+	else
+		map = 1;
+	if (map && (!text || !colors))
+	{
+		ft_putstr_fd("Error:\nMap not in third position\n", STDERR_FILENO);
+		return (1);
+	}
+	return (0);
+}
 
 static int	process_line(t_map *map, char *line)
 {
 	char	*tmp;
 
-	tmp = skip_whitespace(line);
-	if (ft_replace_nl(map, tmp))
+	tmp = NULL;
+	if (ft_replace_nl(map, line))
 		return (0);
+	tmp = skip_whitespace(line);
+	if (check_map_position(line))
+		return (1);
 	if (!ft_strncmp(tmp, "NO", 2) || !ft_strncmp(tmp, "SO", 2) || \
 		!ft_strncmp(tmp, "WE", 2) || !ft_strncmp(tmp, "EA", 2) || \
 		!ft_strncmp(tmp, "F", 1) || !ft_strncmp(tmp, "C", 1))
@@ -88,17 +94,18 @@ int	init_lists(t_map *map, char *filename)
 	line = NULL;
 	if (open_fd(&fd, filename))
 		return (1);
-	line = get_next_line(fd);
+	line = get_next_line(fd, map);
 	if (!line)
-		return (print_err(EMPTY), 1);
+		return (close(fd), print_err(EMPTY), 1);
 	while (line)
 	{
 		if (process_line(map, line))
-			return (free(line), close(fd), 1);
+			return (free(map->save), free(line), close(fd), 1);
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(fd, map);
 	}
 	if (close(fd) == -1)
 		return (perror("Error"), 1);
 	return (0);
 }
+ 

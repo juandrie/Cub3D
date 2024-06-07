@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 19:43:06 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 18:13:19 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,27 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	if (init_data(&data, argv[1], 0))
 		return (1);
+	print_data(data);
 	if (parsing(data->map))
 		return (free_data(&data), 1);
 	if (init_data(&data, argv[1], 1))
 		return (1);
-	//print_data(data);
 	start_the_game(data);
 	free_data(&data);
 	printf("SUCCESS !\n\n");
 	return (0);
 }
 
-//ajouter in int a init_data pour le lancer en deux parties
-// creer un dossier .build avec sous dossiers pour les .o
-// parser l'ordre de la map ?
 /*
+regler soucis makefile libft : si modif de la libft le makefile doit recompiler
+ce qui a ete modifie
 
+- erreurs malloc dans dup_tab
+- fluidite rotation
+- verifier textures + leur sens(slmt 3 textures au lieu de 4)
+- check borders up and down a modifier :
+==> check pour les lignes aux extremites si on a que des 1,
+puis avancer jusqu'a trouver la lignes contenant les 1ers 0,
+verifier selon la position du dernier 0 si la ligne au dessus est au moins aussi
+longue
 */

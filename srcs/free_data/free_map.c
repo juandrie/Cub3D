@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:14:53 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/06 19:21:46 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:48:22 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	free_full_tab(char **tab)
 	int	i;
 
 	i = -1;
+	if(!tab)
+		return ;
 	while (tab[++i])
 		free(tab[i]);
 	free(tab);
