@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_lists.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/07 17:54:57 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/07 18:25:04 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_map_position(char *line)
 		map = 1;
 	if (map && (!text || !colors))
 	{
-		ft_putstr_fd("Error:\nMap not in third position\n", STDERR_FILENO);
+		ft_putstr_fd("Error:\nMap not in third position or Map alone\n", STDERR_FILENO);
 		return (1);
 	}
 	return (0);

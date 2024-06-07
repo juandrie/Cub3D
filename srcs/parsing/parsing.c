@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:54:24 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/07 17:56:28 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/07 18:32:15 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ void	fill_spaces(char **tab)
 int	parsing(t_map *map)
 {
 	calculate_map_dimensions(map->map_tab, map);
-	// dup_tab(map);
+	//dup_tab(map);
 	fill_spaces(map->map_tab);
-	printf("\n\n");
-	print_tab(map->map_tab);
+	//printf("\n\n");
+	//print_tab(map->map_tab);
 	if (parse_colors(map->color_tab))
 		return (1);
 	if (parse_textures(map->text_tab))
