@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:44:52 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/03 11:56:48 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:27:53 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ double	get_ticks(void)
 
 void	update_timing_and_movement(t_data *data)
 {
-	static double	oldtime;
+	static double	oldtime = 0;
 	double			time;
 	double			frametime;
 
-	oldtime = 0;
-	time = get_ticks(); // Obtenir le nouveau temps
-	frametime = (time - oldtime); //Temps écoulé depuis la dernière frame en secondes
-	oldtime = time; // Mettre à jour oldTime pour la prochaine frame
+	time = get_ticks();
+	if (oldtime == 0)
+	{
+		oldtime = time;
+		return ;
+	}
+	frametime = (time - oldtime);
+	oldtime = time;
 	data->window->movespeed = frametime * MOVE_SPEED;
 	data->window->rotspeed = frametime * ROTATE_SPEED;
 }

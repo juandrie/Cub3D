@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/10 17:35:43 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 20:26:21 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # include <X11/X.h>
 # include <time.h>
 
+#define KEY_COUNT 65308
+
+
 # ifndef X_CROSS
 #  define X_CROSS 17
 # endif /*X_CROSS*/
@@ -38,49 +41,16 @@
 # define RIGHT 0xff51
 # define LEFT 0xff53
 
-# define MOVE_SPEED  0.02//0.035
-# define ROTATE_SPEED 0.02//0.035
+# define MOVE_SPEED  0.5
+# define ROTATE_SPEED 0.5
 
-# define WIDTH 640
-# define HEIGHT 480
+# define WIDTH 1200
+# define HEIGHT 800
 
 # define NORTH 0
 # define SOUTH 1
 # define WEST 2
 # define EAST 3
-
-
-// typedef struct s_vector
-// {
-// 	double	x;
-// 	double	y;
-// }t_vector;
-
-// typedef struct s_list
-// {
-// 	char			*line;
-// 	struct s_list	*next;
-// }t_list;
-
-// typedef struct s_map
-// {
-// 	t_list		*map_list;
-// 	t_list		*text_color_list;
-// 	char		**map_tab;
-// 	char		**text_tab;
-// 	char		**color_tab;
-// 	int			floor_color[3];
-// 	int			ceiling_color[3];
-// 	int			width;
-// 	int			height;
-// 	double		wall_x;
-// 	double		text_pos;
-// 	int			lineheight;
-// 	int			drawstart;
-// 	int			drawend;
-// 	t_vector	texture;
-// 	char		*save;
-// }t_map;
 
 typedef struct s_window
 {
@@ -114,20 +84,6 @@ typedef struct s_ray
 	int			side;
 	double		perpwalldist;
 }t_ray;
-
-/*
-typedef struct s_texture
-{
-	void	*img_ptr;	= Pointeur vers l'image texture
-	char	*addr;		= Les données de l'image
-	int		width;		= Largeur de la texture
-	int		height;		= Hauteur de la texture
-	int		bpp;		= Bits par pixel
-	int		size_line;	= Taille de ligne en mémoire
-	int		endian;		= Endian, qui indique l'ordre des couleurs
-	int		texture_num;
-}	t_texture;
-*/
 
 typedef struct s_texture
 {
@@ -170,11 +126,10 @@ typedef struct s_data
 	char		**text_path;
 	int			keycode;
 	int			player_initialized;
+	bool		key_states[KEY_COUNT]; 
 }t_data;
 
-/* parse_args.c */
-int			is_correct_extension(char *filename, char *str);
-int			check_args(int argc, char **argv, char **envp);
+/******************** INITIALIZATION *************************/
 
 /* init_data.c */
 int			init_data(t_data **data, char *filename, int step);
@@ -196,35 +151,31 @@ int			open_fd(int *fd, char *filename);
 int			ft_replace_nl(t_map *map, char *line);
 int			list_size(t_list *list);
 
-/* free_window.c */
-void		free_window(t_window **window);
+/* init_texture.c */
+char		**create_text_path(t_data *data);
 
-/* free_textures.c */
-void		free_text_path(char ***texture);
-// void		free_textures(t_texture **texture);
-void		free_textures(t_texture *texture, t_data *data);
+/* init_colors.c */
+int			init_colors(char **tab, int *ceiling, int *floor);
 
-/* free_map.c */
-void		free_list(t_list **list);
-void		free_lists(t_map *map);
-void		free_tabs(t_map *map, int tab);
-void		free_map(t_map **map, int tab);
+/* init_tabs_utils.c */
+void		get_nb_text_color(t_list *text_color_list, int *tc);
 
-/* free_data.c */
-void		free_data(t_data **data, int tab);
+/******************** PARSING *************************/
 
-/* print_data.c */
-void		print_list(t_list *list);
-void		print_tab(char **tab);
-void		print_map(t_map *map);
-void		print_data(t_data *data);
+/* parsing.c */
+int			parsing(t_map *map);
+
+/* parse_args.c */
+int			is_correct_extension(char *filename, char *str);
+int			check_args(int argc, char **argv, char **envp);
 
 /* parse_colors.c */
 int			parse_colors(char **tab);
-
-
-int			is_comma(char c);
 int			is_nb(char c);
+
+/* parse_colors_utils.c */
+char		*remove_spaces(char *str);
+int			is_comma(char c);
 
 /* parse_rgb_values.c */
 int			check_comma_nbs(char *tab);
@@ -241,66 +192,122 @@ int			parse_textures(char **tab);
 /* parse_textures_utils.c */
 int			check_nb_textures(char **tab);
 
-/* parse_utils.c */
-int			is_space_or_one(char c);
-
-/* A trier */
-int			get_texture_color(t_texture *texture, int x, int y);
-int			calculate_texture_num(t_data *data);
-double		calculate_wall_x(t_data *data);
-int			calculate_texture_x(t_data *data);
-int			get_player_pos(t_data *data);
-
-void		perform_ray_casting(t_data *data);
-void		update_timing_and_movement(t_data *data);
-double		get_ticks(void);
-void		hooks(t_data *data);
-int			get_key_press(t_data *data);
-void		read_keys(t_data *data);
-int			loop_hook(t_data *data);
-void		update_timing_and_movement(t_data *data);
-// void		extract_texture_paths(t_map *map);
-// int			init_textures(t_data *data);
-void		calculate_map_dimensions(char **tab, t_map *map);
-void    	print_err(t_error error);
-int			parsing(t_map *map);
-void		free_full_tab(char **tab);
-void		free_tab(char ***tab);
-
-/* utils.c */
-char		*skip_whitespace(char *str);
-int			tab_size(char **tab);
-char		*remove_spaces(char *str);
-void		print_list(t_list *list);
-void		print_err(t_error error);
-
-int			parsing(t_map *map);
-char		*rev_skip_whitespace_borders(char *str);
-char		*rev_skip_whitespace_path(char *str);
-char		*get_text_path(char *str);
-char		**create_text_path(t_data *data);
-int			init_colors(char **tab, int *ceiling, int *floor);
-int			is_player(char c);
-void		start_the_game(t_data *data);
-int			close_window(t_data *data);
-void		fill_spaces(char **tab);
-char		**dup_tab(t_map *map);
-void		calculate_map_dimensions(char **tab, t_map *map);
-int			find_map_width(char **tab);
-void		get_nb_text_color(t_list *text_color_list, int *tc);
-int			is_space_or_one(char c);
-int			is_wrong_char(char c);
-int			is_player(char c);
-int			map_missing(char **tab);
+/* check_around_spaces.c */
 int			invalid_block_around(char **tab, int i, int j);
 int			check_around_spaces(char **tab);
+
+/* check_borders.c */
 int			check_line_rl(char *tab);
 int			check_borders_right_left(char **tab);
 int			check_borders_up_down(char **tab);
 int			check_borders(char **tab);
+
+/* check_player.c */
 int			check_player(char *tab);
 int			no_player(char **tab);
 int			too_much_players(char **tab);
 
+/* parse_map_utils.c */
+int			is_space_or_one(char c);
+int			is_wrong_char(char c);
+int			is_player(char c);
+int			map_missing(char **tab);
+
+/******************** FREE *************************/
+
+/* free_window.c */
+void		free_window(t_window **window);
+
+/* free_textures.c */
+void		free_text_path(char ***texture);
+// void		free_textures(t_texture **texture);
+void		free_textures(t_texture *texture, t_data *data);
+
+/* free_map.c */
+void		free_tabs(t_map *map, int tab);
+void		free_map(t_map **map, int tab);
+void		free_full_tab(char **tab);
+void		free_tab(char ***tab);
+
+/* free_lists.c */
+void		free_list(t_list **list);
+void		free_lists(t_map *map);
+
+/* free_data.c */
+void		free_data(t_data **data, int tab);
+
+/* PRINT */
+
+/* print_data.c */
+void		print_list(t_list *list);
+void		print_tab(char **tab);
+void		print_map(t_map *map);
+void		print_data(t_data *data);
+
+/******************** RAYCASTING *************************/
+
+/* raycasting.c */
+void		perform_raycasting(t_data *data);
+
+/* moves.c */
+void		move_back(t_data *data);
+void		move_forward(t_data *data);
+void		move_side(t_data *data, double angle);
+void		rotate_camera(t_data *data, double angle);
+
+/* keys.c */
+int			get_key_press(t_data *data);
+void		read_keys(t_data *data);
+
+/* textures.c */
+int			get_texture_color(t_texture *texture, int x, int y);
+int			calculate_texture_num(t_data *data);
+double		calculate_wall_x(t_data *data);
+int			calculate_texture_x(t_data *data);
+
+/* calculate_textures.c */
+void		draw_textured_wall_slice(t_data *data);
+void		draw(t_data *data);
+void		draw_wall_slice(t_data *data);
+
+/* calculate_colors.c */
+void		draw_ceiling(t_data *data);
+void		draw_floor(t_data *data);
+
+/* calculate_position.c */
+void		step_ray(t_data *data);
+void		initialize_step_and_side_distance(t_data *data);
+void		calculate_ray_direction(t_data *data);
+void		calculate_delta_distances(t_data *data);
+
+/* time.c */
+void		update_timing_and_movement(t_data *data);
+double		get_ticks(void);
+
+/******************** START GAME *************************/
+
+/* start_game.c */
+int			get_player_pos(t_data *data);
+void		start_the_game(t_data *data);
+
+/* get_player.c */
+void		handle_player(char c, t_data *data, int x, int y);
+
+/******************** SRCS *************************/
+
+/* hooks.c */
+void		hooks(t_data *data);
+int			loop_hook(t_data *data);
+int			close_window(t_data *data);
+
+/* error.c */
+void		print_err(t_error error);
+
+/* utils.c */
+char		*skip_whitespace(char *str);
+int			tab_size(char **tab);
+char		*rev_skip_whitespace_borders(char *str);
+char		*rev_skip_whitespace_path(char *str);
+char		*get_text_path(char *str);
 
 #endif 

@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 17:25:20 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/10 19:53:17 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-int	get_key_press(t_data *data)
-{
-	int	last_key;
-
-	last_key = data->window->key_pressed;
-	data->window->key_pressed = 0;
-	return (last_key);
-}
 
 void	rotate_camera(t_data *data, double angle)
 {
@@ -88,25 +79,4 @@ void	move_back(t_data *data)
 		if (data->map->map_tab[(int)newy][(int)data->player->pos.x] == '0')
 			data->player->pos.y = newy;
 	}
-}
-
-void	read_keys(t_data *data)
-{
-	int	key;
-
-	key = get_key_press(data);
-	if (key == W)
-		move_forward(data);
-	if (key == S)
-		move_back(data);
-	if (key == D)
-		move_side(data, data->window->rotspeed);
-	if (key == A)
-		move_side(data, -data->window->rotspeed);
-	if (key == RIGHT)
-		rotate_camera(data, data->window->rotspeed);
-	if (key == LEFT)
-		rotate_camera(data, -data->window->rotspeed);
-	if (key == ESC)
-		close_window(data);
 }

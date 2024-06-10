@@ -6,7 +6,7 @@
 #    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/06/10 17:27:44 by juandrie         ###   ########.fr        #
+#    Updated: 2024/06/10 18:40:37 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,10 @@ SRCS = 	srcs/main.c \
 		srcs/raycasting/moves.c \
 		srcs/raycasting/time.c \
 		srcs/raycasting/texture.c \
+		srcs/raycasting/keys.c \
+		srcs/raycasting/calculate_colors.c \
+		srcs/raycasting/calculate_textures.c \
+		srcs/raycasting/calculate_position.c \
 		srcs/init_data/init_data.c \
 		srcs/init_data/init_lists_utils.c \
 		srcs/init_data/init_lists.c \
