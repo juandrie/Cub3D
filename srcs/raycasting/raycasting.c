@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:29:32 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 19:09:32 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:03:06 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,5 +231,3 @@ void	perform_ray_casting(t_data *data)
 		data->vector->x++;
 	}
 }
-
-

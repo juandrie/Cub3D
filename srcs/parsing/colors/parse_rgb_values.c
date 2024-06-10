@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:39:24 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/05 18:01:52 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:17:50 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	check_nb_of_nbs(char *tab)
 	return (0);
 }
 
-
 int	check_nb_of_commas(char *tab)
 {
 	int	i;
@@ -87,4 +86,3 @@ int	check_nbs_range(char *tab)
 	free_full_tab(split);
 	return (0);
 }
-

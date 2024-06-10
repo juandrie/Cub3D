@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:43:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/04 18:26:42 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:56:09 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ int	key_release(int keycode, t_data *data)
 
 int	close_window(t_data *data)
 {
-	free_data(&data);
+	free_data(&data, 0);
 	exit(0);
 	return (0);
 }
-
 
 int	loop_hook(t_data *data)
 {

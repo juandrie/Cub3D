@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/07 17:52:25 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/10 17:35:43 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,6 @@ int			is_correct_extension(char *filename, char *str);
 int			check_args(int argc, char **argv, char **envp);
 
 /* init_data.c */
-void		free_data(t_data **data);
 int			init_data(t_data **data, char *filename, int step);
 
 /* init_map.c */
@@ -208,11 +207,11 @@ void		free_textures(t_texture *texture, t_data *data);
 /* free_map.c */
 void		free_list(t_list **list);
 void		free_lists(t_map *map);
-void		free_tabs(t_map *map);
-void		free_map(t_map **map);
+void		free_tabs(t_map *map, int tab);
+void		free_map(t_map **map, int tab);
 
 /* free_data.c */
-void		free_data(t_data **data);
+void		free_data(t_data **data, int tab);
 
 /* print_data.c */
 void		print_list(t_list *list);
@@ -285,9 +284,23 @@ int			is_player(char c);
 void		start_the_game(t_data *data);
 int			close_window(t_data *data);
 void		fill_spaces(char **tab);
-int			dup_tab(t_map *map);
+char		**dup_tab(t_map *map);
 void		calculate_map_dimensions(char **tab, t_map *map);
 int			find_map_width(char **tab);
+void		get_nb_text_color(t_list *text_color_list, int *tc);
+int			is_space_or_one(char c);
+int			is_wrong_char(char c);
+int			is_player(char c);
+int			map_missing(char **tab);
+int			invalid_block_around(char **tab, int i, int j);
+int			check_around_spaces(char **tab);
+int			check_line_rl(char *tab);
+int			check_borders_right_left(char **tab);
+int			check_borders_up_down(char **tab);
+int			check_borders(char **tab);
+int			check_player(char *tab);
+int			no_player(char **tab);
+int			too_much_players(char **tab);
 
 
 #endif 

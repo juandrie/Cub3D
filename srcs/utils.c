@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:46:21 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/07 16:07:35 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/10 17:59:33 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*rev_skip_whitespace_borders(char *str)
 		str--;
 		len--;
 	}
-	*(str + 1) = '\0';
 	return (str);
 }
 
@@ -70,44 +69,3 @@ char	*get_text_path(char *str)
 	path = rev_skip_whitespace_path(path);
 	return (path);
 }
-
-
-char	*remove_spaces(char *str)
-{
-	char	*out;
-	char	*dst;
-
-	out = str;
-	dst = str;
-	while (*str != '\0')
-	{
-		if (*str != ' ' && *str != '\t' && *str != '\r' \
-		&& *str != '\v' && *str != '\f')
-			*dst++ = *str;
-		str++;
-	}
-	*dst = '\0';
-	return (out);
-}
-// int find_player_line(char **tab)
-// {
-// 	int	i;
-
-// 	i = -1;
-// 	while (tab[++i])
-// 	{
-// 		if (check_player(tab[i]))
-// 			return (i);
-// 	}
-// 	return (1);
-// }
-
-// int find_player_column(char *tab)
-// {
-// 	int	col;
-
-// 	col = 0;
-// 	while (tab[col] && !is_player(tab[col]))
-// 		col++;
-// 	return (col);
-// }

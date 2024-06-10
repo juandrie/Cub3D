@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:45:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/07 18:37:24 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:02:55 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,3 @@ int	calculate_texture_x(t_data *data)
 		data->map->texture.x = data->texture->width - data->map->texture.x - 1;
 	return (data->map->texture.x);
 }
-

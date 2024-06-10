@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 15:27:11 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/07 15:43:37 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/10 17:55:14 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,8 @@ void	print_err(t_error error)
 		ft_putstr_fd("Error\nThe map contains an empty line\n", STDERR_FILENO);
 	else if (error == WRONG_C)
 		ft_putstr_fd("Error\nThe map contains a wrong char\n", STDERR_FILENO);
-	else if (error == NO_PLAYER)
-		ft_putstr_fd("Error\nNo player in the map\n", STDERR_FILENO);
-	else if (error == MUCH_PLAYERS)
-		ft_putstr_fd("Error\nToo much players in the map\n", STDERR_FILENO);
+	else if (error == NO_PLAYER || error == MUCH_PLAYERS)
+		ft_putstr_fd("Error\nMissing or duplicated player\n", STDERR_FILENO);
 	else if (error == TEXTURE_SIZE)
 		ft_putstr_fd("Error\nInvalid number of textures\n", STDERR_FILENO);
 	else if (error == TEXTURE_INVAL)
@@ -38,8 +36,6 @@ void	print_err(t_error error)
 		ft_putstr_fd("Error\nDuplicated texture definition\n", STDERR_FILENO);
 	else if (error == TEXTURE_PATH)
 		ft_putstr_fd("Error\nInvalid texture path\n", STDERR_FILENO);
-	else if (error == MAP_BORDERS)
-		ft_putstr_fd("Error\nNo borders in the map\n", STDERR_FILENO);
-	else if (error == SPACE_WALLS)
-		ft_putstr_fd("Error\nSpace not surrounded by walls\n", STDERR_FILENO);
+	else if (error == MAP_BORDERS || error == SPACE_WALLS)
+		ft_putstr_fd("Error\nMap not surrounded by walls\n", STDERR_FILENO);
 }

@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_window.c                                      :+:      :+:    :+:   */
+/*   init_tabs_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:46:07 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/10 17:08:09 by juandrie         ###   ########.fr       */
+/*   Created: 2024/06/10 17:10:38 by juandrie          #+#    #+#             */
+/*   Updated: 2024/06/10 17:11:08 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	free_window(t_window **window)
+void	get_nb_text_color(t_list *text_color_list, int *tc)
 {
-	if (!(*window))
-		return ;
-	if ((*window)->win_ptr)
-		mlx_destroy_window((*window)->mlx_ptr, (*window)->win_ptr);
-	if ((*window)->img_ptr)
-		mlx_destroy_image((*window)->mlx_ptr, (*window)->img_ptr);
-	if ((*window)->mlx_ptr)
+	while (text_color_list)
 	{
-		mlx_destroy_display((*window)->mlx_ptr);
-		free((*window)->mlx_ptr);
+		if (!ft_strncmp(text_color_list->line, "F", 1) || \
+		!ft_strncmp(text_color_list->line, "C", 1))
+			tc[1]++;
+		else
+			tc[0]++;
+		text_color_list = text_color_list->next;
 	}
-	free((*window));
-	*window = NULL;
 }

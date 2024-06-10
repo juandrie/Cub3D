@@ -6,35 +6,11 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:14:53 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/07 18:23:51 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:07:30 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-void	free_list(t_list **list)
-{
-	t_list	*tmp;
-
-	tmp = NULL;
-	if (!(*list))
-		return ;
-	while (*list)
-	{
-		tmp = *list;
-		*list = (*list)->next;
-		if (tmp->line)
-			free(tmp->line);
-		free(tmp);
-	}
-	*list = NULL;
-}
-
-void	free_lists(t_map *map)
-{
-	free_list(&(map->map_list));
-	free_list(&(map->text_color_list));
-}
 
 void	free_tab(char ***tab)
 {
@@ -44,7 +20,6 @@ void	free_tab(char ***tab)
 	*tab = NULL;
 }
 
-
 void	free_full_tab(char **tab)
 {
 	int	i;
@@ -53,23 +28,30 @@ void	free_full_tab(char **tab)
 	if (!tab)
 		return ;
 	while (tab[++i])
+	{
 		free(tab[i]);
+		tab[i] = NULL;
+	}
 	free(tab);
+	tab = NULL;
 }
 
-void	free_tabs(t_map *map)
+void	free_tabs(t_map *map, int tab)
 {
 	free_tab(&map->color_tab);
 	free_tab(&map->text_tab);
-	free_full_tab(map->map_tab);
+	if (tab)
+		free_tab(&map->map_tab);
+	else
+		free_full_tab(map->map_tab);
 }
 
-void	free_map(t_map **map)
+void	free_map(t_map **map, int tab)
 {
 	if (!(*map))
 		return ;
 	free_lists(*map);
-	free_tabs((*map));
+	free_tabs((*map), tab);
 	free(*map);
 	*map = NULL;
 }

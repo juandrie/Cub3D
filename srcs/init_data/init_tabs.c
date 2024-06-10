@@ -3,31 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_tabs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:28:27 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/06 13:38:04 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/10 17:11:31 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-static char	**init_tab(t_list *list)
-{
-	int		i;
-	char	**tab;
-
-	i = 0;
-	tab = ft_calloc((list_size(list)) + 1, sizeof(char *));
-	if (!tab)
-		return (NULL);
-	while (list)
-	{
-		tab[i++] = list->line;
-		list = list->next;
-	}
-	return (tab);
-}
 
 void	fill_colors(t_list *list, char **tab)
 {
@@ -74,17 +57,21 @@ char	**init_text_color_tabs(t_list *list, int nb, char c)
 	return (tab);
 }
 
-void	get_nb_text_color(t_list *text_color_list, int *tc)
+static char	**init_tab(t_list *list)
 {
-	while (text_color_list)
+	int		i;
+	char	**tab;
+
+	i = 0;
+	tab = ft_calloc((list_size(list)) + 1, sizeof(char *));
+	if (!tab)
+		return (NULL);
+	while (list)
 	{
-		if (!ft_strncmp(text_color_list->line, "F", 1) || \
-		!ft_strncmp(text_color_list->line, "C", 1))
-			tc[1]++;
-		else
-			tc[0]++;
-		text_color_list = text_color_list->next;
+		tab[i++] = list->line;
+		list = list->next;
 	}
+	return (tab);
 }
 
 int	init_tabs(t_map *map)

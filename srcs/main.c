@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
+/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/07 18:13:19 by cabdli           ###   ########.fr       */
+/*   Updated: 2024/06/10 18:07:22 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,24 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	print_data(data);
 	if (parsing(data->map))
-		return (free_data(&data), 1);
+		return (free_data(&data, 1), 1);
+	printf("\n\n");
+	print_tab(data->map->map_tab);
 	if (init_data(&data, argv[1], 1))
 		return (1);
 	start_the_game(data);
-	free_data(&data);
+	free_data(&data, 0);
 	printf("SUCCESS !\n\n");
 	return (0);
 }
 
 /*
-regler soucis makefile libft : si modif de la libft le makefile doit recompiler
+- regler soucis makefile libft : si modif de la libft le makefile doit recompiler
 ce qui a ete modifie
-
-- erreurs malloc dans dup_tab
-- fluidite rotation
-- verifier textures + leur sens(slmt 3 textures au lieu de 4)
-- check borders up and down a modifier :
-==> check pour les lignes aux extremites si on a que des 1,
-puis avancer jusqu'a trouver la lignes contenant les 1ers 0,
-verifier selon la position du dernier 0 si la ligne au dessus est au moins aussi
-longue
+- fluidite rotation (mate elo)
+- repartition definitions dans cub3d.h
+- agrandir fenetre jeu
+- refactorisation raycasting a la norme
+- refaire un coup de norme (pb init_list ?)
+- changer textures
 */

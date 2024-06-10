@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 18:00:07 by cabdli            #+#    #+#             */
-/*   Updated: 2024/06/05 18:01:24 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:17:39 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,3 @@ int	parse_colors(char **tab)
 		return (print_err(INVAL_RGB), 1);
 	return (0);
 }
-

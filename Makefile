@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
+#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/06/04 17:09:26 by cabdli           ###   ########.fr        #
+#    Updated: 2024/06/10 17:27:44 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS = 	srcs/main.c \
 		srcs/init_data/init_lists.c \
 		srcs/init_data/init_map.c \
 		srcs/init_data/init_tabs.c \
+		srcs/init_data/init_tabs_utils.c \
 		srcs/init_data/init_window.c\
 		srcs/init_data/init_texture.c\
 		srcs/init_data/init_colors.c \
@@ -59,12 +60,16 @@ SRCS = 	srcs/main.c \
 		srcs/parsing/colors/parse_colors_utils.c \
 		srcs/parsing/colors/parse_rgb_values.c \
 		srcs/parsing/map/parse_map.c \
+		srcs/parsing/map/parse_map_utils.c \
+		srcs/parsing/map/check_borders.c \
+		srcs/parsing/map/check_around_spaces.c \
+		srcs/parsing/map/check_player.c \
 		srcs/parsing/parse_args.c \
-		srcs/parsing/parse_utils.c \
 		srcs/parsing/textures/parse_textures.c \
 		srcs/parsing/textures/parse_textures_utils.c \
 		srcs/free_data/free_data.c \
 		srcs/free_data/free_map.c \
+		srcs/free_data/free_lists.c \
 		srcs/free_data/free_window.c \
 		srcs/free_data/free_textures.c \
 		srcs/print_data/print_data.c \

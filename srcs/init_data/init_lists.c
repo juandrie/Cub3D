@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 16:53:09 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/07 18:25:04 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:50:22 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,23 @@ int	check_map_position(char *line)
 	static int	map;
 	static int	text;
 	static int	colors;
+	static int	other;
 
 	if (!ft_strncmp(line, "NO", 2) || !ft_strncmp(line, "SO", 2) || \
 		!ft_strncmp(line, "WE", 2) || !ft_strncmp(line, "EA", 2))
 			text = 1;
 	else if (!ft_strncmp(line, "F", 1) || !ft_strncmp(line, "C", 1))
 		colors = 1;
-	else
+	else if (!is_wrong_char(*line))
 		map = 1;
+	else
+		other = 1;
 	if (map && (!text || !colors))
-	{
-		ft_putstr_fd("Error:\nMap not in third position or Map alone\n", STDERR_FILENO);
-		return (1);
-	}
+		return (ft_putstr_fd("Error:\nMap not in third position\n", \
+		STDERR_FILENO), 1);
+	if (other)
+		return (ft_putstr_fd("Error:\nInvalid information\n", \
+		STDERR_FILENO), 1);
 	return (0);
 }
 
@@ -75,7 +79,7 @@ static int	process_line(t_map *map, char *line)
 	if (ft_replace_nl(map, line))
 		return (0);
 	tmp = skip_whitespace(line);
-	if (check_map_position(line))
+	if (check_map_position(tmp))
 		return (1);
 	if (!ft_strncmp(tmp, "NO", 2) || !ft_strncmp(tmp, "SO", 2) || \
 		!ft_strncmp(tmp, "WE", 2) || !ft_strncmp(tmp, "EA", 2) || \
