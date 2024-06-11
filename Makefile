@@ -6,7 +6,7 @@
 #    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/06/10 18:40:37 by juandrie         ###   ########.fr        #
+#    Updated: 2024/06/11 13:26:07 by juandrie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,6 @@ SRCS = 	srcs/main.c \
 		srcs/utils.c \
 		srcs/raycasting/raycasting.c \
 		srcs/raycasting/moves.c \
-		srcs/raycasting/time.c \
 		srcs/raycasting/texture.c \
 		srcs/raycasting/keys.c \
 		srcs/raycasting/calculate_colors.c \
@@ -115,19 +114,25 @@ $(BUILD_DIR):
 all: $(NAME)
 	@./start_cub3d.sh
 
-$(NAME): $(BUILD_DIR) $(OBJS)
+$(NAME): $(BUILD_DIR) $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
 	@echo "$(PURPLE)Making cub3D...$(RESET)"
-	@make --no-print-directory -C $(LIBFT_DIR)
-	@echo "$(CYAN)Making minilibx...$(RESET)"
-	@make --no-print-directory -C $(MLX_DIR)
-	@echo "$(CYAN)Minilibx done !$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
 	@echo "$(PURPLE)Cub3D done !$(RESET)"
 
 # Creating object files
-$(BUILD_DIR)/%.o: %.c
+$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INC) $(MLX_INC) $(LIBFT_INC) -c $< -o $@
+
+# Build libft
+$(LIBFT_LIB):
+	@make --no-print-directory -C $(LIBFT_DIR)
+
+# Build mlx
+$(MLX_LIB):
+	@echo "$(CYAN)Making minilibx...$(RESET)"
+	@make --no-print-directory -C $(MLX_DIR) 2>/dev/null
+	@echo "$(CYAN)Minilibx done !$(RESET)"
 
 # Clean objects
 clean:

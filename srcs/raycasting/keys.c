@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 18:14:06 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/10 20:25:46 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:42:32 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ void	read_keys(t_data *data)
 	if (key == S)
 		move_back(data);
 	if (key == D)
-		move_side(data, data->window->rotspeed);
+		move_side(data, MOVE_SPEED);
 	if (key == A)
-		move_side(data, -data->window->rotspeed);
+		move_side(data, -MOVE_SPEED);
 	if (key == RIGHT)
-		rotate_camera(data, data->window->rotspeed);
+		rotate_camera(data, ROTATE_SPEED);
 	if (key == LEFT)
-		rotate_camera(data, -data->window->rotspeed);
+		rotate_camera(data, -ROTATE_SPEED);
 	if (key == ESC)
 		close_window(data);
 }

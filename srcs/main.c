@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:02:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/10 19:39:36 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 13:26:51 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	if (init_data(&data, argv[1], 0))
 		return (1);
-	//print_data(data);
+	print_data(data);
 	if (parsing(data->map))
 		return (free_data(&data, 1), 1);
-	// printf("\n\n");
-	//print_tab(data->map->map_tab);
+	printf("\n\n");
+	print_tab(data->map->map_tab);
 	if (init_data(&data, argv[1], 1))
 		return (1);
 	start_the_game(data);

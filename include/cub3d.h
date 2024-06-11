@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/10 20:26:21 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 13:27:34 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@
 # include <X11/X.h>
 # include <time.h>
 
-#define KEY_COUNT 65308
-
-
 # ifndef X_CROSS
 #  define X_CROSS 17
 # endif /*X_CROSS*/
@@ -41,8 +38,8 @@
 # define RIGHT 0xff51
 # define LEFT 0xff53
 
-# define MOVE_SPEED  0.5
-# define ROTATE_SPEED 0.5
+# define MOVE_SPEED  0.03
+# define ROTATE_SPEED 0.02
 
 # define WIDTH 1200
 # define HEIGHT 800
@@ -62,8 +59,6 @@ typedef struct s_window
 	int			size_line;
 	int			endian;
 	int			key_pressed;
-	double		movespeed;
-	double		rotspeed;
 }t_window;
 
 typedef struct s_player
@@ -126,7 +121,6 @@ typedef struct s_data
 	char		**text_path;
 	int			keycode;
 	int			player_initialized;
-	bool		key_states[KEY_COUNT]; 
 }t_data;
 
 /******************** INITIALIZATION *************************/
@@ -279,10 +273,6 @@ void		step_ray(t_data *data);
 void		initialize_step_and_side_distance(t_data *data);
 void		calculate_ray_direction(t_data *data);
 void		calculate_delta_distances(t_data *data);
-
-/* time.c */
-void		update_timing_and_movement(t_data *data);
-double		get_ticks(void);
 
 /******************** START GAME *************************/
 

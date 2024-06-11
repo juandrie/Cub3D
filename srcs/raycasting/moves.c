@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 17:28:43 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/10 19:53:17 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:41:42 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	move_forward(t_data *data)
 	double	newx;
 	double	newy;
 
-	newx = data->player->pos.x + data->player->dir.x * data->window->movespeed;
-	newy = data->player->pos.y + data->player->dir.y * data->window->movespeed;
+	newx = data->player->pos.x + data->player->dir.x * MOVE_SPEED;
+	newy = data->player->pos.y + data->player->dir.y * MOVE_SPEED;
 	if (newx >= 0 && newx < data->map->width && \
 	newy >= 0 && newy < data->map->height)
 	{
@@ -69,8 +69,8 @@ void	move_back(t_data *data)
 	double	newx;
 	double	newy;
 
-	newx = data->player->pos.x - data->player->dir.x * data->window->movespeed;
-	newy = data->player->pos.y - data->player->dir.y * data->window->movespeed;
+	newx = data->player->pos.x - data->player->dir.x * MOVE_SPEED;
+	newy = data->player->pos.y - data->player->dir.y * MOVE_SPEED;
 	if (newx >= 0 && newx < data->map->width && \
 	newy >= 0 && newy < data->map->height)
 	{
