@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+         #
+#    By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 17:13:47 by juandrie          #+#    #+#              #
-#    Updated: 2024/06/11 13:26:07 by juandrie         ###   ########.fr        #
+#    Updated: 2024/06/11 14:54:49 by cabdli           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ MLX_LINK = -L $(MLX_DIR) -lmlx -lXext -lX11 -lm
 # libft library paths
 LIBFT_DIR = ./Libft
 LIBFT_LIB = $(LIBFT_DIR)/libft.a
+LIBFT_SRCS = $(wildcard $(LIBFT_DIR)/*.c)
 LIBFT_INC = -I $(LIBFT_DIR)
 
 # Include paths for headers
@@ -114,31 +115,35 @@ $(BUILD_DIR):
 all: $(NAME)
 	@./start_cub3d.sh
 
-$(NAME): $(BUILD_DIR) $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
+$(NAME): $(BUILD_DIR) $(OBJS) $(LIBFT_LIB) $(MLX_LIB) include/cub3d.h
 	@echo "$(PURPLE)Making cub3D...$(RESET)"
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT_LIB) $(MLX_LINK)
 	@echo "$(PURPLE)Cub3D done !$(RESET)"
 
-# Creating object files
-$(BUILD_DIR)/%.o: %.c $(BUILD_DIR)
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) $(INC) $(MLX_INC) $(LIBFT_INC) -c $< -o $@
-
-# Build libft
-$(LIBFT_LIB):
+# # Build libft
+$(LIBFT_LIB): $(LIBFT_SRCS)
 	@make --no-print-directory -C $(LIBFT_DIR)
 
-# Build mlx
+# # Build mlx
 $(MLX_LIB):
 	@echo "$(CYAN)Making minilibx...$(RESET)"
 	@make --no-print-directory -C $(MLX_DIR) 2>/dev/null
 	@echo "$(CYAN)Minilibx done !$(RESET)"
+
+# Creating object files
+$(BUILD_DIR)/%.o: %.c $(LIBFT_LIB)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(INC) $(MLX_INC) $(LIBFT_INC) -MMD -MP -c $< -o $@
+
+# Include dependency files
+-include $(OBJS:.o=.d)
 
 # Clean objects
 clean:
 	@echo "Cleaning in progress..."
 	@make --no-print-directory -C $(LIBFT_DIR) clean
 	@rm -rf $(BUILD_DIR)
+	@rm -f $(OBJS:.o=.d)
 	@make --no-print-directory -C $(MLX_DIR) clean
 	@echo "$(YELLOW)Cleaning done !$(RESET)"
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cabdli <cabdli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 14:14:50 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/11 13:27:34 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:48:58 by cabdli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define RIGHT 0xff51
 # define LEFT 0xff53
 
-# define MOVE_SPEED  0.03
+# define MOVE_SPEED  0.08
 # define ROTATE_SPEED 0.02
 
 # define WIDTH 1200
