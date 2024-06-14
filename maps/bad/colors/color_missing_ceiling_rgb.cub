@@ -1,7 +1,7 @@
-NO ./textures/path_to_north_texture.xpm
-WE ./textures/path_to_west_texture.xpm
-EA ./textures/path_to_east_texture.xpm
-SO ./textures/path_to_south_texture.xpm
+NO ./textures/purple.xpm
+WE ./textures/red.xpm
+EA ./textures/blue.xpm
+SO ./textures/grey.xpm
 
 F 20,20,20
 C 200,200,

@@ -1,10 +1,10 @@
 F 139,99,58
 C 171,154,137
 
-NO ./textures/path_to_north_texture.xpm
-WE ./textures/path_to_west_texture.xpm
-EA ./textures/path_to_east_texture.xpm
-SO ./textures/path_to_south_texture.xpm
+NO ./textures/purple.xpm
+WE ./textures/red.xpm
+EA ./textures/blue.xpm
+SO ./textures/grey.xpm
 
 1111111111111111111
 10W1001001001000001

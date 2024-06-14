@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 18:35:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/10 18:01:43 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:06:17 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,36 @@
 
 void	pos_n(t_data *data)
 {
+    data->player->dir.x = 1.0;
+	data->player->dir.y = 0.0;
+	data->player->plane.x = 0.0;
+	data->player->plane.y = -0.66;
+}
+
+void	pos_s(t_data *data)
+{
 	data->player->dir.x = -1.0;
 	data->player->dir.y = 0.0;
 	data->player->plane.x = 0.0;
 	data->player->plane.y = 0.66;
 }
 
-void	pos_s(t_data *data)
-{
-	data->player->dir.x = 1.0;
-	data->player->dir.y = 0.0;
-	data->player->plane.x = 0.0;
-	data->player->plane.y = -0.66;
-}
-
 void	pos_e(t_data *data)
 {
-	data->player->dir.x = 0.0;
-	data->player->dir.y = 1.0;
-	data->player->plane.x = 0.66;
+    data->player->dir.x = 0.0;
+	data->player->dir.y = -1.0;
+	data->player->plane.x = -0.66;
 	data->player->plane.y = 0.0;
 }
 
 void	pos_w(t_data *data)
 {
-	data->player->dir.x = 0.0;
-	data->player->dir.y = -1.0;
-	data->player->plane.x = -0.66;
+    data->player->dir.x = 0.0;
+	data->player->dir.y = 1.0;
+	data->player->plane.x = 0.66;
 	data->player->plane.y = 0.0;
 }
+
 
 void	handle_player(char c, t_data *data, int x, int y)
 {

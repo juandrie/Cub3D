@@ -6,7 +6,7 @@
 /*   By: juandrie <juandrie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 12:45:10 by juandrie          #+#    #+#             */
-/*   Updated: 2024/06/10 18:02:55 by juandrie         ###   ########.fr       */
+/*   Updated: 2024/06/14 17:06:45 by juandrie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,19 @@ int	calculate_texture_num(t_data *data)
 	if (data->ray->side == 0)
 	{
 		if (data->ray->ray_dir.x > 0)
-			return (SOUTH);
-		else
 			return (NORTH);
+		else
+			return (SOUTH);
 	}
 	else
 	{
 		if (data->ray->ray_dir.y > 0)
-			return (EAST);
-		else
 			return (WEST);
+		else
+			return (EAST);
 	}
 }
+
 
 double	calculate_wall_x(t_data *data)
 {

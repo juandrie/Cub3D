@@ -1,6 +1,6 @@
-NO ./textures/path_to_north_texture.xpm
-SO ./textures/path_to_south_texture.xpm
-WE ./textures/path_to_west_texture.xpm
+NO ./textures/purple.xpm
+WE ./textures/red.xpm
+SO ./textures/grey.xpm
 EA ./textures/forbidden.xpm
 
 F 20,20,20
